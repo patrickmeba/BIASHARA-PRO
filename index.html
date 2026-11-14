@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>QUIN WINNER</title>
+<meta name="theme-color" content="#0E5A4F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -68,21 +74,35 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 #cf{position:fixed;inset:0;z-index:35;background:rgba(10,30,26,.7);align-items:center;justify-content:center;padding:20px}
 #rc{position:fixed;inset:0;z-index:30;background:rgba(10,30,26,.7);align-items:center;justify-content:center;padding:20px;overflow:auto}
 @media print{body>*:not(#rc){display:none!important}#rc{position:static!important;background:#fff!important;display:block!important}#rc .lgc{box-shadow:none}#rc button{display:none}}
+#net{position:relative;z-index:1;margin-top:10px;font-size:12px;font-weight:600;opacity:.95}
+#net.off,#net.pend{color:var(--acc)}
+#cfg-t{width:100%;box-sizing:border-box;min-height:140px;padding:12px;font:500 13px/1.4 ui-monospace,Menlo,Consolas,monospace;border:1.5px solid var(--bd);border-radius:12px;background:var(--inp);color:var(--tx)}
+#lg-act p,#cfgbox p{margin:0 0 10px;font-size:14px}
 </style>
 </head>
 <body>
 <div id="rc" style="display:none"><div class="lgc"><b style="font:800 20px var(--fh)">Reçu</b><pre id="rc-t" style="white-space:pre-wrap;font:500 15px/1.5 var(--fb);margin:10px 0"></pre><div class="row"><button class="btn alt" id="rc-c">Copier</button><button class="btn alt" id="rc-p">Imprimer</button></div><button class="btn" id="rc-x">Fermer</button></div></div>
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
-<div id="login"><h2>QUIN WINNER</h2><p class="s">Connexion</p><div class="lgc">
-<label>Adresse e-mail</label><input id="lg-em" type="email" autocomplete="username">
+<div id="login"><h2>QUIN WINNER</h2><p class="s">Connectez-vous pour continuer</p>
+<div class="lgc" id="lgbox"><div id="lg-form">
+<label>E-mail</label><input id="lg-em" type="email" autocomplete="username" inputmode="email" autocapitalize="none">
 <label>Mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
-<div id="lg-err"></div><button class="btn" id="lg-go" style="margin-top:8px">Entrer</button></div></div>
-<div class="hero"><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8"/></svg></span><div class="mq"><div class="mqi"><span>QUIN WINNER</span><span>QUIN WINNER</span><span>QUIN WINNER</span><span>QUIN WINNER</span></div></div></div><button class="role" id="role">Connexion…</button></div>
-<div class="lab">Ventes du jour</div><div class="big" id="h-tot">0</div><div class="sub" id="h-sub"></div></div>
+<button class="btn" id="lg-go" style="margin-top:14px">Se connecter</button>
+<button class="btn alt" id="lg-fp" style="margin-top:8px">Mot de passe oublié ?</button>
+<button class="btn alt" id="lg-cfg" style="margin-top:8px;display:none">Reconfigurer Firebase</button></div>
+<div id="lg-act" style="display:none"><p>Premier démarrage : si c’est le compte du DG (propriétaire), activez-le. Sinon, demandez au DG de créer votre accès.</p>
+<button class="btn" id="lg-ac" style="margin-top:6px">Activer ce compte comme DG</button><button class="btn alt" id="lg-out" style="margin-top:8px">Se déconnecter</button></div>
+<div id="lg-err"></div></div>
+<div class="lgc" id="cfgbox" style="display:none"><p><b>Configuration Firebase</b><br>Collez ici le bloc <i>firebaseConfig</i> fourni par la console Firebase (une seule fois par appareil, sauf si vous l’avez déjà écrit dans le fichier index.html).</p>
+<textarea id="cfg-t" placeholder='apiKey: "…", authDomain: "…", projectId: "…", appId: "…"'></textarea>
+<div id="cfg-err" style="color:var(--bad);font-weight:600;min-height:20px;margin-top:8px;font-size:14px"></div>
+<button class="btn" id="cfg-go" style="margin-top:8px">Enregistrer</button><button class="btn alt" id="cfg-back" style="margin-top:8px">Retour</button></div></div>
+<div class="hero"><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><div class="mq"><div class="mqi"><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span></div></div></div><button class="role" id="role">Connexion…</button></div>
+<div class="lab">Ventes du jour</div><div class="big" id="h-tot">0</div><div class="sub" id="h-sub"></div><div id="net">● Connexion…</div></div>
 <main>
 <section class="tab" id="t-sv"><div class="card">
-<label>Rechercher un article</label><input id="sv-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
-<label>Article</label><select id="sv-a"></select>
+<label>Rechercher un produit</label><input id="sv-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
+<label>Produit</label><select id="sv-a"></select>
 <div class="row"><div><label>Quantité</label><input id="sv-q" type="number" min="1" value="1" inputmode="numeric"></div><div><label>Prix unitaire</label><input id="sv-p" type="number" readonly></div></div>
 <div id="sv-t" class="mut" style="margin-top:8px"></div>
 <button class="btn" id="sv-add">Ajouter au panier</button></div>
@@ -101,19 +121,19 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <button class="btn" id="dp-b">Enregistrer la dépense</button></div>
 <div class="card"><div class="row" style="align-items:center"><b>Dépenses</b><input id="dp-d" type="date"></div><div id="dp-li"></div></div></section>
 
-<section class="tab" id="t-mq"><div class="card"><b>Articles manquants</b><div id="mq-l"></div></div></section>
+<section class="tab" id="t-mq"><div class="card"><b>Produits manquants</b><div id="mq-l"></div></div></section>
 
-<section class="tab" id="t-ar"><div class="card"><b id="ar-h">Nouvel article</b>
+<section class="tab" id="t-ar"><div class="card"><b id="ar-h">Nouveau produit</b>
 <label>Désignation</label><input id="ar-n">
 <div class="row"><div><label>Prix d’achat</label><input id="ar-c" type="number" inputmode="numeric"></div><div><label>Prix de vente</label><input id="ar-p" type="number" inputmode="numeric"></div></div>
 <div class="row"><div><label>Seuil d’alerte</label><input id="ar-s" type="number" value="3" inputmode="numeric"></div><div><label>Stock initial</label><input id="ar-i" type="number" value="0" inputmode="numeric"></div></div>
-<button class="btn" id="ar-b">Enregistrer l’article</button><button class="btn alt" id="ar-x" style="display:none">Annuler la modification</button></div>
-<div class="card"><b>Articles</b> <span class="mut">(touchez pour modifier)</span><input id="ar-f" placeholder="Rechercher un article" style="margin-top:8px"><div id="ar-l"></div></div></section>
+<button class="btn" id="ar-b">Enregistrer le produit</button><button class="btn alt" id="ar-x" style="display:none">Annuler la modification</button></div>
+<div class="card"><b>Produits</b> <span class="mut">(touchez pour modifier)</span><input id="ar-f" placeholder="Rechercher un produit" style="margin-top:8px"><div id="ar-l"></div></div></section>
 
 <section class="tab" id="t-en"><div class="card">
 <label>Type d’opération</label><select id="en-t"><option value="a">Achat (entrée de stock)</option><option value="l">Perte, casse ou vol (sortie)</option><option value="i">Inventaire (indiquer le stock réel)</option></select>
-<label>Rechercher un article</label><input id="en-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
-<label>Article</label><select id="en-a"></select>
+<label>Rechercher un produit</label><input id="en-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
+<label>Produit</label><select id="en-a"></select>
 <div class="row"><div><label>Quantité</label><input id="en-q" type="number" min="1" inputmode="numeric"></div><div><label>Prix d’achat unitaire</label><input id="en-c" type="number" inputmode="numeric"></div></div>
 <button class="btn" id="en-b">Enregistrer</button></div>
 <div class="card"><b>Entrées et ajustements récents</b><div id="en-l"></div></div></section>
@@ -121,7 +141,9 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <section class="tab" id="t-td"><div class="card"><label>Jour affiché</label><input id="td-d" type="date"></div>
 <div class="card"><b>Jour</b><div class="kpi" id="k-j"></div></div>
 <div class="card"><b>Mois</b><div class="kpi" id="k-m"></div></div>
-<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Exporte les ventes, dépenses, entrées et articles dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card"><b>Comptes et mots de passe</b><div class="mut" style="margin-top:6px">Les comptes DG et agents se gèrent dans la console Firebase (Authentication). Chaque personne a son e-mail et son mot de passe.</div></div></section>
+<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">✉ envoie un e-mail pour changer le mot de passe · ✕ retire l’accès</div><div id="ag-l"></div>
+<label>Nom de l’agent</label><input id="ag-n" autocomplete="off"><label>E-mail</label><input id="ag-e" type="email" autocomplete="off" inputmode="email"><label>Mot de passe (6 caractères min.)</label><input id="ag-p" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ag-b">Créer l’accès de l’agent</button></div>
+<div class="card"><b>Mon mot de passe (DG)</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div></section>
 </main>
 <nav id="nav"></nav>
 <div id="toast"></div>
@@ -130,20 +152,32 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-/* ====== CONFIGURATION FIREBASE : collez ici les valeurs de votre projet ====== */
-const FIREBASE_CONFIG={apiKey:"COLLEZ_ICI",authDomain:"COLLEZ_ICI",projectId:"COLLEZ_ICI",appId:"COLLEZ_ICI"};
-</script>
-<script>
+// ====== CONFIGURATION FIREBASE (à remplir avant la mise en ligne, voir LISEZ-MOI.md) ======
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB_ctnXd10M2994oECCWwFeE2JZH90DcFw",
+  authDomain: "quin-winner.firebaseapp.com",
+  projectId: "quin-winner",
+  storageBucket: "quin-winner.firebasestorage.app",
+  messagingSenderId: "42107920014",
+  appId: "1:42107920014:web:4f17f50deeeac032b273df"
+};
+// ==========================================================================================
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
 const money=n=>Math.round(n||0).toLocaleString("fr-FR");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-let db=null,owner=false,editId=null,tab="sv";
-const S={payments:[],access:{},catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[]};
-function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3000)}
-let busy=false;async function wr(fn){if(busy)return;busy=true;try{await Promise.race([fn(),new Promise((_,j)=>setTimeout(()=>j(new Error("t")),12000))])}catch(e){toast("Action refusée ou hors ligne : réessayez")}finally{busy=false}}
+let db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
+const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[]};
+const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3200)}
+const col=n=>db.collection(n);
+function fail(e){toast(e&&e.code==="permission-denied"?"Action refusée : droits insuffisants":"Erreur : "+((e&&e.message)||"réessayez"))}
+function commit(b,msg){b.commit().catch(fail);if(msg)toast(navigator.onLine?msg:msg+" · hors ligne : synchronisé au retour d’internet")}
+function ind(){const off=!navigator.onLine,pend=Object.values(P).some(Boolean),n=$("net");
+  n.textContent=off?"● Hors ligne : vos opérations seront synchronisées":(pend?"● Synchronisation…":"● Synchronisé en temps réel");n.className=off?"off":(pend?"pend":"")}
+addEventListener("online",ind);addEventListener("offline",ind);
 const art=id=>S.catalog.find(a=>a.id===id);
 const stock=id=>S.stockin.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0)-S.sales.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0);
 const nm=id=>art(id)?art(id).name:"(supprimé)";
@@ -151,7 +185,8 @@ const nm=id=>art(id)?art(id).name:"(supprimé)";
 const IC={cr:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sv:'<path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/>',dp:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 10h18"/>',mq:'<path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17v.5"/>',ar:'<path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/>',en:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',td:'<path d="M5 20V10M12 20V4M19 20v-7"/>'};
 function buildNav(){
   const tabs=[["sv","Vente"],["cr","Crédits"],["dp","Dépenses"],["mq","Manquants"]];
-  if(owner)tabs.push(["ar","Articles"],["en","Entrées"],["td","Bilan"]);
+  if(owner)tabs.push(["ar","Produits"],["en","Entrées"],["td","Bilan"]);
+  if(!tabs.some(t=>t[0]===tab))tab="sv";
   $("nav").innerHTML=tabs.map(t=>`<button data-t="${t[0]}"><svg viewBox="0 0 24 24">${IC[t[0]]}</svg>${t[1]}</button>`).join("");
   $("nav").onclick=e=>{if(e.target.dataset.t)go(e.target.dataset.t)};
   go(tab);
@@ -161,7 +196,7 @@ function go(t){tab=t;document.querySelectorAll(".tab").forEach(s=>s.classList.to
 
 function fillSelect(sel,q){const v=sel.value,f=(q||"").trim().toLowerCase();
   const L=S.catalog.filter(a=>!f||a.name.toLowerCase().includes(f)).sort((a,b)=>a.name.localeCompare(b.name));
-  sel.innerHTML=L.length?L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""):'<option value="" disabled selected>Aucun article trouvé</option>';
+  sel.innerHTML=L.length?L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""):'<option value="" disabled selected>Aucun produit trouvé</option>';
   if(v&&L.some(a=>a.id===v))sel.value=v}
 function render(){
   {const tdy=today(),ds=S.sales.filter(s=>s.date===tdy);$("h-tot").textContent=money(ds.reduce((t,s)=>t+s.qty*s.price,0));$("h-sub").textContent=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" · "+ds.length+(ds.length>1?" ventes":" vente")}
@@ -172,16 +207,17 @@ function render(){
   const td2=$("dp-d").value||today(),dj=S.expenses.filter(s=>s.date===td2).sort((a,b)=>b.ts-a.ts);
   $("dp-li").innerHTML=dj.map(s=>`<div class="it"><span>${esc(s.label)}<br><span class="mut">${esc(s.by||"")}</span></span><span>${money(s.amount)}${(owner||s.date===today())?` <button class="x" data-d="expenses/${s.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucune dépense ce jour.</div>';
   const low=S.catalog.filter(a=>stock(a.id)<=(+a.threshold||0));
-  $("mq-l").innerHTML=low.map(a=>`<div class="it"><span>${esc(a.name)}</span><span class="bad">reste ${stock(a.id)}</span></div>`).join("")||'<div class="ok">Aucun article manquant.</div>';
+  $("mq-l").innerHTML=low.map(a=>`<div class="it"><span>${esc(a.name)}</span><span class="bad">reste ${stock(a.id)}</span></div>`).join("")||'<div class="ok">Aucun produit manquant.</div>';
   {const D=debts(),names=Object.keys(D).sort((a,b)=>a.localeCompare(b)),open=names.filter(c=>D[c]>0),v=$("cr-c").value;
   $("cl-list").innerHTML=names.map(c=>`<option value="${esc(c)}">`).join("");
   $("cr-c").innerHTML=open.map(c=>`<option>${esc(c)}</option>`).join("");if(v&&open.includes(v))$("cr-c").value=v;
   $("cr-l").innerHTML=open.map(c=>`<div class="it"><span>${esc(c)}</span><span class="bad">doit ${money(D[c])}</span></div>`).join("")||'<div class="ok">Aucune dette en cours.</div>';
   $("cr-h").innerHTML=S.payments.slice().sort((a,b)=>b.ts-a.ts).slice(0,15).map(p=>`<div class="it"><span>${esc(p.client)}<br><span class="mut">${p.date} · ${esc(p.by||"")}</span></span><span class="ok">+${money(p.amount)}${owner?` <button class="x" data-d="payments/${p.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucun paiement.</div>'}
   if(!owner)return;
-  $("ar-l").innerHTML=S.catalog.filter(a=>a.name.toLowerCase().includes($("ar-f").value.toLowerCase())).slice().sort((a,b)=>a.name.localeCompare(b.name)).map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">achat ${money((S.costs[a.id]||{}).cost)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun article.</div>';
+  $("ar-l").innerHTML=S.catalog.filter(a=>a.name.toLowerCase().includes($("ar-f").value.toLowerCase())).slice().sort((a,b)=>a.name.localeCompare(b.name)).map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">achat ${money((S.costs[a.id]||{}).cost)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
   {const L=S.purchases.map(p=>({id:p.id,c:"purchases",ts:p.ts,date:p.date,t:nm(p.article)+" × "+p.qty,v:money(p.qty*p.unitCost)})).concat(S.stockin.filter(x=>x.adj).map(x=>({id:x.id,c:"stockin",ts:x.ts,date:x.date,t:nm(x.article)+" · "+x.adj+" ("+(x.qty>0?"+":"")+x.qty+")",v:""}))).sort((a,b)=>b.ts-a.ts).slice(0,25);
   $("en-l").innerHTML=L.map(p=>`<div class="it"><span>${esc(p.t)}<br><span class="mut">${p.date}</span></span><span>${p.v} <button class="x" data-d="${p.c}/${p.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucune entrée.</div>'}
+  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent").sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(u.email||"")}</span></span><span><button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button><button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
   bilan();
 }
 function calc(f){const s=S.sales.filter(f),ca=s.reduce((t,x)=>t+x.qty*x.price,0),pr=s.reduce((t,x)=>t+x.qty*(x.price-((S.costs[x.article]||{}).cost||0)),0);
@@ -203,47 +239,90 @@ function showReceipt(lines,m){const tot=lines.reduce((t,l)=>t+l.qty*l.price,0);
 $("rc-x").onclick=()=>$("rc").style.display="none";
 $("rc-c").onclick=async()=>{try{await navigator.clipboard.writeText($("rc-t").textContent);toast("Reçu copié")}catch(e){toast("Copie impossible : faites une capture d’écran")}};
 $("rc-p").onclick=()=>{try{window.print()}catch(e){toast("Impression impossible : faites une capture d’écran")}};
-$("sv-add").onclick=()=>{const a=art($("sv-a").value),q=+$("sv-q").value;if(!a||!(q>=1))return toast("Choisissez un article et une quantité");
+$("sv-add").onclick=()=>{const a=art($("sv-a").value),q=+$("sv-q").value;if(!a||!(q>=1))return toast("Choisissez un produit et une quantité");
   const inCart=cart.filter(l=>l.id===a.id).reduce((t,l)=>t+l.qty,0);if(inCart+q>stock(a.id))return toast("Stock insuffisant : il reste "+(stock(a.id)-inCart));
   cart.push({id:a.id,name:a.name,qty:q,price:+a.price});$("sv-q").value=1;svPrice();drawCart()};
 $("sv-pay").onchange=()=>{$("sv-clw").style.display=$("sv-pay").value==="k"?"block":"none"};
 $("sv-b").onclick=()=>{if(!cart.length)return;const k=$("sv-pay").value==="k",cl=$("sv-cl").value.trim();if(k&&!cl)return toast("Indiquez le nom du client");
-  const rid=uid(),lines=cart.slice();
-  wr(async()=>{await Promise.all(lines.map(l=>db.collection("sales").doc(uid()).set({date:today(),ts:Date.now(),article:l.id,qty:l.qty,price:l.price,by:who,rid,credit:k,client:k?cl:""})));
-    cart=[];drawCart();$("sv-cl").value="";$("sv-pay").value="c";$("sv-clw").style.display="none";showReceipt(lines,{date:today(),by:who,client:k?cl:"",credit:k})})};
+  const rid=uid(),lines=cart.slice(),b=db.batch();
+  lines.forEach(l=>b.set(col("sales").doc(uid()),{date:today(),ts:Date.now(),article:l.id,qty:l.qty,price:l.price,by:who,rid,credit:k,client:k?cl:""}));
+  commit(b);cart=[];drawCart();$("sv-cl").value="";$("sv-pay").value="c";$("sv-clw").style.display="none";showReceipt(lines,{date:today(),by:who,client:k?cl:"",credit:k})};
 $("cr-b").onclick=()=>{const c=$("cr-c").value,m=+$("cr-m").value,D=debts();if(!c||!(m>0))return toast("Choisissez un client et un montant");if(m>(D[c]||0))return toast("Le montant dépasse la dette : "+money(D[c]));
-  wr(async()=>{await db.collection("payments").doc(uid()).set({client:c,amount:m,date:today(),ts:Date.now(),by:who});$("cr-m").value="";toast("Paiement enregistré")})};
+  const b=db.batch();b.set(col("payments").doc(uid()),{client:c,amount:m,date:today(),ts:Date.now(),by:who});commit(b,"Paiement enregistré");$("cr-m").value=""};
 $("dp-b").onclick=()=>{const l=$("dp-l").value.trim(),m=+$("dp-m").value;if(!l||!(m>0))return toast("Libellé et montant requis");
-  wr(async()=>{await db.collection("expenses").doc(uid()).set({date:today(),ts:Date.now(),label:l,amount:m,by:who});$("dp-l").value="";$("dp-m").value="";toast("Dépense enregistrée")})};
-function resetAr(){editId=null;["ar-n","ar-c","ar-p"].forEach(i=>$(i).value="");$("ar-s").value=3;$("ar-i").value=0;$("ar-i").disabled=false;$("ar-h").textContent="Nouvel article";$("ar-x").style.display="none"}
+  const b=db.batch();b.set(col("expenses").doc(uid()),{date:today(),ts:Date.now(),label:l,amount:m,by:who});commit(b,"Dépense enregistrée");$("dp-l").value="";$("dp-m").value=""};
+function resetAr(){editId=null;["ar-n","ar-c","ar-p"].forEach(i=>$(i).value="");$("ar-s").value=3;$("ar-i").value=0;$("ar-i").disabled=false;$("ar-h").textContent="Nouveau produit";$("ar-x").style.display="none"}
 $("ar-x").onclick=resetAr;
 $("ar-b").onclick=()=>{const n=$("ar-n").value.trim(),c=+$("ar-c").value,p=+$("ar-p").value,s=+$("ar-s").value||0,i=+$("ar-i").value||0;if(!n||!(p>0))return toast("Nom et prix de vente requis");
-  if(S.catalog.some(x=>x.id!==editId&&x.name.toLowerCase()===n.toLowerCase()))return toast("Cet article existe déjà");
-  const id=editId||uid(),isNew=!editId;
-  wr(async()=>{await db.collection("catalog").doc(id).set({name:n,price:p,threshold:s});await db.collection("costs").doc(id).set({cost:c});
-    if(isNew&&i>0){const pid=uid();await db.collection("stockin").doc(pid).set({article:id,qty:i,date:today(),ts:Date.now()});await db.collection("purchases").doc(pid).set({article:id,qty:i,unitCost:c,date:today(),ts:Date.now()})}
-    resetAr();toast("Article enregistré")})};
+  if(S.catalog.some(x=>x.id!==editId&&x.name.toLowerCase()===n.toLowerCase()))return toast("Ce produit existe déjà");
+  const id=editId||uid(),isNew=!editId,b=db.batch();
+  b.set(col("catalog").doc(id),{name:n,price:p,threshold:s});b.set(col("costs").doc(id),{cost:c});
+  if(isNew&&i>0){const pid=uid();b.set(col("stockin").doc(pid),{article:id,qty:i,date:today(),ts:Date.now()});b.set(col("purchases").doc(pid),{article:id,qty:i,unitCost:c,date:today(),ts:Date.now()})}
+  commit(b,"Produit enregistré");resetAr()};
 $("en-a").onchange=()=>{$("en-c").value=(S.costs[$("en-a").value]||{}).cost||""};
 $("en-b").onclick=()=>{const a=art($("en-a").value),t=$("en-t").value,q=+$("en-q").value,c=+$("en-c").value;
-  if(!a||$("en-q").value==="")return toast("Choisissez un article et une quantité");const id=uid();
+  if(!a||$("en-q").value==="")return toast("Choisissez un produit et une quantité");const id=uid(),b=db.batch();
   if(t==="a"){if(q<1||!(c>=0)||$("en-c").value==="")return toast("Quantité et prix d’achat requis");
-    wr(async()=>{await db.collection("stockin").doc(id).set({article:a.id,qty:q,date:today(),ts:Date.now()});await db.collection("purchases").doc(id).set({article:a.id,qty:q,unitCost:c,date:today(),ts:Date.now()});await db.collection("costs").doc(a.id).set({cost:c});$("en-q").value="";toast("Entrée enregistrée")})}
+    b.set(col("stockin").doc(id),{article:a.id,qty:q,date:today(),ts:Date.now()});b.set(col("purchases").doc(id),{article:a.id,qty:q,unitCost:c,date:today(),ts:Date.now()});b.set(col("costs").doc(a.id),{cost:c});
+    commit(b,"Entrée enregistrée");$("en-q").value=""}
   else{const d=t==="l"?-Math.abs(q):q-stock(a.id);if(!d)return toast("Aucun changement de stock");
-    wr(async()=>{await db.collection("stockin").doc(id).set({article:a.id,qty:d,date:today(),ts:Date.now(),adj:t==="l"?"Perte/casse":"Inventaire"});$("en-q").value="";toast("Stock ajusté")})}};
+    b.set(col("stockin").doc(id),{article:a.id,qty:d,date:today(),ts:Date.now(),adj:t==="l"?"Perte/casse":"Inventaire"});commit(b,"Stock ajusté");$("en-q").value=""}};
 $("td-d").value=$("sv-d").value=$("dp-d").value=today();$("sv-d").onchange=$("dp-d").onchange=render;$("sv-s").oninput=()=>{fillSelect($("sv-a"),$("sv-s").value);svPrice()};$("en-s").oninput=()=>{fillSelect($("en-a"),$("en-s").value);$("en-c").value=(S.costs[$("en-a").value]||{}).cost||""};$("ar-f").oninput=render;$("en-t").onchange=()=>{$("en-c").parentElement.style.display=$("en-t").value==="a"?"":"none"};$("td-d").onchange=bilan;
 document.addEventListener("click",e=>{
   const c=e.target.closest("[data-c]");if(c){cart.splice(+c.dataset.c,1);drawCart();return}
-  const g=e.target.closest("[data-g]");if(g){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok)wr(async()=>{await Promise.all(S.sales.filter(s=>(s.rid||s.id)===k).map(s=>db.doc("sales/"+s.id).delete()));toast("Vente supprimée")})});return}
+  const g=e.target.closest("[data-g]");if(g){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
   const rr=e.target.closest("[data-r]");if(rr){const a=S.sales.filter(s=>(s.rid||s.id)===rr.dataset.r);if(a.length)showReceipt(a.map(s=>({name:nm(s.article),qty:s.qty,price:s.price})),{date:a[0].date,by:a[0].by,client:a[0].client,credit:a[0].credit});return}
+  const rp=e.target.closest("[data-rp]");if(rp){const m=rp.dataset.rp;if(!m)return;auth.sendPasswordResetEmail(m).then(()=>toast("E-mail de réinitialisation envoyé à "+m)).catch(()=>toast("Envoi impossible"));return}
   const d=e.target.closest("[data-d]");
-  if(d){e.stopPropagation();const[c,id]=d.dataset.d.split("/");
-    ask("Supprimer cet élément ?").then(ok=>{if(ok)wr(async()=>{await db.doc(c+"/"+id).delete();if(c==="purchases")await db.doc("stockin/"+id).delete();if(c==="catalog")await db.doc("costs/"+id).delete();toast("Supprimé")})});return}
+  if(d){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
+    ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete(col(cc).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
   const r=e.target.closest("[data-e]");
-  if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier l’article";$("ar-x").style.display="block";window.scrollTo(0,0)}
+  if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";$("ar-x").style.display="block";scrollTo(0,0)}
 });
-let who="Vendeuse";
-function sub(name,fn){db.collection(name).onSnapshot(s=>{fn(s.docs.map(d=>({id:d.id,...d.data()})));render()},()=>toast("Synchronisation interrompue"))}
-$("ex-b").onclick=async()=>{
+
+/* ---------- Synchronisation temps réel (Firestore) ---------- */
+function sub(name){
+  unsubs.push(col(name).onSnapshot({includeMetadataChanges:true},s=>{
+    P[name]=s.metadata.hasPendingWrites;
+    if(!got[name]||s.docChanges().length){got[name]=1;SET[name](s.docs.map(d=>({id:d.id,...d.data()})));render()}
+    ind()},e=>toast("Synchronisation interrompue : "+(e.code||""))))}
+function stopSubs(){unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P={};got={};
+  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];S.users=[];owner=false}
+
+/* ---------- Connexion ---------- */
+function showLogin(msg,activate){$("cfgbox").style.display="none";$("lgbox").style.display="block";$("login").style.display="flex";
+  $("lg-err").textContent=msg||"";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…"}
+async function start(u){
+  let d;
+  try{d=await col("users").doc(u.uid).get()}catch(e){try{d=await col("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
+  if(!d.exists)return showLogin("Ce compte n’est pas encore activé.",true);
+  const r=d.data();if(r.role!=="dg"&&r.role!=="agent")return showLogin("Compte non autorisé.");
+  stopSubs();owner=r.role==="dg";who=owner?"DG":(r.name||"Agent");
+  $("role").textContent=who+" · quitter";$("login").style.display="none";
+  ["catalog","stockin","sales","expenses","payments"].forEach(sub);
+  if(owner)["costs","purchases","users"].forEach(sub);
+  buildNav();render();ind()}
+$("role").onclick=()=>auth&&auth.signOut();
+$("lg-go").onclick=async()=>{const e=$("lg-em").value.trim(),p=$("lg-pw").value;if(!e||!p)return;$("lg-err").textContent="";
+  try{await auth.signInWithEmailAndPassword(e,p);$("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"E-mail ou mot de passe incorrect"}};
+$("lg-cfg").onclick=()=>showCfg();$("cfg-back").onclick=()=>showLogin();
+$("lg-pw").onkeydown=$("lg-em").onkeydown=e=>{if(e.key==="Enter")$("lg-go").click()};
+$("lg-fp").onclick=()=>{const e=$("lg-em").value.trim();if(!e)return $("lg-err").textContent="Entrez d’abord votre e-mail";
+  auth.sendPasswordResetEmail(e).then(()=>$("lg-err").textContent="E-mail de réinitialisation envoyé (pensez aux spams).").catch(()=>$("lg-err").textContent="Envoi impossible")};
+$("lg-ac").onclick=()=>{const u=auth.currentUser;if(!u)return;
+  col("users").doc(u.uid).set({role:"dg",name:"DG",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le compte DG défini dans les règles Firestore."})};
+$("lg-out").onclick=()=>auth.signOut();
+$("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),e=$("ag-e").value.trim(),p=$("ag-p").value;
+  if(!n||!e||p.length<6)return toast("Nom, e-mail et mot de passe (6 caractères min.) requis");
+  if(!navigator.onLine)return toast("Connexion internet requise pour créer un agent");
+  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
+    const c=await a2.auth().createUserWithEmailAndPassword(e,p);const id=c.user.uid;await a2.auth().signOut();
+    await col("users").doc(id).set({role:"agent",name:n,email:e,ts:Date.now()});
+    ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé")}
+  catch(x){toast(x.code==="auth/email-already-in-use"?"Cet e-mail est déjà utilisé":x.code==="auth/weak-password"?"Mot de passe trop faible":x.code==="auth/invalid-email"?"E-mail invalide":"Création impossible")}};
+$("pw-b").onclick=()=>{const p=$("pw-dg").value;if(p.length<6)return toast("6 caractères minimum");
+  auth.currentUser.updatePassword(p).then(()=>{$("pw-dg").value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))};
+$("ex-b").onclick=()=>{
   if(!window.XLSX)return toast("Export indisponible pour le moment");
   const by=(a,b)=>String(a.date).localeCompare(String(b.date));
   const wb=XLSX.utils.book_new();
@@ -253,68 +332,24 @@ $("ex-b").onclick=async()=>{
   add("Entrées",S.purchases.slice().sort(by).map(p=>({Date:p.date,Article:nm(p.article),Quantité:p.qty,"Prix d’achat":p.unitCost,Total:p.qty*p.unitCost})));
   add("Articles",S.catalog.map(a=>({Article:a.name,"Prix d’achat":(S.costs[a.id]||{}).cost||0,"Prix de vente":a.price,"Seuil d’alerte":a.threshold,"Stock actuel":stock(a.id)})));
   add("Paiements",S.payments.slice().sort(by).map(p=>({Date:p.date,Client:p.client,Montant:p.amount,Par:p.by||""})));
-  try{const d=XLSX.write(wb,{type:"array",bookType:"xlsx"}),l=document.createElement("a");l.href=URL.createObjectURL(new Blob([d],{type:"application/octet-stream"}));l.download="QUIN_WINNER_"+today()+".xlsx";document.body.appendChild(l);l.click();l.remove();toast("Fichier téléchargé")}catch(e){toast("Export impossible")}};
-let admin=false,started=false,fdb=null,fauth=null,profile=null;
-const fail=e=>toast("Opération refusée : "+((e&&e.code)||"erreur"));
-function wd(r){return{set:d=>{r.set(d).catch(fail);return Promise.resolve()},delete:()=>{r.delete().catch(fail);return Promise.resolve()}}}
-function showLogin(){$("login").style.display="flex";$("lg-pw").value="";$("lg-err").textContent=""}
-function enter(){owner=admin;who=profile.name||(admin?"DG":"Agent");$("role").textContent=who+" · quitter";$("login").style.display="none";buildNav();render();
-  if(!started){started=true;
-    sub("catalog",v=>S.catalog=v);sub("stockin",v=>S.stockin=v);sub("sales",v=>S.sales=v);sub("expenses",v=>S.expenses=v);sub("payments",v=>S.payments=v);
-    if(admin){sub("costs",v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)});sub("purchases",v=>S.purchases=v)}}}
-$("role").onclick=async()=>{try{if(fauth)await fauth.signOut()}catch(e){}location.reload()};
-$("lg-go").onclick=async()=>{const em=$("lg-em").value.trim(),pw=$("lg-pw").value;if(!em||!pw||!fauth)return;$("lg-err").textContent="";
-  try{await fauth.signInWithEmailAndPassword(em,pw)}catch(e){$("lg-err").textContent=(e&&e.code==="auth/network-request-failed")?"Pas d’internet : la première connexion exige internet.":"E-mail ou mot de passe incorrect."}};
-addEventListener("offline",()=>toast("Hors ligne : vos opérations seront envoyées au retour d’internet"));
-addEventListener("online",()=>toast("Connexion rétablie : synchronisation en cours"));
+  try{XLSX.writeFile(wb,"BLESSING_PHARMA_"+today()+".xlsx");toast("Fichier Excel téléchargé")}catch(e){toast("Export impossible")}};
+
+/* ---------- Démarrage ---------- */
+function loadCfg(){try{const c=JSON.parse(localStorage.getItem("bp-fbcfg"));if(c&&c.apiKey&&c.projectId)return c}catch(e){}return FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId?FIREBASE_CONFIG:null}
+function showCfg(){$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("role").textContent="À configurer"}
+$("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["']([^"']+)["']/g,(m,k,v)=>{o[k]=v});
+  if(!o.apiKey||!o.projectId)return $("cfg-err").textContent="Configuration incomplète : collez tout le bloc firebaseConfig.";
+  try{localStorage.setItem("bp-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
 (function(){
-  if(!FIREBASE_CONFIG.apiKey||/COLLEZ/.test(FIREBASE_CONFIG.apiKey)){showLogin();$("lg-err").textContent="Configuration Firebase manquante : voir le guide.";return}
-  firebase.initializeApp(FIREBASE_CONFIG);fauth=firebase.auth();fdb=firebase.firestore();
-  fdb.enablePersistence({synchronizeTabs:true}).catch(()=>{});
-  db={collection:n=>({doc:id=>wd(fdb.collection(n).doc(id)),onSnapshot:(a,b)=>fdb.collection(n).onSnapshot(a,b)}),doc:p=>Object.assign(wd(fdb.doc(p)),{onSnapshot:(a,b)=>fdb.doc(p).onSnapshot(a,b)})};
-  fauth.onAuthStateChanged(async u=>{
-    if(!u){profile=null;admin=false;showLogin();return}
-    const key="qw-profile-"+u.uid;
-    try{const s=await fdb.doc("users/"+u.uid).get();if(!s.exists)throw 0;profile=s.data();try{localStorage.setItem(key,JSON.stringify(profile))}catch(e){}}
-    catch(e){try{profile=JSON.parse(localStorage.getItem(key)||"null")}catch(x){profile=null}}
-    if(!profile||!["dg","agent"].includes(profile.role)){showLogin();$("lg-err").textContent="Compte non autorisé : demandez au DG de créer votre profil.";try{await fauth.signOut()}catch(e){}return}
-    admin=profile.role==="dg";enter()});
+  if(typeof firebase==="undefined"){$("role").textContent="Hors service";$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("cfg-err").textContent="La bibliothèque Firebase n’a pas pu être chargée. Vérifiez la connexion internet puis rechargez.";return}
+  cfg=loadCfg();if(!cfg){showCfg();return}
+  try{firebase.initializeApp(cfg)}catch(e){}
+  auth=firebase.auth();db=firebase.firestore();
+  db.enablePersistence({synchronizeTabs:true}).catch(()=>{});
+  auth.onAuthStateChanged(u=>{if(!u){stopSubs();showLogin();return}start(u)});
+  if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
+
 </script>
 </body>
-  rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    function profil() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
-    }
-    function connecte() {
-      return request.auth != null
-        && exists(/databases/$(database)/documents/users/$(request.auth.uid));
-    }
-    function dg() { return connecte() && profil().role == 'dg'; }
-
-    // Profil de chaque personne : lecture de son propre profil seulement.
-    // Les profils se créent à la main dans la console Firebase.
-    match /users/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
-      allow write: if false;
-    }
-
-    // Visible par tous les comptes, modifiable par le DG seulement.
-    match /catalog/{id}  { allow read: if connecte(); allow write: if dg(); }
-    match /stockin/{id}  { allow read: if connecte(); allow write: if dg(); }
-
-    // Prix d'achat et achats : DG seulement.
-    match /costs/{id}     { allow read, write: if dg(); }
-    match /purchases/{id} { allow read, write: if dg(); }
-
-    // Ventes, dépenses, paiements : DG et agents.
-    match /sales/{id}    { allow read, write: if connecte(); }
-    match /expenses/{id} { allow read, write: if connecte(); }
-    match /payments/{id} { allow read, write: if connecte(); }
-  }
-}
-
 </html>
