@@ -112,9 +112,12 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="lab">Ventes du jour</div><div class="big" id="h-tot">0</div><div class="sub" id="h-sub"></div><div id="net">● Connexion…</div></div>
 <main>
 <section class="tab" id="t-sv"><div class="card">
-<label>Rechercher un produit</label><input id="sv-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
-<label>Produit</label><select id="sv-a"></select>
-<div class="row"><div><label>Quantité</label><input id="sv-q" type="number" min="1" value="1" inputmode="numeric"></div><div><label>Prix unitaire</label><input id="sv-p" type="number" readonly></div></div>
+<button class="btn alt" id="sv-fr" style="margin-top:0;margin-bottom:4px">Produit absent de la liste ? Vente libre</button>
+<div id="sv-cat"><label>Rechercher un produit</label><input id="sv-s" type="search" placeholder="Tapez le nom…" autocomplete="off">
+<label>Produit</label><select id="sv-a"></select></div>
+<div id="sv-fw" style="display:none"><label>Nom du produit (hors liste)</label><input id="sv-fn" autocomplete="off">
+<div id="sv-fcw" style="display:none"><label>Prix d’achat (facultatif, pour le bénéfice)</label><input id="sv-fc" type="number" inputmode="numeric"></div></div>
+<div class="row"><div><label>Quantité</label><input id="sv-q" type="number" min="1" value="1" inputmode="numeric"></div><div><label>Prix de vente (modifiable)</label><input id="sv-p" type="number" inputmode="numeric"></div></div>
 <div id="sv-t" class="mut" style="margin-top:8px"></div>
 <button class="btn" id="sv-add">Ajouter au panier</button></div>
 <div class="card" id="cart" style="display:none"><b>Panier</b><div id="cart-l"></div><div id="cart-t" style="font:800 20px var(--fh);margin-top:8px"></div>
@@ -147,6 +150,12 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <label>Produit</label><select id="en-a"></select>
 <div class="row"><div><label>Quantité</label><input id="en-q" type="number" min="1" inputmode="numeric"></div><div><label>Prix d’achat unitaire</label><input id="en-c" type="number" inputmode="numeric"></div></div>
 <button class="btn" id="en-b">Enregistrer</button></div>
+<div class="card"><b>Importer un fichier Excel</b><div class="mut" style="margin-top:4px">Pour réapprovisionner ou ajouter beaucoup de produits d’un coup. Colonnes : Désignation, Quantité, Prix d’achat, Prix de vente, Seuil d’alerte.</div>
+<button class="btn alt" id="im-tpl" style="margin-top:10px">Télécharger le modèle Excel</button>
+<label>Fichier Excel (.xlsx, .xls ou .csv)</label><input id="im-f" type="file" accept=".xlsx,.xls,.csv">
+<div id="im-pv" style="margin-top:10px"></div>
+<div id="im-ul" style="display:none"><label>Produits déjà existants</label><select id="im-up"><option value="1">Mettre à jour les prix de vente</option><option value="0">Garder les prix actuels</option></select></div>
+<button class="btn" id="im-go" style="display:none">Importer dans le stock</button></div>
 <div class="card"><b>Entrées et ajustements récents</b><div id="en-l"></div></div></section>
 
 <section class="tab" id="t-td"><div class="card"><label>Jour affiché</label><input id="td-d" type="date"></div>
@@ -217,7 +226,7 @@ function render(){
   fillSelect($("sv-a"),$("sv-s").value);fillSelect($("en-a"),$("en-s").value);svPrice();
   const td=$("sv-d").value||today(),mine=S.sales.filter(s=>s.date===td).sort((a,b)=>b.ts-a.ts);
   const G={};mine.forEach(s=>{const k=s.rid||s.id;(G[k]=G[k]||[]).push(s)});const gr=Object.entries(G).map(([k,a])=>({k,a,ts:Math.max(...a.map(x=>x.ts||0))})).sort((x,y)=>y.ts-x.ts);
-  $("sv-l").innerHTML=(mine.length?`<div class="mut" style="margin:8px 0 2px">Total : ${money(mine.reduce((t,s)=>t+s.qty*s.price,0))}</div>`:"")+gr.map(g=>{const t=g.a.reduce((c,s)=>c+s.qty*s.price,0),f=g.a[0];return `<div class="it"><span>${g.a.map(s=>esc(nm(s.article))+" × "+s.qty).join(", ")}<br><span class="mut">${esc(f.by||"")}${f.credit?" · à crédit : "+esc(f.client||""):""}</span></span><span>${money(t)} <button class="x" data-r="${g.k}">🧾</button>${(owner||f.date===today())?` <button class="x" data-g="${g.k}">✕</button>`:""}</span></div>`}).join("")||'<div class="mut">Aucune vente ce jour.</div>';
+  $("sv-l").innerHTML=(mine.length?`<div class="mut" style="margin:8px 0 2px">Total : ${money(mine.reduce((t,s)=>t+s.qty*s.price,0))}</div>`:"")+gr.map(g=>{const t=g.a.reduce((c,s)=>c+s.qty*s.price,0),f=g.a[0];return `<div class="it"><span>${g.a.map(s=>esc(s.name||nm(s.article))+" × "+s.qty).join(", ")}<br><span class="mut">${esc(f.by||"")}${f.credit?" · à crédit : "+esc(f.client||""):""}${g.a.some(s=>s.list&&s.price!==s.list)?" · prix modifié":""}${g.a.some(s=>s.free)?" · hors liste":""}</span></span><span>${money(t)} <button class="x" data-r="${g.k}">🧾</button>${(owner||f.date===today())?` <button class="x" data-g="${g.k}">✕</button>`:""}</span></div>`}).join("")||'<div class="mut">Aucune vente ce jour.</div>';
   const td2=$("dp-d").value||today(),dj=S.expenses.filter(s=>s.date===td2).sort((a,b)=>b.ts-a.ts);
   $("dp-li").innerHTML=dj.map(s=>`<div class="it"><span>${esc(s.label)}<br><span class="mut">${esc(s.by||"")}</span></span><span>${money(s.amount)}${(owner||s.date===today())?` <button class="x" data-d="expenses/${s.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucune dépense ce jour.</div>';
   const low=S.catalog.filter(a=>stock(a.id)<=(+a.threshold||0));
@@ -234,7 +243,7 @@ function render(){
   $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent").sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(u.email||"")}</span></span><span><button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button><button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
   bilan();
 }
-function calc(f){const s=S.sales.filter(f),ca=s.reduce((t,x)=>t+x.qty*x.price,0),pr=s.reduce((t,x)=>t+x.qty*(x.price-((S.costs[x.article]||{}).cost||0)),0);
+function calc(f){const s=S.sales.filter(f),ca=s.reduce((t,x)=>t+x.qty*x.price,0),pr=s.reduce((t,x)=>t+x.qty*(x.price-(((S.costs[x.article]||{}).cost)??(x.cost||0))),0);
   const ac=S.purchases.filter(f).reduce((t,x)=>t+x.qty*x.unitCost,0),dp=S.expenses.filter(f).reduce((t,x)=>t+(+x.amount||0),0);
   return [["Ventes",ca],["Bénéfice brut",pr],["Achats",ac],["Dépenses",dp],["Bénéfice net",pr-dp]].map(k=>`<div>${k[0]}<b>${money(k[1])}</b></div>`).join("")}
 function bilan(){const d=$("td-d").value||today();$("k-j").innerHTML=calc(x=>x.date===d);$("k-m").innerHTML=calc(x=>(x.date||"").slice(0,7)===d.slice(0,7));
@@ -242,24 +251,35 @@ function bilan(){const d=$("td-d").value||today();$("k-j").innerHTML=calc(x=>x.d
   const val=S.catalog.reduce((t,a)=>t+Math.max(0,stock(a.id))*((S.costs[a.id]||{}).cost||0),0);
   $("k-s").innerHTML=`<div>Valeur du stock<b>${money(val)}</b></div><div>Articles manquants<b>${S.catalog.filter(a=>stock(a.id)<=(+a.threshold||0)).length}</b></div><div>Dettes clients<b>${money(owed)}</b></div><div>Paiements reçus (jour)<b>${money(paid)}</b></div>`}
 
-function svPrice(){const a=art($("sv-a").value);$("sv-p").value=a?a.price:"";const q=+$("sv-q").value||0;$("sv-t").textContent=a?`Total : ${money(q*a.price)} · stock : ${stock(a.id)}`:""}
-$("sv-a").onchange=svPrice;$("sv-q").oninput=svPrice;
+let freeMode=false;
+function svPrice(){const a=art($("sv-a").value),p=$("sv-p");
+  if(!freeMode){const k=a?a.id:"";if(p.dataset.a!==k){p.dataset.a=k;p.value=a?a.price:""}}
+  const q=+$("sv-q").value||0,pr=+p.value||0;
+  $("sv-t").textContent=freeMode?`Total : ${money(q*pr)} · produit hors liste`:(a?`Total : ${money(q*pr)} · stock : ${stock(a.id)}${pr&&pr!==+a.price?" · prix liste : "+money(a.price):""}`:"")}
+$("sv-a").onchange=svPrice;$("sv-q").oninput=svPrice;$("sv-p").oninput=svPrice;
 let cart=[];
 function debts(){const m={};S.sales.forEach(s=>{if(s.credit&&s.client)m[s.client]=(m[s.client]||0)+s.qty*s.price});S.payments.forEach(p=>{m[p.client]=(m[p.client]||0)-(+p.amount||0)});return m}
-function drawCart(){$("cart").style.display=cart.length?"block":"none";$("cart-l").innerHTML=cart.map((l,i)=>`<div class="it"><span>${esc(l.name)} × ${l.qty}</span><span>${money(l.qty*l.price)} <button class="x" data-c="${i}">✕</button></span></div>`).join("");$("cart-t").textContent="Total : "+money(cart.reduce((t,l)=>t+l.qty*l.price,0))}
-function ask(m){return new Promise(r=>{$("cf-m").textContent=m;$("cf").style.display="flex";$("cf-y").onclick=()=>{$("cf").style.display="none";r(true)};$("cf-n").onclick=()=>{$("cf").style.display="none";r(false)}})}
+function drawCart(){$("cart").style.display=cart.length?"block":"none";$("cart-l").innerHTML=cart.map((l,i)=>`<div class="it"><span>${esc(l.name)}${l.free?" (hors liste)":""} × ${l.qty}<br><span class="mut">à ${money(l.price)}${l.list&&l.price!==l.list?" · prix liste "+money(l.list):""}</span></span><span>${money(l.qty*l.price)} <button class="x" data-c="${i}">✕</button></span></div>`).join("");$("cart-t").textContent="Total : "+money(cart.reduce((t,l)=>t+l.qty*l.price,0))}
+function ask(m,l){return new Promise(r=>{$("cf-m").textContent=m;$("cf-y").textContent=l||"Supprimer";$("cf").style.display="flex";$("cf-y").onclick=()=>{$("cf").style.display="none";r(true)};$("cf-n").onclick=()=>{$("cf").style.display="none";r(false)}})}
 function showReceipt(lines,m){const tot=lines.reduce((t,l)=>t+l.qty*l.price,0);
   $("rc-t").textContent=["QUIN WINNER","Date : "+m.date,"Vendeur : "+(m.by||""),m.client?"Client : "+m.client:"",""].filter((x,i)=>x||i===4).concat(lines.map(l=>l.name+" × "+l.qty+" = "+money(l.qty*l.price)),["","TOTAL : "+money(tot),m.credit?"À crédit : à payer plus tard":"Payé comptant"]).join("\n");$("rc").style.display="flex"}
 $("rc-x").onclick=()=>$("rc").style.display="none";
 $("rc-c").onclick=async()=>{try{await navigator.clipboard.writeText($("rc-t").textContent);toast("Reçu copié")}catch(e){toast("Copie impossible : faites une capture d’écran")}};
 $("rc-p").onclick=()=>{try{window.print()}catch(e){toast("Impression impossible : faites une capture d’écran")}};
-$("sv-add").onclick=()=>{const a=art($("sv-a").value),q=+$("sv-q").value;if(!a||!(q>=1))return toast("Choisissez un produit et une quantité");
+$("sv-fr").onclick=()=>{freeMode=!freeMode;$("sv-cat").style.display=freeMode?"none":"block";$("sv-fw").style.display=freeMode?"block":"none";$("sv-fcw").style.display=owner?"block":"none";
+  $("sv-fr").textContent=freeMode?"← Revenir à la liste des produits":"Produit absent de la liste ? Vente libre";$("sv-p").dataset.a="x";$("sv-p").value="";if(!freeMode)$("sv-p").dataset.a="";svPrice()};
+$("sv-add").onclick=()=>{const q=+$("sv-q").value,pr=+$("sv-p").value;
+  if(!(q>=1))return toast("Indiquez la quantité");if($("sv-p").value===""||!(pr>=0))return toast("Indiquez le prix de vente");
+  if(freeMode){const n=$("sv-fn").value.trim();if(!n)return toast("Écrivez le nom du produit");
+    const c=$("sv-fc").value===""?null:+$("sv-fc").value;cart.push({id:"",name:n,qty:q,price:pr,free:true,cost:c});
+    $("sv-fn").value="";$("sv-fc").value="";$("sv-q").value=1;$("sv-p").value="";svPrice();drawCart();return}
+  const a=art($("sv-a").value);if(!a)return toast("Choisissez un produit");
   const inCart=cart.filter(l=>l.id===a.id).reduce((t,l)=>t+l.qty,0);if(inCart+q>stock(a.id))return toast("Stock insuffisant : il reste "+(stock(a.id)-inCart));
-  cart.push({id:a.id,name:a.name,qty:q,price:+a.price});$("sv-q").value=1;svPrice();drawCart()};
+  cart.push({id:a.id,name:a.name,qty:q,price:pr,list:+a.price});$("sv-q").value=1;$("sv-p").dataset.a="";svPrice();drawCart()};
 $("sv-pay").onchange=()=>{$("sv-clw").style.display=$("sv-pay").value==="k"?"block":"none"};
 $("sv-b").onclick=()=>{if(!cart.length)return;const k=$("sv-pay").value==="k",cl=$("sv-cl").value.trim();if(k&&!cl)return toast("Indiquez le nom du client");
   const rid=uid(),lines=cart.slice(),b=db.batch();
-  lines.forEach(l=>b.set(col("sales").doc(uid()),{date:today(),ts:Date.now(),article:l.id,qty:l.qty,price:l.price,by:who,rid,credit:k,client:k?cl:""}));
+  lines.forEach(l=>b.set(col("sales").doc(uid()),{date:today(),ts:Date.now(),article:l.id,qty:l.qty,price:l.price,by:who,rid,credit:k,client:k?cl:"",...(l.free?{name:l.name,free:true,...(l.cost!=null?{cost:l.cost}:{})}:{list:l.list})}));
   commit(b);cart=[];drawCart();$("sv-cl").value="";$("sv-pay").value="c";$("sv-clw").style.display="none";showReceipt(lines,{date:today(),by:who,client:k?cl:"",credit:k})};
 $("cr-b").onclick=()=>{const c=$("cr-c").value,m=+$("cr-m").value,D=debts();if(!c||!(m>0))return toast("Choisissez un client et un montant");if(m>(D[c]||0))return toast("Le montant dépasse la dette : "+money(D[c]));
   const b=db.batch();b.set(col("payments").doc(uid()),{client:c,amount:m,date:today(),ts:Date.now(),by:who});commit(b,"Paiement enregistré");$("cr-m").value=""};
@@ -285,7 +305,7 @@ $("td-d").value=$("sv-d").value=$("dp-d").value=today();$("sv-d").onchange=$("dp
 document.addEventListener("click",e=>{
   const c=e.target.closest("[data-c]");if(c){cart.splice(+c.dataset.c,1);drawCart();return}
   const g=e.target.closest("[data-g]");if(g){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
-  const rr=e.target.closest("[data-r]");if(rr){const a=S.sales.filter(s=>(s.rid||s.id)===rr.dataset.r);if(a.length)showReceipt(a.map(s=>({name:nm(s.article),qty:s.qty,price:s.price})),{date:a[0].date,by:a[0].by,client:a[0].client,credit:a[0].credit});return}
+  const rr=e.target.closest("[data-r]");if(rr){const a=S.sales.filter(s=>(s.rid||s.id)===rr.dataset.r);if(a.length)showReceipt(a.map(s=>({name:s.name||nm(s.article),qty:s.qty,price:s.price})),{date:a[0].date,by:a[0].by,client:a[0].client,credit:a[0].credit});return}
   const rp=e.target.closest("[data-rp]");if(rp){const m=rp.dataset.rp;if(!m)return;auth.sendPasswordResetEmail(m).then(()=>toast("E-mail de réinitialisation envoyé à "+m)).catch(()=>toast("Envoi impossible"));return}
   const d=e.target.closest("[data-d]");
   if(d){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
@@ -358,12 +378,61 @@ $("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),e=$("ag-e").value.tri
   catch(x){toast(x.code==="auth/email-already-in-use"?"Cet e-mail est déjà utilisé":x.code==="auth/weak-password"?"Mot de passe trop faible":x.code==="auth/invalid-email"?"E-mail invalide":"Création impossible")}};
 $("pw-b").onclick=()=>{const p=$("pw-dg").value;if(p.length<4)return toast("4 caractères minimum");
   auth.currentUser.updatePassword(fp(p)).then(()=>{$("pw-dg").value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))};
+/* ---------- Import Excel (réapprovisionnement) ---------- */
+const nz=s=>String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+const nn=v=>{if(typeof v==="number")return v;const s=String(v==null?"":v).replace(/[\s\u00a0]/g,"").replace(",",".");return s!==""&&isFinite(+s)?+s:NaN};
+function colOf(h){const t=nz(h);if(!t)return"";
+  if(/quantit|^qte|^qty|^stock|^nombre|^nb/.test(t))return"qty";
+  if(/seuil|alerte|minimum/.test(t))return"thr";
+  if(/achat|cout|^pa$|revient/.test(t))return"cost";
+  if(/vente|^pv$|^prix|^pu$|tarif/.test(t))return"price";
+  if(/designation|produit|^nom|article|libelle|description/.test(t))return"name";return""}
+async function parseXls(file){const wb=XLSX.read(await file.arrayBuffer(),{type:"array"}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
+  let hi=-1,map={};
+  for(let i=0;i<Math.min(rows.length,15);i++){const m={};rows[i].forEach((c,j)=>{const k=colOf(c);if(k&&m[k]==null)m[k]=j});if(m.name!=null){hi=i;map=m;break}}
+  if(hi<0)return{err:"Colonne « Désignation » introuvable. Téléchargez le modèle et recopiez vos produits dedans."};
+  const agg=new Map();let bad=0;
+  for(let i=hi+1;i<rows.length;i++){const r=rows[i],name=String(r[map.name]==null?"":r[map.name]).trim();if(!name)continue;
+    const q=map.qty!=null?nn(r[map.qty]):NaN,c=map.cost!=null?nn(r[map.cost]):NaN,p=map.price!=null?nn(r[map.price]):NaN,t=map.thr!=null?nn(r[map.thr]):NaN;
+    if(!isNaN(q)&&q<0){bad++;continue}
+    const k=name.toLowerCase(),o=agg.get(k)||{name,qty:0,cost:NaN,price:NaN,thr:NaN};
+    if(!isNaN(q))o.qty+=q;if(!isNaN(c))o.cost=c;if(!isNaN(p))o.price=p;if(!isNaN(t))o.thr=t;agg.set(k,o)}
+  return{rows:[...agg.values()],bad}}
+let IM=null;
+const inCat=x=>S.catalog.find(a=>a.name.trim().toLowerCase()===x.name.toLowerCase());
+$("im-tpl").onclick=()=>{if(!window.XLSX)return toast("Export indisponible : vérifiez internet");
+  const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["Désignation","Quantité","Prix d'achat","Prix de vente","Seuil d'alerte"],["Exemple produit",10,8000,12000,3]]),"Produits");
+  try{XLSX.writeFile(wb,"Modele_import_QUIN_WINNER.xlsx")}catch(e){toast("Téléchargement impossible")}};
+$("im-f").onchange=async e=>{const f=e.target.files[0];e.target.value="";IM=null;$("im-go").style.display=$("im-ul").style.display="none";$("im-pv").innerHTML="";if(!f)return;
+  if(!window.XLSX)return toast("Lecture Excel indisponible : vérifiez internet");
+  let r;try{r=await parseXls(f)}catch(x){$("im-pv").innerHTML='<div class="bad">Fichier illisible.</div>';return}
+  if(r.err){$("im-pv").innerHTML=`<div class="bad">${esc(r.err)}</div>`;return}
+  if(!r.rows.length){$("im-pv").innerHTML='<div class="mut">Aucune ligne trouvée.</div>';return}
+  IM=r.rows;const nw=IM.filter(x=>!inCat(x)),old=IM.filter(x=>inCat(x)),noP=nw.filter(x=>isNaN(x.price)).length,rs=old.filter(x=>x.qty>0).length;
+  $("im-pv").innerHTML=`<div><b>${IM.length}</b> lignes lues : <b>${nw.length}</b> nouveaux produits, <b>${old.length}</b> produits existants (<b>${rs}</b> à réapprovisionner).</div>`
+    +(noP?`<div class="bad" style="margin-top:4px">${noP} nouveau(x) produit(s) sans prix de vente : créés à 0, à corriger ensuite.</div>`:"")
+    +(r.bad?`<div class="mut">${r.bad} ligne(s) ignorée(s) (quantité négative).</div>`:"")
+    +`<div class="mut" style="margin-top:6px">Aperçu : ${IM.slice(0,5).map(x=>esc(x.name)+(x.qty?" ("+x.qty+")":"")).join(", ")}${IM.length>5?"…":""}</div>`;
+  $("im-go").style.display=$("im-ul").style.display="block"};
+$("im-go").onclick=()=>{if(!IM||!IM.length)return;
+  ask("Importer "+IM.length+" lignes dans le stock ?","Importer").then(ok=>{if(!ok)return;
+    const upd=$("im-up").value==="1",rows=IM;IM=null;$("im-go").style.display=$("im-ul").style.display="none";$("im-pv").innerHTML="";
+    let cnt=0,created=0,restocked=0;const mk=()=>uid()+(++cnt).toString(36),td=today();
+    for(let s=0;s<rows.length;s+=100){const b=db.batch();
+      rows.slice(s,s+100).forEach(r=>{const ex=inCat(r),id=ex?ex.id:mk();
+        if(!ex){created++;b.set(col("catalog").doc(id),{name:r.name,price:isNaN(r.price)?0:r.price,threshold:isNaN(r.thr)?3:r.thr})}
+        else{const d={};if(upd&&!isNaN(r.price))d.price=r.price;if(!isNaN(r.thr))d.threshold=r.thr;if(Object.keys(d).length)b.set(col("catalog").doc(id),d,{merge:true})}
+        const cost=!isNaN(r.cost)?r.cost:((S.costs[id]||{}).cost||0);
+        if(!isNaN(r.cost)||!ex)b.set(col("costs").doc(id),{cost});
+        if(r.qty>0){restocked++;const pid=mk();b.set(col("stockin").doc(pid),{article:id,qty:r.qty,date:td,ts:Date.now()});b.set(col("purchases").doc(pid),{article:id,qty:r.qty,unitCost:cost,date:td,ts:Date.now()})}});
+      commit(b)}
+    toast("Import lancé : "+created+" produit(s) créé(s), "+restocked+" réapprovisionné(s)"+(navigator.onLine?"":" · hors ligne : synchronisé au retour d’internet"))})};
 $("ex-b").onclick=()=>{
   if(!window.XLSX)return toast("Export indisponible pour le moment");
   const by=(a,b)=>String(a.date).localeCompare(String(b.date));
   const wb=XLSX.utils.book_new();
   const add=(n,rows)=>XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows.length?rows:[{"Aucune donnée":""}]),n);
-  add("Ventes",S.sales.slice().sort(by).map(s=>({Date:s.date,Article:nm(s.article),Quantité:s.qty,"Prix unitaire":s.price,Total:s.qty*s.price,Crédit:s.credit?"Oui":"Non",Client:s.client||"",Par:s.by||""})));
+  add("Ventes",S.sales.slice().sort(by).map(s=>({Date:s.date,Article:s.name||nm(s.article),Quantité:s.qty,"Prix unitaire":s.price,"Prix de liste":s.list||"","Hors liste":s.free?"Oui":"",Total:s.qty*s.price,Crédit:s.credit?"Oui":"Non",Client:s.client||"",Par:s.by||""})));
   add("Dépenses",S.expenses.slice().sort(by).map(s=>({Date:s.date,Libellé:s.label,Montant:s.amount,Par:s.by||""})));
   add("Entrées",S.purchases.slice().sort(by).map(p=>({Date:p.date,Article:nm(p.article),Quantité:p.qty,"Prix d’achat":p.unitCost,Total:p.qty*p.unitCost})));
   add("Articles",S.catalog.map(a=>({Article:a.name,"Prix d’achat":(S.costs[a.id]||{}).cost||0,"Prix de vente":a.price,"Seuil d’alerte":a.threshold,"Stock actuel":stock(a.id)})));
