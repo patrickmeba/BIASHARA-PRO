@@ -4,34 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>QUIN WINNER</title>
-<meta name="theme-color" content="#0E5A4F">
+<meta name="theme-color" content="#1C1812">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%20xmlns%3Ac2pa%3D%22http%3A//c2pa.org/manifest%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22110%22%20fill%3D%22%2309090A%22/%3E%3Ccircle%20cx%3D%22246%22%20cy%3D%22246%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22%23D9AE3F%22%20stroke-width%3D%2246%22/%3E%3Cpath%20d%3D%22M290%20290l95%2095%22%20stroke%3D%22%23D9AE3F%22%20stroke-width%3D%2246%22%20stroke-linecap%3D%22round%22/%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ODgxMjVjZS0wZDhiLTQ3YWMtYjIxNC1hOTFjMTQ0NWJmNzgAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaDDdjE5Bt7AePKvhWsIZXXwAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0NTM5MGUyZC0xYjExLTRjMWEtYmRjZi1iYWFlMDQ4ODA4N2RscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNosjD54Sqp3vRI1PrYruAILgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgghAYJSqodgBpiIAvx2DHRjTKTtlqLJhLS2EBjPCNRkgykZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaLCxLLJeZiIP6YIjKYqMIwYAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIJjbT/Z4fXwFNn/6r9/XCJGd582Q4LPy5x4ghJrGz6/zZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQFbZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjU4ODEyNWNlLTBkOGItNDdhYy1iMjE0LWE5MWMxNDQ1YmY3OC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjgxNjYyNTYxLTJlZGEtNDI5MC05NWQ0LTI2OTQ4NzM0NDMzNHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCEBglKqh2AGmIgC/HYMdGNMpO2WosmEtLYQGM8I1GSDKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg97GvmlGf4fy/jCLVGHWl%2BWZKbYRjl/4pkq7Wp8VQOJCiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggxeTDhX%2Bm0d7fid2OlXXxa8hUE9oZRUT3WrN%2BVRnu2Ap0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQJph0bQDjmtgWf/5KHgdSCXmwjaJniU5o9qULVLxPKYQ9K2aKvU7bHdn%2B2NW7IGI2etHwVVTw1qsJ8ALA73QH6Q%3D%3C/c2pa%3Amanifest%3E%3C/metadata%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAWfmNhQlgAABZ+anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFlhqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjZmMjA4OGIwLThlNmYtNGU4Yi1iYjUzLWJjYzcxZWQ3MzliZAAAAAOTanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuGp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoOguPKWuTvH/mmPUk13pWZwAAAGxjYm9yo2lkYzpmb3JtYXRpaW1hZ2UvcG5namluc3RhbmNlSUR4LHhtcDppaWQ6MjYyOWE1YmYtM2IzNi00NDlhLWI1YWUtOWU0NmUyYzRjYzQybHJlbGF0aW9uc2hpcGhwYXJlbnRPZgAAAeJqdW1iAAAAQWp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuYWN0aW9ucy52MgAAAAAYYzJzaATd+XlUm1wPcRe4RkfGwG8AAAGZY2JvcqJnYWN0aW9uc4KiZmFjdGlvbmtjMnBhLm9wZW5lZGpwYXJhbWV0ZXJzoWtpbmdyZWRpZW50c4GiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIJVfK1qvPgGQo1M9dEaHwR/uhzyZhI1su0q1EXtOePjIpGZhY3Rpb254HWNvbS5hbnRocm9waWMuY2xhdWRlLnByb3ZpZGVkanBhcmFtZXRlcnOheB9jb20uYW50aHJvcGljLm9yaWdpbi1jb25maWRlbmNlZ3Vua25vd25rZGVzY3JpcHRpb254ZkNsYXVkZSBwcm92aWRlZCB0aGlzIGZpbGUgYXQgdGhlIHJlcXVlc3Qgb2YgYSB1c2VyIGFuZCBtYXkgaGF2ZSBjcmVhdGVkIG9yIG1vZGlmaWVkIHRoZSBmaWxlIGNvbnRlbnRzLm1zb2Z0d2FyZUFnZW50oWRuYW1lZkNsYXVkZXJhbGxBY3Rpb25zSW5jbHVkZWT1AAAAyGp1bWIAAABAanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5oYXNoLmRhdGEAAAAAGGMyc2jFVgmzSB4Dc0d5/AxOsIfrAAAAgGNib3KlY2FsZ2ZzaGEyNTZjcGFkTQAAAAAAAAAAAAAAAABkaGFzaFggaxS4HymU/mAmj2sCac1rKRhJzR/usXfr5Tzn1EbuI91kbmFtZW5qdW1iZiBtYW5pZmVzdGpleGNsdXNpb25zgaJlc3RhcnQYIWZsZW5ndGgZFooAAAI+anVtYgAAACdqdW1kYzJjbAARABCAAACqADibcQNjMnBhLmNsYWltLnYyAAAAAg9jYm9ypWNhbGdmc2hhMjU2aXNpZ25hdHVyZXhNc2VsZiNqdW1iZj0vYzJwYS91cm46YzJwYTo2ZjIwODhiMC04ZTZmLTRlOGItYmI1My1iY2M3MWVkNzM5YmQvYzJwYS5zaWduYXR1cmVqaW5zdGFuY2VJRHgseG1wOmlpZDpjZWYyNDk2MS03ZWYyLTQyMzYtOGU2OC0yODZhNzE2NGExMTZyY3JlYXRlZF9hc3NlcnRpb25zg6JjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgglV8rWq8+AZCjUz10RofBH+6HPJmEjWy7SrURe054+MiiY3VybHgqc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5hY3Rpb25zLnYyZGhhc2hYIB7K07jV6MaYNDZrZI0IVA+M0VTu785LzdV4zV4Uw5pRomN1cmx4KXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaGFzaC5kYXRhZGhhc2hYIDRiQtO3FkJmS0Eh1vv+SvAANze04DArUnsLudeBPP00dGNsYWltX2dlbmVyYXRvcl9pbmZvo2RuYW1lb0FudGhyb3BpYyBGaWxlc2d2ZXJzaW9uZTEuMC4wa3NwZWNWZXJzaW9uZTIuNC4wAAAQOGp1bWIAAAAoanVtZGMyY3MAEQAQgAAAqgA4m3EDYzJwYS5zaWduYXR1cmUAAAAQCGNib3LShFkCEqIBJhghWQIKMIICBjCCAY2gAwIBAgIUQOWgCu7COdC+uIP6BkIFPWdVEwAwCgYIKoZIzj0EAwMwSTEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxLjAsBgNVBAMTJUFudGhyb3BpYyBDb250ZW50IENyZWRlbnRpYWxzIFJvb3QgQ0EwHhcNMjYwODA3MTg0MzU2WhcNMjgwODA2MTk0MzU2WjBEMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEpMCcGA1UEAxMgQW50aHJvcGljIENsYXVkZSBDb250ZW50IFNpZ25pbmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASYegpry1AYBRTVNL1CpTlbROnY3dey+UrsF9C3phYrATN3ZHf93Mo8RQN0KOUuOn19P4oWNFWe5n2/She9N7eTo1gwVjAOBgNVHQ8BAf8EBAMCB4AwFQYDVR0lBA4wDAYKKwYBBAGD6F4CATAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFM5R4gSBTmRbI/jjxM+aPpzB11zCMAoGCCqGSM49BAMDA2cAMGQCMDFzHRSeAXrSy1WOzkbhPZ6Km2wGTmZ/2gK18k8BQGXyqz88Rdrz6CTX9flAnYNVxgIwcF9c3fVhqmJKpi+UhasNUMko69cyX6STPfta3Q8EjyzDjzoyrol46FP6VFHhvUcJoWNwYWRZDZ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#EDF2F0;--card:#fff;--tx:#14231F;--mut:#5F7470;--pri:#0E5A4F;--pri2:#0A3F38;--acc:#F4B43A;--bad:#D8452B;--ok:#14804A;--bd:#DCE6E3;--inp:#F3F7F6;--tint:#FCE9E4;
+:root{--h1:#09090A;--h2:#2B2415;--bg:#F4F2EC;--card:#fff;--tx:#17140D;--mut:#6B6659;--pri:#1C1812;--pri2:#09090A;--acc:#D9AE3F;--bad:#D8452B;--ok:#14804A;--bd:#E6E1D5;--inp:#F8F6F0;--tint:#FCE9E4;
 --fh:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;--fb:"Figtree","Segoe UI",Arial,sans-serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1513;--card:#13211E;--tx:#E6F0ED;--mut:#8FA8A3;--pri:#2FA38F;--pri2:#0F3A33;--bad:#FF8A70;--ok:#5FD497;--bd:#22342F;--inp:#0F1B19;--tint:#3A1F1A;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0B1513;--card:#13211E;--tx:#E6F0ED;--mut:#8FA8A3;--pri:#2FA38F;--pri2:#0F3A33;--bad:#FF8A70;--ok:#5FD497;--bd:#22342F;--inp:#0F1B19;--tint:#3A1F1A;color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C0B09;--card:#17140F;--tx:#F1EDE2;--mut:#A39C8B;--pri:#E0B84E;--pri2:#1B1608;--bad:#FF8A70;--ok:#5FD497;--bd:#2D281D;--inp:#100E0A;--tint:#3A1F1A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C0B09;--card:#17140F;--tx:#F1EDE2;--mut:#A39C8B;--pri:#E0B84E;--pri2:#1B1608;--bad:#FF8A70;--ok:#5FD497;--bd:#2D281D;--inp:#100E0A;--tint:#3A1F1A;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 var(--fb)}
-.hero{background:linear-gradient(160deg,var(--pri2),var(--pri));color:#fff;padding:18px 18px 54px;border-radius:0 0 30px 30px;position:relative;overflow:hidden}
+.hero{background:linear-gradient(160deg,var(--h1),var(--h2));color:#fff;padding:18px 18px 54px;border-radius:0 0 30px 30px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;border-radius:50%;border:26px solid var(--acc);opacity:.22}
 .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
 .brand{font:700 17px var(--fh);letter-spacing:.2px;display:flex;align-items:center;gap:8px}
 .logo{width:28px;height:28px;border-radius:9px;background:var(--acc);display:grid;place-items:center}
-.logo svg{width:16px;height:16px;stroke:#14231F}
+.logo svg{width:16px;height:16px;stroke:#17140D}
 .role{font-size:12px;font-weight:600;background:rgba(255,255,255,.16);padding:5px 11px;border-radius:20px}
-.lab{margin-top:20px;font-size:13px;opacity:.85;position:relative;z-index:1}
-.big{font:800 42px/1.1 var(--fh);margin-top:2px;position:relative;z-index:1}
+.lab{margin-top:20px;font:400 12pt "Times New Roman",Times,serif;opacity:.85;position:relative;z-index:1}
+.big{font:400 12pt/1.1 "Times New Roman",Times,serif;margin-top:2px;position:relative;z-index:1}
 .sub{font-size:13px;opacity:.85;margin-top:4px;position:relative;z-index:1;text-transform:capitalize}
 main{padding:0 14px 110px;max-width:640px;margin:-30px auto 0;position:relative}
-.card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(14,60,52,.08)}
+.card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(40,30,10,.10)}
 .card>b{font:700 16px var(--fh)}
 label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:12px 0 5px}
 input,select{width:100%;box-sizing:border-box;padding:12px;font:500 16px var(--fb);border:1.5px solid var(--bd);border-radius:12px;background:var(--inp);color:var(--tx)}
@@ -39,7 +38,7 @@ input:focus,select:focus,button:focus-visible{outline:3px solid var(--acc);outli
 .row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
 .btn{width:100%;margin-top:16px;padding:14px;border:0;border-radius:14px;background:var(--pri);color:#fff;font:700 16px var(--fb);transition:transform .12s}
 .btn:active{transform:scale(.98)}
-#sv-b,#dp-b,#ar-b,#en-b{background:var(--acc);color:#14231F}
+#sv-b,#dp-b,#ar-b,#en-b{background:var(--acc);color:#17140D}
 .btn.alt{background:transparent;color:var(--mut);border:1.5px solid var(--bd)}
 .it{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd)}.it:last-child{border:0}
 .it>span:last-child{font:700 15px var(--fh);white-space:nowrap}
@@ -51,7 +50,7 @@ input:focus,select:focus,button:focus-visible{outline:3px solid var(--acc);outli
 .kpi b{display:block;font:800 20px var(--fh);color:var(--tx);margin-top:2px}
 .kpi div:last-child:nth-child(odd){grid-column:1/-1;background:var(--pri);color:#fff}.kpi div:last-child:nth-child(odd) b{color:var(--acc)}
 #sv-t{margin-top:10px;padding:10px 12px;background:var(--inp);border-radius:12px;color:var(--mut);font-size:13.5px}
-#nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;gap:2px;background:var(--card);border-top:1px solid var(--bd);padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 18px rgba(14,60,52,.08)}
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;gap:2px;background:var(--card);border-top:1px solid var(--bd);padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 18px rgba(40,30,10,.10)}
 #nav button{flex:1;max-width:96px;min-width:0;border:0;background:none;color:var(--mut);padding:6px 2px;border-radius:14px;font:600 10.5px var(--fb);display:flex;flex-direction:column;align-items:center;gap:3px}
 #nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
 #nav button.on{color:var(--pri);background:var(--inp)}
@@ -63,31 +62,43 @@ input:focus,select:focus,button:focus-visible{outline:3px solid var(--acc);outli
 .mq{overflow:hidden;width:150px}.mqi{display:inline-flex;white-space:nowrap;animation:mq 8s linear infinite}.mqi span{padding-right:34px}
 @keyframes mq{to{transform:translateX(-50%)}}
 button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
-#login{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) 20px calc(24px + env(safe-area-inset-bottom,0px));background:linear-gradient(160deg,var(--pri2),var(--pri));overflow:auto}
+#login{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) 20px calc(24px + env(safe-area-inset-bottom,0px));background:linear-gradient(160deg,var(--h1),var(--h2));overflow:auto}
 #login h2{font:800 34px var(--fh);letter-spacing:2px;color:#fff;text-align:center;margin:0 0 4px}
 #login p.s{color:#fff;opacity:.85;text-align:center;margin:0 0 20px}
 .lgc{background:var(--card);color:var(--tx);border-radius:24px;padding:20px;max-width:380px;width:100%;box-sizing:border-box;margin:0 auto}
 .picks{display:flex;gap:10px}.picks button{flex:1;padding:16px 8px;border-radius:14px;border:2px solid var(--bd);background:var(--inp);color:var(--tx);font:800 18px var(--fh)}
-.picks button.on{background:var(--acc);border-color:var(--acc);color:#14231F}
+.picks button.on{background:var(--acc);border-color:var(--acc);color:#17140D}
 #lg-err{color:var(--bad);font-weight:600;min-height:20px;margin-top:8px;font-size:14px}
 @media(prefers-reduced-motion:reduce){.mqi{animation:none}}
-#cf{position:fixed;inset:0;z-index:35;background:rgba(10,30,26,.7);align-items:center;justify-content:center;padding:20px}
-#rc{position:fixed;inset:0;z-index:30;background:rgba(10,30,26,.7);align-items:center;justify-content:center;padding:20px;overflow:auto}
+#cv,#cf{position:fixed;inset:0;z-index:35;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px}
+#rc{position:fixed;inset:0;z-index:30;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px;overflow:auto}
 @media print{body>*:not(#rc){display:none!important}#rc{position:static!important;background:#fff!important;display:block!important}#rc .lgc{box-shadow:none}#rc button{display:none}}
 #net{position:relative;z-index:1;margin-top:10px;font-size:12px;font-weight:600;opacity:.95}
 #net.off,#net.pend{color:var(--acc)}
 #cfg-t{width:100%;box-sizing:border-box;min-height:140px;padding:12px;font:500 13px/1.4 ui-monospace,Menlo,Consolas,monospace;border:1.5px solid var(--bd);border-radius:12px;background:var(--inp);color:var(--tx)}
 #lg-act p,#cfgbox p{margin:0 0 10px;font-size:14px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--pri);font:700 13px var(--fb);padding:10px 8px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn:not(.alt){color:#17140D}:root:not([data-theme="light"]) .kpi div:last-child:nth-child(odd),:root:not([data-theme="light"]) .kpi div:last-child:nth-child(odd) b{color:#17140D}}
 </style>
 </head>
 <body>
 <div id="rc" style="display:none"><div class="lgc"><b style="font:800 20px var(--fh)">Reçu</b><pre id="rc-t" style="white-space:pre-wrap;font:500 15px/1.5 var(--fb);margin:10px 0"></pre><div class="row"><button class="btn alt" id="rc-c">Copier</button><button class="btn alt" id="rc-p">Imprimer</button></div><button class="btn" id="rc-x">Fermer</button></div></div>
+<div id="cv" style="display:none"><div class="lgc"><b style="font:800 20px var(--fh)">Conversion de monnaie</b>
+<label>Taux du jour : 1 dollar ($) = … FC</label><input id="cv-r" type="number" min="1" inputmode="decimal" placeholder="Ex : 2800">
+<div class="row"><button class="btn alt" id="cv-fc">Afficher en FC</button><button class="btn" id="cv-us">Afficher en $</button></div>
+<label>Convertir un montant</label><div class="row"><input id="cv-a" type="number" inputmode="decimal" placeholder="Montant"><select id="cv-d"><option value="fc2us">FC → $</option><option value="us2fc">$ → FC</option></select></div>
+<div id="cv-o" style="font:800 18px var(--fh);margin-top:8px;min-height:24px"></div>
+<div class="mut">Les prix se saisissent toujours en FC. Seul l’affichage des totaux change.</div>
+<button class="btn alt" id="cv-x" style="margin-top:10px">Fermer</button></div></div>
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
-<div id="login"><h2>QUIN WINNER</h2><p class="s">Connectez-vous pour continuer</p>
+<div id="login"><h2>QUIN WINNER</h2><p class="s">Choisissez votre accès</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
-<label>E-mail</label><input id="lg-em" type="email" autocomplete="username" inputmode="email" autocapitalize="none">
+<div class="picks"><button id="lg-dg">DG</button><button id="lg-ag">AGENT</button></div>
+<div id="lg-emw"><label>E-mail du compte (une seule fois sur cet appareil)</label><input id="lg-em" type="email" autocomplete="username" inputmode="email" autocapitalize="none"></div>
+<button class="btn alt" id="lg-ce" style="margin-top:8px;display:none">Utiliser un autre e-mail</button>
+<div id="lg-nmw" style="display:none"><label>Votre nom (pour signer vos ventes)</label><input id="lg-nm" autocomplete="name"></div>
 <label>Mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
-<button class="btn" id="lg-go" style="margin-top:14px">Se connecter</button>
+<button class="btn" id="lg-go" style="margin-top:14px">Entrer</button>
 <button class="btn alt" id="lg-fp" style="margin-top:8px">Mot de passe oublié ?</button>
 <button class="btn alt" id="lg-cfg" style="margin-top:8px;display:none">Reconfigurer Firebase</button></div>
 <div id="lg-act" style="display:none"><p>Premier démarrage : si c’est le compte du DG (propriétaire), activez-le. Sinon, demandez au DG de créer votre accès.</p>
@@ -97,7 +108,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <textarea id="cfg-t" placeholder='apiKey: "…", authDomain: "…", projectId: "…", appId: "…"'></textarea>
 <div id="cfg-err" style="color:var(--bad);font-weight:600;min-height:20px;margin-top:8px;font-size:14px"></div>
 <button class="btn" id="cfg-go" style="margin-top:8px">Enregistrer</button><button class="btn alt" id="cfg-back" style="margin-top:8px">Retour</button></div></div>
-<div class="hero"><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><div class="mq"><div class="mqi"><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span><span>BLESSING PHARMA</span></div></div></div><button class="role" id="role">Connexion…</button></div>
+<div class="hero"><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17.2 6.4 20.3l1.2-6.3L3 9.6l6.3-.8L12 3z"/></svg></span><div class="mq"><div class="mqi"><span>QUIN WINNER</span><span>QUIN WINNER</span><span>QUIN WINNER</span><span>QUIN WINNER</span></div></div></div><span style="display:flex;gap:6px;align-items:center"><button class="role" id="cur-b">FC</button><button class="role" id="role">Connexion…</button></span></div>
 <div class="lab">Ventes du jour</div><div class="big" id="h-tot">0</div><div class="sub" id="h-sub"></div><div id="net">● Connexion…</div></div>
 <main>
 <section class="tab" id="t-sv"><div class="card">
@@ -141,9 +152,10 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <section class="tab" id="t-td"><div class="card"><label>Jour affiché</label><input id="td-d" type="date"></div>
 <div class="card"><b>Jour</b><div class="kpi" id="k-j"></div></div>
 <div class="card"><b>Mois</b><div class="kpi" id="k-m"></div></div>
-<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">✉ envoie un e-mail pour changer le mot de passe · ✕ retire l’accès</div><div id="ag-l"></div>
+<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card" style="display:none"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">✉ envoie un e-mail pour changer le mot de passe · ✕ retire l’accès</div><div id="ag-l"></div>
 <label>Nom de l’agent</label><input id="ag-n" autocomplete="off"><label>E-mail</label><input id="ag-e" type="email" autocomplete="off" inputmode="email"><label>Mot de passe (6 caractères min.)</label><input id="ag-p" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ag-b">Créer l’accès de l’agent</button></div>
-<div class="card"><b>Mon mot de passe (DG)</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div></section>
+<div class="card"><b>Mon mot de passe (DG)</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div>
+<div class="card"><b>Mot de passe AGENT (pour tous les agents)</b><label>Ancien mot de passe AGENT</label><input id="pa-o" type="password" autocomplete="off"><label>Nouveau mot de passe AGENT</label><input id="pa-n" type="password" autocomplete="new-password"><button class="btn" id="pa-b">Changer le mot de passe AGENT</button><div class="mut" style="margin-top:6px">Mot de passe AGENT par défaut : 1111 (à changer ici).</div></div></section>
 </main>
 <nav id="nav"></nav>
 <div id="toast"></div>
@@ -154,18 +166,20 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <script>
 // ====== CONFIGURATION FIREBASE (à remplir avant la mise en ligne, voir LISEZ-MOI.md) ======
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyB_ctnXd10M2994oECCWwFeE2JZH90DcFw",
-  authDomain: "quin-winner.firebaseapp.com",
-  projectId: "quin-winner",
-  storageBucket: "quin-winner.firebasestorage.app",
-  messagingSenderId: "42107920014",
-  appId: "1:42107920014:web:4f17f50deeeac032b273df"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 // ==========================================================================================
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
-const money=n=>Math.round(n||0).toLocaleString("fr-FR");
+let CUR="FC",RATE=0;try{CUR=localStorage.getItem("qw-cur")||"FC";RATE=+localStorage.getItem("qw-rate")||0}catch(e){}
+if(CUR==="USD"&&!(RATE>0))CUR="FC";
+const money=n=>CUR==="USD"&&RATE>0?((n||0)/RATE).toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" $":Math.round(n||0).toLocaleString("fr-FR");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 let db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
@@ -290,24 +304,46 @@ function stopSubs(){unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P={};got={
   S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];S.users=[];owner=false}
 
 /* ---------- Connexion ---------- */
+// ====== COMPTES : e-mail réel du DG (une seule fois) ; l’e-mail AGENT est interne, jamais saisi ======
+const DG_EMAIL="patrickmebaa@gmail.com", AGENT_EMAIL="agent@quin-winner.app", DEF_AGENT="1111";
+const DG_OK=!/COLLEZ/.test(DG_EMAIL);
+const fp=p=>"qw#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
+let flash="",pickR="dg",wanted=null,pendEm="";
+function setPick(r){pickR=r;$("lg-dg").classList.toggle("on",r==="dg");$("lg-ag").classList.toggle("on",r==="agent");
+  const need=r==="dg"&&!DG_OK;let e="";if(need)try{e=localStorage.getItem("qw-em-dg")||""}catch(x){}
+  if(need&&e)$("lg-em").value=e;
+  $("lg-emw").style.display=need&&!e?"block":"none";$("lg-ce").style.display=need&&e?"block":"none";
+  $("lg-nmw").style.display=r==="agent"?"block":"none";
+  if(r==="agent"&&!$("lg-nm").value)try{$("lg-nm").value=localStorage.getItem("qw-name")||""}catch(x){}}
+function emailFor(){return pickR==="agent"?AGENT_EMAIL:(DG_OK?DG_EMAIL:$("lg-em").value.trim())}
+$("lg-dg").onclick=()=>setPick("dg");$("lg-ag").onclick=()=>setPick("agent");
+$("lg-ce").onclick=()=>{$("lg-em").value="";$("lg-emw").style.display="block";$("lg-ce").style.display="none";try{localStorage.removeItem("qw-em-dg")}catch(x){}};
 function showLogin(msg,activate){$("cfgbox").style.display="none";$("lgbox").style.display="block";$("login").style.display="flex";
-  $("lg-err").textContent=msg||"";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…"}
+  $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…";if(!activate)setPick(pickR)}
 async function start(u){
   let d;
   try{d=await col("users").doc(u.uid).get()}catch(e){try{d=await col("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
   if(!d.exists)return showLogin("Ce compte n’est pas encore activé.",true);
   const r=d.data();if(r.role!=="dg"&&r.role!=="agent")return showLogin("Compte non autorisé.");
-  stopSubs();owner=r.role==="dg";who=owner?"DG":(r.name||"Agent");
-  $("role").textContent=who+" · quitter";$("login").style.display="none";
+  const w=wanted;wanted=null;
+  if(w&&r.role!==w){flash=w==="dg"?"Ce compte n’est pas le compte DG. Choisissez AGENT.":"Ce compte est celui du DG. Choisissez DG.";auth.signOut();return}
+  if(w&&pendEm)try{localStorage.setItem("qw-em-"+r.role,pendEm)}catch(x){}
+  stopSubs();owner=r.role==="dg";who=owner?"DG":((()=>{try{return localStorage.getItem("qw-name")}catch(e){return ""}})()||r.name||"Agent");
+  $("role").textContent="ACCÈS";$("role").title="Connecté : "+who+" — touchez pour changer d’accès";$("login").style.display="none";
   ["catalog","stockin","sales","expenses","payments"].forEach(sub);
   if(owner)["costs","purchases","users"].forEach(sub);
+  if(owner)ensureAgent();
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("lg-go").onclick=async()=>{const e=$("lg-em").value.trim(),p=$("lg-pw").value;if(!e||!p)return;$("lg-err").textContent="";
-  try{await auth.signInWithEmailAndPassword(e,p);$("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"E-mail ou mot de passe incorrect"}};
+$("lg-go").onclick=async()=>{const e=emailFor(),p=$("lg-pw").value;if(!p){$("lg-err").textContent="Entrez le mot de passe";return}if(!e){$("lg-err").textContent="Entrez l’e-mail du DG (une seule fois)";return}
+  if(pickR==="agent"){const n=$("lg-nm").value.trim();if(!n){$("lg-err").textContent="Entrez votre nom";return}try{localStorage.setItem("qw-name",n)}catch(x){}}
+  $("lg-err").textContent="";wanted=pickR;pendEm=e;
+  try{try{await auth.signInWithEmailAndPassword(e,fp(p))}catch(y){const k=y.code||"";
+      if(k==="auth/invalid-credential"||k==="auth/wrong-password"){await auth.signInWithEmailAndPassword(e,p);try{await auth.currentUser.updatePassword(fp(p));toast("Ancien mot de passe accepté. Choisissez un mot de passe simple dans Bilan > Mon mot de passe (DG).")}catch(z){}}else throw y}
+    $("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"Mot de passe incorrect"}};
 $("lg-cfg").onclick=()=>showCfg();$("cfg-back").onclick=()=>showLogin();
 $("lg-pw").onkeydown=$("lg-em").onkeydown=e=>{if(e.key==="Enter")$("lg-go").click()};
-$("lg-fp").onclick=()=>{const e=$("lg-em").value.trim();if(!e)return $("lg-err").textContent="Entrez d’abord votre e-mail";
+$("lg-fp").onclick=()=>{if(pickR==="agent")return $("lg-err").textContent="Le mot de passe AGENT se change par le DG (Bilan).";const e=emailFor();if(!e)return $("lg-err").textContent="Entrez d’abord l’e-mail du DG";
   auth.sendPasswordResetEmail(e).then(()=>$("lg-err").textContent="E-mail de réinitialisation envoyé (pensez aux spams).").catch(()=>$("lg-err").textContent="Envoi impossible")};
 $("lg-ac").onclick=()=>{const u=auth.currentUser;if(!u)return;
   col("users").doc(u.uid).set({role:"dg",name:"DG",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le compte DG défini dans les règles Firestore."})};
@@ -320,8 +356,8 @@ $("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),e=$("ag-e").value.tri
     await col("users").doc(id).set({role:"agent",name:n,email:e,ts:Date.now()});
     ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé")}
   catch(x){toast(x.code==="auth/email-already-in-use"?"Cet e-mail est déjà utilisé":x.code==="auth/weak-password"?"Mot de passe trop faible":x.code==="auth/invalid-email"?"E-mail invalide":"Création impossible")}};
-$("pw-b").onclick=()=>{const p=$("pw-dg").value;if(p.length<6)return toast("6 caractères minimum");
-  auth.currentUser.updatePassword(p).then(()=>{$("pw-dg").value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))};
+$("pw-b").onclick=()=>{const p=$("pw-dg").value;if(p.length<4)return toast("4 caractères minimum");
+  auth.currentUser.updatePassword(fp(p)).then(()=>{$("pw-dg").value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))};
 $("ex-b").onclick=()=>{
   if(!window.XLSX)return toast("Export indisponible pour le moment");
   const by=(a,b)=>String(a.date).localeCompare(String(b.date));
@@ -332,14 +368,46 @@ $("ex-b").onclick=()=>{
   add("Entrées",S.purchases.slice().sort(by).map(p=>({Date:p.date,Article:nm(p.article),Quantité:p.qty,"Prix d’achat":p.unitCost,Total:p.qty*p.unitCost})));
   add("Articles",S.catalog.map(a=>({Article:a.name,"Prix d’achat":(S.costs[a.id]||{}).cost||0,"Prix de vente":a.price,"Seuil d’alerte":a.threshold,"Stock actuel":stock(a.id)})));
   add("Paiements",S.payments.slice().sort(by).map(p=>({Date:p.date,Client:p.client,Montant:p.amount,Par:p.by||""})));
-  try{XLSX.writeFile(wb,"BLESSING_PHARMA_"+today()+".xlsx");toast("Fichier Excel téléchargé")}catch(e){toast("Export impossible")}};
+  try{XLSX.writeFile(wb,"QUIN_WINNER_"+today()+".xlsx");toast("Fichier Excel téléchargé")}catch(e){toast("Export impossible")}};
+
+/* ---------- Accès AGENT partagé ---------- */
+async function ensureAgent(){try{if(localStorage.getItem("qw-agent-ok")==="1")return}catch(e){}
+  if(!navigator.onLine)return;
+  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
+    try{const c=await a2.auth().createUserWithEmailAndPassword(AGENT_EMAIL,fp(DEF_AGENT));
+      await col("users").doc(c.user.uid).set({role:"agent",name:"Agent",email:AGENT_EMAIL,ts:Date.now()});await a2.auth().signOut();
+      toast("Accès AGENT créé : mot de passe par défaut "+DEF_AGENT)}
+    catch(x){if(x.code!=="auth/email-already-in-use")throw x}
+    try{localStorage.setItem("qw-agent-ok","1")}catch(e){}}catch(x){}}
+$("pa-b").onclick=async()=>{const o=$("pa-o").value,n=$("pa-n").value;if(n.length<4)return toast("4 caractères minimum");if(!o)return toast("Entrez l’ancien mot de passe AGENT");
+  if(!navigator.onLine)return toast("Connexion internet requise");
+  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
+    await a2.auth().signInWithEmailAndPassword(AGENT_EMAIL,fp(o));await a2.auth().currentUser.updatePassword(fp(n));await a2.auth().signOut();
+    $("pa-o").value="";$("pa-n").value="";toast("Mot de passe AGENT changé")}
+  catch(x){toast("Ancien mot de passe AGENT incorrect")}};
+
+/* ---------- Monnaie ---------- */
+function curUI(){$("cur-b").textContent=CUR==="USD"?"$":"FC";$("cv-r").value=RATE||""}
+function convo(){const a=+$("cv-a").value,r=+$("cv-r").value;$("cv-o").textContent=(a>0&&r>0)?($("cv-d").value==="fc2us"?(a/r).toLocaleString("fr-FR",{maximumFractionDigits:2})+" $":Math.round(a*r).toLocaleString("fr-FR")+" FC"):""}
+function setCur(c){const r=+$("cv-r").value;if(c==="USD"&&!(r>0))return toast("Saisissez d’abord le taux (FC pour 1 $)");
+  if(r>0)RATE=r;CUR=c;try{localStorage.setItem("qw-cur",CUR);localStorage.setItem("qw-rate",String(RATE||""))}catch(e){}
+  curUI();convo();render();toast(c==="USD"?"Affichage en dollars (taux "+RATE+")":"Affichage en FC")}
+$("cur-b").onclick=()=>{curUI();$("cv").style.display="flex";convo()};
+$("cv-fc").onclick=()=>setCur("FC");$("cv-us").onclick=()=>setCur("USD");$("cv-x").onclick=()=>$("cv").style.display="none";
+$("cv-a").oninput=$("cv-r").oninput=$("cv-d").onchange=convo;curUI();
+
+/* ---------- Voir le mot de passe ---------- */
+document.querySelectorAll('input[type="password"]').forEach(i=>{
+  const w=document.createElement("div");w.style.position="relative";i.parentNode.insertBefore(w,i);w.appendChild(i);i.style.paddingRight="92px";
+  const b=document.createElement("button");b.type="button";b.className="eye";b.textContent="Afficher";
+  b.onclick=()=>{const s=i.type==="password";i.type=s?"text":"password";b.textContent=s?"Masquer":"Afficher"};w.appendChild(b)});
 
 /* ---------- Démarrage ---------- */
-function loadCfg(){try{const c=JSON.parse(localStorage.getItem("bp-fbcfg"));if(c&&c.apiKey&&c.projectId)return c}catch(e){}return FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId?FIREBASE_CONFIG:null}
+function loadCfg(){try{const c=JSON.parse(localStorage.getItem("qw-fbcfg"));if(c&&c.apiKey&&c.projectId)return c}catch(e){}return FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId?FIREBASE_CONFIG:null}
 function showCfg(){$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("role").textContent="À configurer"}
 $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["']([^"']+)["']/g,(m,k,v)=>{o[k]=v});
   if(!o.apiKey||!o.projectId)return $("cfg-err").textContent="Configuration incomplète : collez tout le bloc firebaseConfig.";
-  try{localStorage.setItem("bp-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
+  try{localStorage.setItem("qw-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
 (function(){
   if(typeof firebase==="undefined"){$("role").textContent="Hors service";$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("cfg-err").textContent="La bibliothèque Firebase n’a pas pu être chargée. Vérifiez la connexion internet puis rechargez.";return}
   cfg=loadCfg();if(!cfg){showCfg();return}
