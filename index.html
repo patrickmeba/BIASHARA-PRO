@@ -105,11 +105,12 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
 <div id="login"><svg class="lart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><h2>BIASHARA PRO</h2><p class="s">Connectez-vous à votre espace</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
-<div id="lg-idw"><label>Identifiant (laisser vide pour le Super Admin)</label><input id="lg-em" autocomplete="username" autocapitalize="none"></div><div id="lg-co" style="display:none;text-align:center;font-weight:700;margin-bottom:4px">🔒 Accès à votre entreprise</div>
-<label>Code d’accès ou mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
+<div id="lg-idw"><label id="lg-idl">Identifiant (laisser vide pour le Super Admin)</label><input id="lg-em" autocomplete="username" autocapitalize="none"></div><div id="lg-co" style="display:none;text-align:center;font-weight:700;margin-bottom:4px">🔒 Accès à votre entreprise</div>
+<div id="lg-ch" style="display:none"><div style="text-align:center;margin:6px 0 12px">Qui êtes-vous ?</div><button class="btn" id="lg-ad">👤 Administrateur</button><button class="btn alt" id="lg-ag" style="margin-top:8px">🧾 Agent (vendeur)</button></div>
+<div id="lg-pwb"><label>Code d’accès ou mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
 <button class="btn" id="lg-go" style="margin-top:14px">Entrer</button>
-<button class="btn alt" id="lg-fp" style="margin-top:8px">Mot de passe oublié ?</button>
-<button class="btn alt" id="lg-oth" style="margin-top:8px;display:none">Autre compte (agent, Super Admin…)</button>
+<button class="btn alt" id="lg-fp" style="margin-top:8px">Mot de passe oublié ?</button></div>
+<button class="btn alt" id="lg-oth" style="margin-top:8px;display:none">← Changer de profil</button>
 <button class="btn alt" id="lg-cfg" style="margin-top:8px;display:none">Reconfigurer Firebase</button></div>
 <div id="lg-act" style="display:none"><p>Premier démarrage : si c’est le compte du Super Admin (propriétaire du système), activez-le.</p>
 <button class="btn" id="lg-ac" style="margin-top:6px">Activer ce compte comme Super Admin</button><button class="btn alt" id="lg-out" style="margin-top:8px">Se déconnecter</button></div>
@@ -175,7 +176,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="card"><b>Mois</b><div class="kpi" id="k-m"></div></div>
 <div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">Identifiant de connexion = nom + code entreprise · ✉ réinitialisation par e-mail (si e-mail réel) · ✕ retire l’accès</div><div id="ag-l"></div>
 <label>Nom de l’agent</label><input id="ag-n" autocomplete="off"><label>Identifiant de connexion (ex : marie) ou e-mail</label><input id="ag-e" autocomplete="off" autocapitalize="none"><label>Mot de passe (4 caractères min.)</label><input id="ag-p" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ag-b">Créer l’accès de l’agent</button></div>
-<div class="card" id="ms-card"><b>Messages du Super Admin</b><div id="ms-h"></div></div><div class="card"><b>Mon mot de passe</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div>
+<div class="card" id="ms-card"><b>Messages du Super Admin</b><div id="ms-h"></div></div><div class="card" id="nm-card"><b>Nom de l’entreprise</b><div class="mut" style="margin-top:4px">Ce nom s’affiche dans la bande défilante en haut. Le Super Admin est prévenu du changement.</div><input id="nm-i" autocomplete="off"><button class="btn" id="nm-b">Enregistrer le nom</button></div><div class="card"><b>Mon mot de passe</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div>
 </section>
 <section class="tab" id="t-ent">
 <div class="card" id="ent-back" style="display:none"><button class="btn alt" id="ent-bk" style="margin:0">← Fermer l’entreprise ouverte</button></div>
@@ -219,13 +220,17 @@ let SND=true;try{SND=localStorage.getItem("qw-snd")!=="0"}catch(e){}
 let AC=null,chimed=false;
 function ac(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();return AC}catch(e){return null}}
 function tone(f,t0,d,v,ty){const c=AC,o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
+function padTone(f,t0,att,d,v,ty){const c=AC,o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+att);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
+function startup(c){const t=c.currentTime+0.05;
+  [[311.13,0],[466.16,.22],[622.25,.44],[783.99,.66],[932.33,.88],[1244.5,1.12]].forEach(n=>{tone(n[0],t+n[1],1.5,.15,"sine");tone(n[0]*2,t+n[1],1,.05,"triangle")});
+  [155.56,311.13,466.16,622.25,783.99].forEach(f=>padTone(f,t+1.1,.5,2.9,.07,"sine"))}
 function ring(kind){if(!SND)return;const c=ac();if(!c)return;
-  const go=()=>{if(kind==="open"){if(chimed)return;chimed=true}
-    const t=c.currentTime+0.05,N=kind==="open"?[[523.25,0],[659.25,.16],[783.99,.32],[1046.5,.5],[783.99,.8],[1046.5,.98]]:[[880,0],[1318.5,.18]];
+  const go=()=>{if(kind==="open"){if(chimed)return;chimed=true;startup(c);return}
+    const t=c.currentTime+0.05,N=[[880,0],[1318.5,.18]];
     N.forEach(n=>{tone(n[0],t+n[1],.6,.18,"triangle");tone(n[0]*2,t+n[1],.4,.04,"sine")})};
   if(c.state==="running")go();else{try{c.resume().then(go).catch(()=>{})}catch(e){}}}
 function sndUI(){$("snd-b").textContent=SND?"🔔":"🔕"}
-const sndGo=()=>{if(chimed){["pointerdown","keydown","touchstart"].forEach(e=>removeEventListener(e,sndGo));return}ring("open")};
+const sndGo=()=>{const c0=ac();if(c0&&c0.state==="suspended"){try{c0.resume()}catch(e){}}if(chimed){["pointerdown","keydown","touchstart"].forEach(e=>removeEventListener(e,sndGo));return}if(getComputedStyle($("login")).display==="none")ring("open")};
 ["pointerdown","keydown","touchstart"].forEach(e=>addEventListener(e,sndGo,{passive:true}));
 function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3200)}
 const tp=n=>db.collection(n);
@@ -241,7 +246,7 @@ const nm=id=>art(id)?art(id).name:"(supprimé)";
 
 const IC={cr:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sv:'<path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/>',dp:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 10h18"/>',mq:'<path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17v.5"/>',ar:'<path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/>',en:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',td:'<path d="M5 20V10M12 20V4M19 20v-7"/>',ent:'<path d="M4 20V8l8-4 8 4v12M9 20v-6h6v6"/>',mp:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
 function buildNav(){
-  const tabs=[];if(role==="super")tabs.push(["ent","Système"]);if(role!=="super"||cid)tabs.push(["sv","Vente"],["cr","Crédits"],["dp","Dépenses"],["mq","Manquants"]);if(role==="agent")tabs.push(["mp","Compte"]);
+  const tabs=[];if(role==="super")tabs.push(["ent","Système"]);if(role!=="super"||cid)tabs.push(["sv","Vente"],["cr","Crédits"],["dp","Dépenses"],["mq","Manquants"]);
   if(owner&&(role!=="super"||cid))tabs.push(["ar","Produits"],["en","Entrées"],["td","Bilan"]);
   if(!tabs.some(t=>t[0]===tab))tab=tabs[0][0];
   $("nav").innerHTML=tabs.map(t=>`<button data-t="${t[0]}"><svg viewBox="0 0 24 24">${IC[t[0]]}</svg>${t[1]}</button>`).join("");
@@ -277,15 +282,15 @@ function fillSelect(sel,q){const v=sel.value,r=searchCat(q),L=r.list,hh=$(sel.id
   sel.innerHTML=L.length?L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""):'<option value="" disabled selected>Aucun produit trouvé</option>';
   if(v&&L.some(a=>a.id===v))sel.value=v}
 function render(){
-  if(role==="super")drawEnt();$("ms-card").style.display=role==="admin"?"":"none";chkMsgs();FIF=owner?fifo():null;
+  if(role==="super"){drawEnt();chkRen()}$("ms-card").style.display=role==="admin"?"":"none";chkMsgs();FIF=owner?fifo():null;
   if(role==="super"&&!cid){const n=S.companies.length;$("h-lab").textContent="Espace Super Admin";$("h-tot").textContent=n+(n>1?" entreprises":" entreprise");$("h-sub").textContent=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});$("cur-b").style.display="none"}
   else{$("h-lab").textContent="Ventes du jour";$("cur-b").style.display="";const tdy=today(),ds=S.sales.filter(s=>s.date===tdy);$("h-tot").textContent=money(ds.reduce((t,s)=>t+s.qty*s.price,0));$("h-sub").textContent=(coName?coName+" · ":"")+new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" · "+ds.length+(ds.length>1?" ventes":" vente")}
   fillSelect($("sv-a"),$("sv-s").value);fillSelect($("en-a"),$("en-s").value);svPrice();enInfo();
   const td=$("sv-d").value||today(),mine=S.sales.filter(s=>s.date===td).sort((a,b)=>b.ts-a.ts);
   const G={};mine.forEach(s=>{const k=s.rid||s.id;(G[k]=G[k]||[]).push(s)});const gr=Object.entries(G).map(([k,a])=>({k,a,ts:Math.max(...a.map(x=>x.ts||0))})).sort((x,y)=>y.ts-x.ts);
-  $("sv-l").innerHTML=(mine.length?`<div class="mut" style="margin:8px 0 2px">Total : ${money(mine.reduce((t,s)=>t+s.qty*s.price,0))}</div>`:"")+gr.map(g=>{const t=g.a.reduce((c,s)=>c+s.qty*s.price,0),f=g.a[0];return `<div class="it"><span>${g.a.map(s=>esc(s.name||nm(s.article))+" × "+s.qty).join(", ")}<br><span class="mut">${esc(f.by||"")}${f.credit?" · à crédit : "+esc(f.client||""):""}${g.a.some(s=>s.list&&s.price!==s.list)?" · prix modifié":""}${g.a.some(s=>s.free)?" · hors liste":""}${owner?" · bénéfice "+money(g.a.reduce((c,s)=>c+s.qty*s.price-costOf(s),0)):""}${owner&&splitTxt(g.a)?"<br>coût par lots → "+splitTxt(g.a):""}</span></span><span>${money(t)} <button class="x" data-r="${g.k}">🧾</button>${(owner||f.date===today())?` <button class="x" data-g="${g.k}">✕</button>`:""}</span></div>`}).join("")||'<div class="mut">Aucune vente ce jour.</div>';
+  $("sv-l").innerHTML=(mine.length?`<div class="mut" style="margin:8px 0 2px">Total : ${money(mine.reduce((t,s)=>t+s.qty*s.price,0))}</div>`:"")+gr.map(g=>{const t=g.a.reduce((c,s)=>c+s.qty*s.price,0),f=g.a[0];return `<div class="it"><span>${g.a.map(s=>esc(s.name||nm(s.article))+" × "+s.qty).join(", ")}<br><span class="mut">${esc(f.by||"")}${f.credit?" · à crédit : "+esc(f.client||""):""}${g.a.some(s=>s.list&&s.price!==s.list)?" · prix modifié":""}${g.a.some(s=>s.free)?" · hors liste":""}${owner?" · bénéfice "+money(g.a.reduce((c,s)=>c+s.qty*s.price-costOf(s),0)):""}${owner&&splitTxt(g.a)?"<br>coût par lots → "+splitTxt(g.a):""}</span></span><span>${money(t)} <button class="x" data-r="${g.k}">🧾</button>${owner?` <button class="x" data-g="${g.k}">✕</button>`:""}</span></div>`}).join("")||'<div class="mut">Aucune vente ce jour.</div>';
   const td2=$("dp-d").value||today(),dj=S.expenses.filter(s=>s.date===td2).sort((a,b)=>b.ts-a.ts);
-  $("dp-li").innerHTML=dj.map(s=>`<div class="it"><span>${esc(s.label)}<br><span class="mut">${esc(s.by||"")}</span></span><span>${money(s.amount)}${(owner||s.date===today())?` <button class="x" data-d="expenses/${s.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucune dépense ce jour.</div>';
+  $("dp-li").innerHTML=dj.map(s=>`<div class="it"><span>${esc(s.label)}<br><span class="mut">${esc(s.by||"")}</span></span><span>${money(s.amount)}${owner?` <button class="x" data-d="expenses/${s.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucune dépense ce jour.</div>';
   const low=S.catalog.filter(a=>stock(a.id)<=(+a.threshold||0));
   $("mq-l").innerHTML=low.slice().sort(cmp).map(a=>`<div class="it"><span>${esc(a.name)}</span><span class="bad">reste ${stock(a.id)}</span></div>`).join("")||'<div class="ok">Aucun produit manquant.</div>';
   {const D=debts(),names=Object.keys(D).sort((a,b)=>a.localeCompare(b)),open=names.filter(c=>D[c]>0),v=$("cr-c").value;
@@ -393,13 +398,13 @@ $("rn-ok").onclick=()=>{const a=art(rnId);if(!a)return;const n=$("rn-n").value.t
   const b=db.batch();b.set(col("catalog").doc(rnId),{name:n},{merge:true});commit(b,"Nom modifié : stock, prix et historique conservés");$("rn").style.display="none"};
 $("rn-n").onkeydown=e=>{if(e.key==="Enter")$("rn-ok").click()};
 document.addEventListener("click",e=>{
-  const rn=e.target.closest("[data-rn]");if(rn){const a=art(rn.dataset.rn);if(a){rnId=a.id;$("rn-n").value=a.name;$("rn-e").textContent="";$("rn").style.display="flex";setTimeout(()=>$("rn-n").select(),50)}return}
+  const rn=e.target.closest("[data-rn]");if(rn&&owner){const a=art(rn.dataset.rn);if(a){rnId=a.id;$("rn-n").value=a.name;$("rn-e").textContent="";$("rn").style.display="flex";setTimeout(()=>$("rn-n").select(),50)}return}
   const c=e.target.closest("[data-c]");if(c){cart.splice(+c.dataset.c,1);drawCart();return}
-  const g=e.target.closest("[data-g]");if(g){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
+  const g=e.target.closest("[data-g]");if(g&&owner){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
   const rr=e.target.closest("[data-r]");if(rr){const a=S.sales.filter(s=>(s.rid||s.id)===rr.dataset.r);if(a.length)showReceipt(a.map(s=>({name:s.name||nm(s.article),qty:s.qty,price:s.price})),{date:a[0].date,by:a[0].by,client:a[0].client,credit:a[0].credit});return}
   const rp=e.target.closest("[data-rp]");if(rp){const m=rp.dataset.rp;if(!m)return;auth.sendPasswordResetEmail(m).then(()=>toast("E-mail de réinitialisation envoyé à "+m)).catch(()=>toast("Envoi impossible"));return}
   const d=e.target.closest("[data-d]");
-  if(d){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
+  if(d&&owner){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
     ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete((cc==="users"?tp(cc):col(cc)).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
   const r=e.target.closest("[data-e]");
   if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";$("ar-x").style.display="block";scrollTo(0,0)}
@@ -420,19 +425,21 @@ const SUPER_EMAIL="patrickmebaa@gmail.com",AG_DOM="@agents.quin-winner.app";
 const fp=p=>"qw#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
 const realEm=e=>!!e&&!String(e).endsWith(AG_DOM);
 const disp=e=>realEm(e)?e:"identifiant : "+String(e||"").replace(AG_DOM,"");
-let flash="";const LINK=(new URLSearchParams(location.search).get("e")||"").trim().toLowerCase();let showOther=false;
+let flash="";const LINK=(new URLSearchParams(location.search).get("e")||"").trim().toLowerCase();let lmode="";const LCODE=(new URLSearchParams(location.search).get("k")||"").trim().toLowerCase();
+function loginRaw(){let raw=$("lg-em").value.trim();if(LINK&&lmode==="agent"&&raw&&!raw.includes("@")){let k=raw.toLowerCase().replace(/[^a-z0-9.]/g,"");if(LCODE&&!k.endsWith("."+LCODE))k=k.replace(/[^a-z0-9]/g,"")+"."+LCODE;raw=k}return raw}
 function loginEmail(v){v=String(v||"").trim().toLowerCase();return v.includes("@")?v:v.replace(/[^a-z0-9._-]/g,"")+AG_DOM}
 function showLogin(msg,activate){$("cfgbox").style.display="none";$("lgbox").style.display="block";$("login").style.display="flex";
-  if(!$("lg-em").value)try{$("lg-em").value=localStorage.getItem("qw-id")||""}catch(x){}
-  const lk=!!LINK&&!showOther;if(lk)$("lg-em").value=LINK;$("lg-idw").style.display=lk?"none":"block";$("lg-co").style.display=lk?"block":"none";$("lg-oth").style.display=LINK&&lk?"block":"none";
+  if(!$("lg-em").value&&!LINK)try{$("lg-em").value=localStorage.getItem("qw-id")||""}catch(x){}
+  const lk=!!LINK,ch=lk&&!lmode;$("lg-co").style.display=lk?"block":"none";$("lg-ch").style.display=ch?"block":"none";$("lg-pwb").style.display=ch?"none":"block";$("lg-idw").style.display=lk&&lmode!=="agent"?"none":"block";$("lg-oth").style.display=lk&&lmode?"block":"none";$("lg-idl").textContent=lk?"Votre identifiant (ex : marie)":"Identifiant (laisser vide pour le Super Admin)";
   $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…"}
 
 /* ----- données d'une entreprise (chargées seulement pour l'entreprise active) ----- */
+function setMq(){const t=esc(coName||"BIASHARA PRO"),i=document.querySelector(".mqi");if(i)i.innerHTML=("<span>"+t+"</span>").repeat(4);const n=$("nm-i");if(n&&document.activeElement!==n)n.value=coName||""}
 function stopCo(){cu.forEach(u=>{try{u()}catch(e){}});cu=[];
   ["catalog","stockin","sales","expenses","payments","costs","purchases","messages"].forEach(n=>{delete P[n];delete got[n]});S.messages=[];
-  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];cid="";coName="";coCode="";owner=false}
+  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];cid="";coName="";coCode="";owner=false;setMq()}
 function subCo(){["catalog","stockin","sales","expenses","payments"].forEach(n=>sub(n,null,cu));if(owner)["costs","purchases"].forEach(n=>sub(n,null,cu));if(role==="admin")sub("messages",null,cu)}
-function openCo(id){const c=S.companies.find(x=>x.id===id);if(!c)return;stopCo();cid=id;coName=c.name||"";coCode=c.code||"";owner=true;subCo();buildNav();go("sv")}
+function openCo(id){const c=S.companies.find(x=>x.id===id);if(!c)return;stopCo();cid=id;coName=c.name||"";coCode=c.code||"";owner=true;setMq();subCo();buildNav();go("sv")}
 function closeCo(){stopCo();buildNav();go("ent")}
 
 async function start(u){
@@ -445,17 +452,18 @@ async function start(u){
     let c;try{c=await tp("companies").doc(r.companyId).get()}catch(e){try{c=await tp("companies").doc(r.companyId).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier l’entreprise. Vérifiez la connexion internet.")}}
     if(!c.exists){flash="Entreprise introuvable. Contactez le Super Admin.";auth.signOut();return}
     const cd=c.data();if(cd.active===false||(cd.subEnd&&Date.now()>cd.subEnd+2592e5)){flash="Cette entreprise est suspendue. Contactez le Super Admin.";auth.signOut();return}
-    cid=r.companyId;coName=cd.name||"";coCode=cd.code||""}
+    cid=r.companyId;coName=cd.name||"";coCode=cd.code||"";setMq()}
   owner=role!=="agent";
   who=role==="super"?"Super Admin":(r.name||(owner?"Administrateur":"Agent"));
   $("role").textContent=role==="super"?"SUPER":role==="admin"?"ADMIN":"AGENT";$("role").title="Connecté : "+who+" — touchez pour se déconnecter";$("login").style.display="none";
   if($("mp-i"))$("mp-i").textContent=who+(coName?" · "+coName:"");
+  if(role!=="super"&&cid)unsubs.push(tp("companies").doc(cid).onSnapshot(d=>{if(d.exists){const n=d.data().name||"";if(n!==coName){coName=n;setMq();render()}}},()=>{}));
   if(role==="super"){sub("companies",tp("companies"));sub("users",tp("users"));sub("secrets",tp("secrets"));sub("logs",tp("logs"))}
   else{subCo();if(owner)sub("users",tp("users").where("companyId","==",cid))}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
 $("snd-b").onclick=()=>{SND=!SND;try{localStorage.setItem("qw-snd",SND?"1":"0")}catch(e){}sndUI();toast(SND?"Son activé":"Son coupé");if(SND)ring("msg")};sndUI();
-setTimeout(()=>ring("open"),400);
+chimed=false;setTimeout(()=>ring("open"),400);
 /* ----- messages du Super Admin vers les administrateurs ----- */
 let msShown=0;
 function chkMsgs(){if(role!=="admin")return;
@@ -468,13 +476,15 @@ $("sm-b").onclick=()=>{const t=$("sm-t").value.trim(),to=$("sm-to").value;if(!t)
   const b=db.batch(),ts=Date.now();L.forEach(c=>b.set(tp("companies").doc(c.id).collection("messages").doc(uid()),{text:t,ts,from:"Super Admin",read:false}));
   b.commit().then(()=>{$("sm-t").value="";toast("Message envoyé à "+L.length+" entreprise"+(L.length>1?"s":""))}).catch(fail)};
 document.addEventListener("click",e=>{const m=e.target.closest("[data-em]");if(m){$("sm-to").value=m.dataset.em;$("sm-card").scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>$("sm-t").focus(),300)}});
-$("lg-go").onclick=async()=>{const raw=$("lg-em").value.trim(),p=$("lg-pw").value;if(!p){$("lg-err").textContent="Entrez votre code d’accès";return}
+$("lg-go").onclick=async()=>{const raw=loginRaw(),p=$("lg-pw").value;if(LINK&&lmode==="agent"&&!raw){$("lg-err").textContent="Entrez votre identifiant";return}if(!p){$("lg-err").textContent="Entrez votre code d’accès";return}
   const e=raw?loginEmail(raw):SUPER_EMAIL;$("lg-err").textContent="";
   try{try{await auth.signInWithEmailAndPassword(e,fp(p))}catch(y){const k=y.code||"";
       if((k==="auth/invalid-credential"||k==="auth/wrong-password")&&realEm(e)){await auth.signInWithEmailAndPassword(e,p);try{await auth.currentUser.updatePassword(fp(p))}catch(z){}}else throw y}
     try{localStorage.setItem("qw-id",raw)}catch(z){}
     const pp=p;setTimeout(()=>{syncPw(pp);logA("Connexion")},2500);$("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"Identifiant ou mot de passe incorrect"}};
-$("lg-oth").onclick=()=>{showOther=true;$("lg-em").value="";showLogin()};
+$("lg-oth").onclick=()=>{lmode="";$("lg-em").value="";$("lg-pw").value="";showLogin()};
+$("lg-ad").onclick=()=>{lmode="admin";$("lg-em").value=LINK;showLogin();setTimeout(()=>$("lg-pw").focus(),50)};
+$("lg-ag").onclick=()=>{lmode="agent";$("lg-em").value="";showLogin();setTimeout(()=>$("lg-em").focus(),50)};
 $("lg-cfg").onclick=()=>showCfg();$("cfg-back").onclick=()=>showLogin();
 $("lg-pw").onkeydown=$("lg-em").onkeydown=e=>{if(e.key==="Enter")$("lg-go").click()};
 $("lg-fp").onclick=()=>{const raw=$("lg-em").value.trim();if(!raw.includes("@"))return $("lg-err").textContent="Entrez votre e-mail. Les agents sans e-mail : demandez à votre administrateur.";
@@ -505,7 +515,7 @@ function drawEnt(){{const sel=$("sm-to"),h='<option value="*">Toutes les entrepr
   $("ent-k").innerHTML=`<div>Entreprises<b>${S.companies.length}</b></div><div>Actives<b>${act}</b></div><div>Suspendues<b>${S.companies.length-act}</b></div><div>Agents (total)<b>${ag}</b></div>`}
   $("ent-back").style.display=cid?"block":"none";
   $("ent-l").innerHTML=S.companies.slice().sort(cmp).map(c=>{const n=S.users.filter(u=>u.companyId===c.id&&u.role==="agent").length;
-    return `<div class="it" style="flex-wrap:wrap"><span><b>${esc(c.name)}</b>${c.active===false?' <span class="bad">suspendue</span>':""}${c.id===cid?' <span class="ok">ouverte</span>':""}<br><span class="mut">Admin : ${esc(c.adminName||"")} · ${esc(c.adminEmail||"")}<br>${n} agent(s) · ${c.subEnd?"échéance "+new Date(c.subEnd).toLocaleDateString("fr-FR"):"Abonnement non suivi"} · créée le ${new Date(c.ts||0).toLocaleDateString("fr-FR")} · code ${esc(c.code||"")}</span></span><span style="display:flex;flex-wrap:wrap;gap:6px;flex-basis:100%;margin-top:8px"><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-eo="${c.id}">Ouvrir</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-eb="${c.id}">Abonnement</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-ea="${c.id}">Accès</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-el="${c.id}">🔗 Lien</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-es="${c.id}">${c.active===false?"Débloquer":"Bloquer"}</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-em="${c.id}">💬</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-ed="${c.id}" style="margin:0;width:auto;padding:8px 12px;background:#d92d20;color:#fff">Supprimer</button></span></div>`}).join("")||'<div class="mut">Aucune entreprise. Créez la première ci-dessous.</div>'}
+    return `<div class="it" style="flex-wrap:wrap"><span><b>${esc(c.name)}</b>${c.active===false?' <span class="bad">suspendue</span>':""}${c.id===cid?' <span class="ok">ouverte</span>':""}<br><span class="mut">Admin : ${esc(c.adminName||"")} · ${esc(c.adminEmail||"")}<br>${n} agent(s) · ${c.subEnd?"échéance "+new Date(c.subEnd).toLocaleDateString("fr-FR"):"Abonnement non suivi"} · créée le ${new Date(c.ts||0).toLocaleDateString("fr-FR")} · code ${esc(c.code||"")}</span></span><span style="display:flex;flex-wrap:wrap;gap:6px;flex-basis:100%;margin-top:8px"><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-eo="${c.id}">Ouvrir</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-eb="${c.id}">Abonnement</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-en="${c.id}">✏️ Nom</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-ea="${c.id}">Accès</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-el="${c.id}">🔗 Lien</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-es="${c.id}">${c.active===false?"Débloquer":"Bloquer"}</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-em="${c.id}">💬</button><button class="btn alt" style="margin:0;width:auto;padding:8px 12px" data-ed="${c.id}" style="margin:0;width:auto;padding:8px 12px;background:#d92d20;color:#fff">Supprimer</button></span></div>`}).join("")||'<div class="mut">Aucune entreprise. Créez la première ci-dessous.</div>'}
 document.addEventListener("click",e=>{
   const o=e.target.closest("[data-eo]");if(o){openCo(o.dataset.eo);return}
   const t=e.target.closest("[data-es]");if(t){const c=S.companies.find(x=>x.id===t.dataset.es);if(!c)return;const on=c.active===false;
@@ -518,7 +528,12 @@ function drawLog(){const L=(S.logs||[]).slice().sort((a,b)=>b.ts-a.ts);$("jr-n")
 $("jr-b").onclick=()=>{const l=$("jr-l");l.style.display=l.style.display==="none"?"block":"none"};
 document.addEventListener("click",async e=>{
  const g=a=>{const b=e.target.closest("["+a+"]");return b&&S.companies.find(x=>x.id===b.getAttribute(a))};let c;
- if(c=g("data-el")){const u=location.origin+location.pathname+"?e="+encodeURIComponent(c.adminEmail||"");(navigator.clipboard?navigator.clipboard.writeText(u).then(()=>toast("Lien copié")):Promise.reject()).catch(()=>ask(u,"Fermer"));return}
+ if(c=g("data-en")){const v=prompt("Nouveau nom de l’entreprise",c.name||"");if(v===null)return;const n=v.trim();if(!n||n===c.name)return;
+  if(S.companies.some(x=>x.id!==c.id&&(x.name||"").trim().toLowerCase()===n.toLowerCase()))return toast("Ce nom existe déjà");
+  const b=db.batch(),ts=Date.now();b.set(tp("companies").doc(c.id),{name:n,renamed:{from:c.name||"",to:n,by:"Super Admin",ts,seen:true}},{merge:true});
+  b.set(tp("companies").doc(c.id).collection("messages").doc(uid()),{text:"Le nom de votre entreprise est devenu « "+n+" ».",ts,from:"Super Admin",read:false});
+  b.commit().then(()=>{toast("Nom modifié");logA("Nom d’entreprise modifié : "+(c.name||"")+" → "+n,c.id)}).catch(fail);return}
+ if(c=g("data-el")){const u=location.origin+location.pathname+"?e="+encodeURIComponent(c.adminEmail||"")+"&k="+encodeURIComponent(c.code||"");(navigator.clipboard?navigator.clipboard.writeText(u).then(()=>toast("Lien copié")):Promise.reject()).catch(()=>ask(u,"Fermer"));return}
  if(c=g("data-ea")){const L=S.secrets.filter(x=>x.companyId===c.id).sort((a,b)=>a.role<b.role?-1:1).map(x=>(x.role==="admin"?"Admin ":"Agent ")+(x.email||"")+" : "+x.pw);ask(L.length?L.join(" · "):"Aucun accès enregistré : il apparaît dès la prochaine connexion de l’administrateur.","Fermer");logA("Accès consulté",c.id);return}
  if(c=g("data-eb")){const v=prompt("Date d’échéance (AAAA-MM-JJ). Vide = abonnement non suivi",c.subEnd?new Date(c.subEnd).toISOString().slice(0,10):"");if(v===null)return;const t=v.trim()?Date.parse(v.trim()+"T23:59:59"):null;if(v.trim()&&isNaN(t))return toast("Date invalide");tp("companies").doc(c.id).set({subEnd:t},{merge:true}).then(()=>{toast("Abonnement mis à jour");logA("Abonnement modifié",c.id)}).catch(fail);return}
  if(c=g("data-ed")){if(!await ask("Supprimer définitivement « "+c.name+" » et ses utilisateurs ?","Supprimer"))return;try{const b=db.batch();S.users.filter(u=>u.companyId===c.id).forEach(u=>b.delete(tp("users").doc(u.id)));S.secrets.filter(x=>x.companyId===c.id).forEach(x=>b.delete(tp("secrets").doc(x.id)));b.delete(tp("companies").doc(c.id));await b.commit();logA("Entreprise supprimée : "+c.name);toast("Entreprise supprimée")}catch(x){fail(x)}}});
@@ -532,6 +547,15 @@ $("ent-b").onclick=async()=>{const n=$("ent-n").value.trim(),an=$("ent-an").valu
     b.set(tp("users").doc(id),{role:"admin",name:an,email:ae,companyId:nid,ts:Date.now()});b.set(tp("secrets").doc(id),{pw:ap,companyId:nid,role:"admin",email:ae,name:an});
     await b.commit();["ent-n","ent-an","ent-ae","ent-ap"].forEach(i=>$(i).value="");toast("Entreprise créée : l’administrateur peut se connecter avec son e-mail")}
   catch(x){toast(mkErr(x))}};
+
+/* ----- nom de l'entreprise : modification par l'admin + notification au Super Admin ----- */
+$("nm-b").onclick=()=>{if(!cid||(role!=="admin"&&role!=="super"))return;const n=$("nm-i").value.trim();if(!n)return toast("Entrez le nom de l’entreprise");if(n===coName)return toast("C’est déjà le nom actuel");if(!navigator.onLine)return toast("Connexion internet requise");
+  const old=coName;tp("companies").doc(cid).set({name:n,renamed:{from:old,to:n,by:who,ts:Date.now(),seen:role==="super"}},{merge:true}).then(()=>{toast("Nom modifié");logA("Nom d’entreprise modifié : "+old+" → "+n)}).catch(fail)};
+const renShown={};
+function chkRen(){if(role!=="super")return;const un=S.companies.filter(c=>c.renamed&&c.renamed.seen===false&&!renShown[c.id+":"+c.renamed.ts]);if(!un.length)return;
+  un.forEach(c=>renShown[c.id+":"+c.renamed.ts]=1);ring("msg");
+  const txt=un.map(c=>"« "+c.renamed.from+" » → « "+c.renamed.to+" » (par "+(c.renamed.by||"admin")+")").join(" · ");
+  ask("Changement de nom d’entreprise : "+txt,"OK, compris").then(()=>{const b=db.batch();un.forEach(c=>b.set(tp("companies").doc(c.id),{renamed:{...c.renamed,seen:true}},{merge:true}));b.commit().catch(()=>{})})}
 
 /* ----- mots de passe personnels ----- */
 function chPw(id){const p=$(id).value;if(p.length<4)return toast("4 caractères minimum");
@@ -626,7 +650,7 @@ $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["
   try{firebase.initializeApp(cfg)}catch(e){}
   auth=firebase.auth();db=firebase.firestore();
   db.enablePersistence({synchronizeTabs:true}).catch(()=>{});
-  auth.onAuthStateChanged(u=>{if(!u){stopSubs();showLogin();return}start(u)});
+  auth.onAuthStateChanged(u=>{if(!u){stopSubs();lmode="";showLogin();return}start(u)});
   if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
 
