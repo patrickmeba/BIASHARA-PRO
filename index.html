@@ -422,7 +422,7 @@ function stopSubs(){stopCo();unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P
 /* ---------- Connexion ---------- */
 // ====== COMPTES : Super Admin (propriétaire du système) > Administrateur (par entreprise) > Agents ======
 const SUPER_EMAIL="patrickmebaa@gmail.com",AG_DOM="@agents.quin-winner.app";
-const fp=p=>"qw#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
+const fp=p=>"bp#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
 const realEm=e=>!!e&&!String(e).endsWith(AG_DOM);
 const disp=e=>realEm(e)?e:"identifiant : "+String(e||"").replace(AG_DOM,"");
 let flash="";const LINK=(new URLSearchParams(location.search).get("e")||"").trim().toLowerCase();let lmode="";const LCODE=(new URLSearchParams(location.search).get("k")||"").trim().toLowerCase();
