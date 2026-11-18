@@ -206,7 +206,7 @@ let role="",cid="",myCid="",coName="",coCode="",cu=[],db=null,auth=null,cfg=null
 const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[],companies:[]};
 const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,companies:v=>S.companies=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
 function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3200)}
-const top=n=>db.collection(n);
+const tp=n=>db.collection(n);
 const col=n=>db.collection("companies").doc(cid).collection(n);
 function fail(e){toast(e&&e.code==="permission-denied"?"Action refusée : droits insuffisants":"Erreur : "+((e&&e.message)||"réessayez"))}
 function commit(b,msg){b.commit().catch(fail);if(msg)toast(navigator.onLine?msg:msg+" · hors ligne : synchronisé au retour d’internet")}
@@ -377,7 +377,7 @@ document.addEventListener("click",e=>{
   const rp=e.target.closest("[data-rp]");if(rp){const m=rp.dataset.rp;if(!m)return;auth.sendPasswordResetEmail(m).then(()=>toast("E-mail de réinitialisation envoyé à "+m)).catch(()=>toast("Envoi impossible"));return}
   const d=e.target.closest("[data-d]");
   if(d){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
-    ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete((cc==="users"?top(cc):col(cc)).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
+    ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete((cc==="users"?tp(cc):col(cc)).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
   const r=e.target.closest("[data-e]");
   if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";$("ar-x").style.display="block";scrollTo(0,0)}
 });
@@ -413,12 +413,12 @@ function closeCo(){stopCo();buildNav();go("ent")}
 
 async function start(u){
   let d;
-  try{d=await top("users").doc(u.uid).get()}catch(e){try{d=await top("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
+  try{d=await tp("users").doc(u.uid).get()}catch(e){try{d=await tp("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
   if(!d.exists){if((u.email||"").toLowerCase()===SUPER_EMAIL)return showLogin("Premier démarrage du système.",true);flash="Ce compte n’est pas activé. Contactez votre administrateur.";auth.signOut();return}
   const r=d.data();if(!["super","admin","agent"].includes(r.role)){flash="Compte non autorisé.";auth.signOut();return}
   stopSubs();role=r.role;
   if(role!=="super"){
-    let c;try{c=await top("companies").doc(r.companyId).get()}catch(e){try{c=await top("companies").doc(r.companyId).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier l’entreprise. Vérifiez la connexion internet.")}}
+    let c;try{c=await tp("companies").doc(r.companyId).get()}catch(e){try{c=await tp("companies").doc(r.companyId).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier l’entreprise. Vérifiez la connexion internet.")}}
     if(!c.exists){flash="Entreprise introuvable. Contactez le Super Admin.";auth.signOut();return}
     const cd=c.data();if(cd.active===false){flash="Cette entreprise est suspendue. Contactez le Super Admin.";auth.signOut();return}
     cid=r.companyId;coName=cd.name||"";coCode=cd.code||""}
@@ -426,8 +426,8 @@ async function start(u){
   who=role==="super"?"Super Admin":(r.name||(owner?"Administrateur":"Agent"));
   $("role").textContent=role==="super"?"SUPER":role==="admin"?"ADMIN":"AGENT";$("role").title="Connecté : "+who+" — touchez pour se déconnecter";$("login").style.display="none";
   if($("mp-i"))$("mp-i").textContent=who+(coName?" · "+coName:"");
-  if(role==="super"){sub("companies",top("companies"));sub("users",top("users"))}
-  else{subCo();if(owner)sub("users",top("users").where("companyId","==",cid))}
+  if(role==="super"){sub("companies",tp("companies"));sub("users",tp("users"))}
+  else{subCo();if(owner)sub("users",tp("users").where("companyId","==",cid))}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
 $("lg-go").onclick=async()=>{const raw=$("lg-em").value.trim(),p=$("lg-pw").value;if(!raw||!p){$("lg-err").textContent="Entrez l’identifiant et le mot de passe";return}
@@ -441,7 +441,7 @@ $("lg-pw").onkeydown=$("lg-em").onkeydown=e=>{if(e.key==="Enter")$("lg-go").clic
 $("lg-fp").onclick=()=>{const raw=$("lg-em").value.trim();if(!raw.includes("@"))return $("lg-err").textContent="Entrez votre e-mail. Les agents sans e-mail : demandez à votre administrateur.";
   auth.sendPasswordResetEmail(raw).then(()=>$("lg-err").textContent="E-mail de réinitialisation envoyé (pensez aux spams).").catch(()=>$("lg-err").textContent="Envoi impossible")};
 $("lg-ac").onclick=()=>{const u=auth.currentUser;if(!u)return;
-  top("users").doc(u.uid).set({role:"super",name:"Super Admin",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le Super Admin défini dans les règles Firestore."})};
+  tp("users").doc(u.uid).set({role:"super",name:"Super Admin",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le Super Admin défini dans les règles Firestore."})};
 $("lg-out").onclick=()=>auth.signOut();
 
 /* ----- création de comptes (app secondaire pour ne pas déconnecter le créateur) ----- */
@@ -455,7 +455,7 @@ $("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),raw=$("ag-e").value.t
   if(!cid||!coCode)return toast("Entreprise non identifiée");
   if(!navigator.onLine)return toast("Connexion internet requise pour créer un agent");
   let e,ident;if(raw.includes("@")){e=raw.toLowerCase();ident=e}else{const k=raw.toLowerCase().replace(/[^a-z0-9]/g,"");if(!k)return toast("Identifiant invalide");ident=k+"."+coCode;e=ident+AG_DOM}
-  try{const id=await mkUser(e,p);await top("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});
+  try{const id=await mkUser(e,p);await tp("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});
     ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé. Identifiant de connexion : "+ident)}
   catch(x){toast(mkErr(x))}};
 
@@ -466,15 +466,15 @@ function drawEnt(){$("ent-back").style.display=cid?"block":"none";
 document.addEventListener("click",e=>{
   const o=e.target.closest("[data-eo]");if(o){openCo(o.dataset.eo);return}
   const t=e.target.closest("[data-es]");if(t){const c=S.companies.find(x=>x.id===t.dataset.es);if(!c)return;const on=c.active===false;
-    ask(on?"Réactiver cette entreprise ?":"Suspendre cette entreprise ? Ses utilisateurs ne pourront plus se connecter.",on?"Réactiver":"Suspendre").then(ok=>{if(ok)top("companies").doc(c.id).set({active:on},{merge:true}).then(()=>toast(on?"Entreprise réactivée":"Entreprise suspendue")).catch(fail)})}});
+    ask(on?"Réactiver cette entreprise ?":"Suspendre cette entreprise ? Ses utilisateurs ne pourront plus se connecter.",on?"Réactiver":"Suspendre").then(ok=>{if(ok)tp("companies").doc(c.id).set({active:on},{merge:true}).then(()=>toast(on?"Entreprise réactivée":"Entreprise suspendue")).catch(fail)})}});
 $("ent-bk").onclick=closeCo;
 $("ent-b").onclick=async()=>{const n=$("ent-n").value.trim(),an=$("ent-an").value.trim(),ae=$("ent-ae").value.trim().toLowerCase(),ap=$("ent-ap").value;
   if(!n||!an||!ae.includes("@")||ap.length<6)return toast("Nom, administrateur, e-mail valide et mot de passe (6 caractères min.) requis");
   if(S.companies.some(c=>(c.name||"").trim().toLowerCase()===n.toLowerCase()))return toast("Cette entreprise existe déjà");
   if(!navigator.onLine)return toast("Connexion internet requise");
   try{const id=await mkUser(ae,ap),nid=uid(),code=Math.random().toString(36).slice(2,6),b=db.batch();
-    b.set(top("companies").doc(nid),{name:n,code,active:true,adminName:an,adminEmail:ae,ts:Date.now()});
-    b.set(top("users").doc(id),{role:"admin",name:an,email:ae,companyId:nid,ts:Date.now()});
+    b.set(tp("companies").doc(nid),{name:n,code,active:true,adminName:an,adminEmail:ae,ts:Date.now()});
+    b.set(tp("users").doc(id),{role:"admin",name:an,email:ae,companyId:nid,ts:Date.now()});
     await b.commit();["ent-n","ent-an","ent-ae","ent-ap"].forEach(i=>$(i).value="");toast("Entreprise créée : l’administrateur peut se connecter avec son e-mail")}
   catch(x){toast(mkErr(x))}};
 
