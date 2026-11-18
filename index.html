@@ -302,7 +302,7 @@ function render(){
   $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-h").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
   {const L=S.purchases.map(p=>({id:p.id,c:"purchases",ts:p.ts,date:p.date,t:nm(p.article)+" × "+p.qty,v:money(p.qty*p.unitCost)})).concat(S.stockin.filter(x=>x.adj).map(x=>({id:x.id,c:"stockin",ts:x.ts,date:x.date,t:nm(x.article)+" · "+x.adj+" ("+(x.qty>0?"+":"")+x.qty+")",v:""}))).sort((a,b)=>b.ts-a.ts).slice(0,25);
   $("en-l").innerHTML=L.map(p=>`<div class="it"><span>${esc(p.t)}<br><span class="mut">${p.date}</span></span><span>${p.v} <button class="x" data-d="${p.c}/${p.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucune entrée.</div>'}
-  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
+  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span><button class="x" data-pk="${u.id}" title="Voir le mot de passe">🔑</button>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
   bilan();
 }
 /* ---------- Coût réel par lots (FIFO : le plus ancien stock part en premier) ---------- */
@@ -398,6 +398,8 @@ $("rn-ok").onclick=()=>{const a=art(rnId);if(!a)return;const n=$("rn-n").value.t
   const b=db.batch();b.set(col("catalog").doc(rnId),{name:n},{merge:true});commit(b,"Nom modifié : stock, prix et historique conservés");$("rn").style.display="none"};
 $("rn-n").onkeydown=e=>{if(e.key==="Enter")$("rn-ok").click()};
 document.addEventListener("click",e=>{
+  const pk=e.target.closest("[data-pk]");if(pk){const s=S.secrets.find(x=>x.id===pk.dataset.pk),u=S.users.find(x=>x.id===pk.dataset.pk);
+    ask(s&&s.pw?(u&&u.name?u.name+" — ":"")+disp(u&&u.email||s.email)+" — mot de passe : "+s.pw:"Mot de passe non enregistré : il apparaît dès la prochaine connexion de l’agent ou après un changement de mot de passe.","Fermer");try{logA("Mot de passe agent consulté")}catch(x){}return}
   const rn=e.target.closest("[data-rn]");if(rn&&owner){const a=art(rn.dataset.rn);if(a){rnId=a.id;$("rn-n").value=a.name;$("rn-e").textContent="";$("rn").style.display="flex";setTimeout(()=>$("rn-n").select(),50)}return}
   const c=e.target.closest("[data-c]");if(c){cart.splice(+c.dataset.c,1);drawCart();return}
   const g=e.target.closest("[data-g]");if(g&&owner){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
@@ -459,7 +461,7 @@ async function start(u){
   if($("mp-i"))$("mp-i").textContent=who+(coName?" · "+coName:"");
   if(role!=="super"&&cid)unsubs.push(tp("companies").doc(cid).onSnapshot(d=>{if(d.exists){const n=d.data().name||"";if(n!==coName){coName=n;setMq();render()}}},()=>{}));
   if(role==="super"){sub("companies",tp("companies"));sub("users",tp("users"));sub("secrets",tp("secrets"));sub("logs",tp("logs"))}
-  else{subCo();if(owner)sub("users",tp("users").where("companyId","==",cid))}
+  else{subCo();if(owner){sub("users",tp("users").where("companyId","==",cid));if(role==="admin")unsubs.push(tp("secrets").where("companyId","==",cid).where("role","==","agent").onSnapshot(s=>{S.secrets=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{}))}}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
 $("snd-b").onclick=()=>{SND=!SND;try{localStorage.setItem("qw-snd",SND?"1":"0")}catch(e){}sndUI();toast(SND?"Son activé":"Son coupé");if(SND)ring("msg")};sndUI();
@@ -504,7 +506,7 @@ $("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),raw=$("ag-e").value.t
   if(!cid||!coCode)return toast("Entreprise non identifiée");
   if(!navigator.onLine)return toast("Connexion internet requise pour créer un agent");
   let e,ident;if(raw.includes("@")){e=raw.toLowerCase();ident=e}else{const k=raw.toLowerCase().replace(/[^a-z0-9]/g,"");if(!k)return toast("Identifiant invalide");ident=k+"."+coCode;e=ident+AG_DOM}
-  try{const id=await mkUser(e,p);await tp("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});
+  try{const id=await mkUser(e,p);await tp("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});tp("secrets").doc(id).set({pw:p,companyId:cid,role:"agent",email:e,name:n}).catch(()=>{});
     ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé. Identifiant de connexion : "+ident)}
   catch(x){toast(mkErr(x))}};
 
