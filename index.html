@@ -79,6 +79,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 #lg-act p,#cfgbox p{margin:0 0 10px;font-size:14px}
 .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--pri);font:700 13px var(--fb);padding:10px 8px}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn:not(.alt){color:#17140D}:root:not([data-theme="light"]) .kpi div:last-child:nth-child(odd),:root:not([data-theme="light"]) .kpi div:last-child:nth-child(odd) b{color:#17140D}}
+#ent-b,#ag-b,#mp-b{background:var(--acc);color:#17140D}
 </style>
 </head>
 <body>
@@ -96,18 +97,15 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="row"><button class="btn alt" id="rn-x" style="margin-top:6px">Annuler</button><button class="btn" id="rn-ok" style="margin-top:6px">Enregistrer</button></div>
 <div class="mut" style="margin-top:10px">Seul le nom change : le stock, les prix, les lots et l’historique des ventes restent identiques.</div></div></div>
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
-<div id="login"><h2>QUIN WINNER</h2><p class="s">Choisissez votre accès</p>
+<div id="login"><h2>QUIN WINNER</h2><p class="s">Connectez-vous à votre espace</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
-<div class="picks"><button id="lg-dg">DG</button><button id="lg-ag">AGENT</button></div>
-<div id="lg-emw"><label>E-mail du compte (une seule fois sur cet appareil)</label><input id="lg-em" type="email" autocomplete="username" inputmode="email" autocapitalize="none"></div>
-<button class="btn alt" id="lg-ce" style="margin-top:8px;display:none">Utiliser un autre e-mail</button>
-<div id="lg-nmw" style="display:none"><label>Votre nom (pour signer vos ventes)</label><input id="lg-nm" autocomplete="name"></div>
+<label>E-mail ou identifiant</label><input id="lg-em" autocomplete="username" autocapitalize="none">
 <label>Mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
 <button class="btn" id="lg-go" style="margin-top:14px">Entrer</button>
 <button class="btn alt" id="lg-fp" style="margin-top:8px">Mot de passe oublié ?</button>
 <button class="btn alt" id="lg-cfg" style="margin-top:8px;display:none">Reconfigurer Firebase</button></div>
-<div id="lg-act" style="display:none"><p>Premier démarrage : si c’est le compte du DG (propriétaire), activez-le. Sinon, demandez au DG de créer votre accès.</p>
-<button class="btn" id="lg-ac" style="margin-top:6px">Activer ce compte comme DG</button><button class="btn alt" id="lg-out" style="margin-top:8px">Se déconnecter</button></div>
+<div id="lg-act" style="display:none"><p>Premier démarrage : si c’est le compte du Super Admin (propriétaire du système), activez-le.</p>
+<button class="btn" id="lg-ac" style="margin-top:6px">Activer ce compte comme Super Admin</button><button class="btn alt" id="lg-out" style="margin-top:8px">Se déconnecter</button></div>
 <div id="lg-err"></div></div>
 <div class="lgc" id="cfgbox" style="display:none"><p><b>Configuration Firebase</b><br>Collez ici le bloc <i>firebaseConfig</i> fourni par la console Firebase (une seule fois par appareil, sauf si vous l’avez déjà écrit dans le fichier index.html).</p>
 <textarea id="cfg-t" placeholder='apiKey: "…", authDomain: "…", projectId: "…", appId: "…"'></textarea>
@@ -168,10 +166,16 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <section class="tab" id="t-td"><div class="card"><label>Jour affiché</label><input id="td-d" type="date"></div>
 <div class="card"><b>Jour</b><div class="kpi" id="k-j"></div><div class="mut" style="margin-top:8px">Le bénéfice est calculé par lots : le stock le plus ancien est vendu avec son ancien prix d’achat, puis le nouveau stock avec son nouveau prix d’achat.</div></div>
 <div class="card"><b>Mois</b><div class="kpi" id="k-m"></div></div>
-<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card" style="display:none"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">✉ envoie un e-mail pour changer le mot de passe · ✕ retire l’accès</div><div id="ag-l"></div>
-<label>Nom de l’agent</label><input id="ag-n" autocomplete="off"><label>E-mail</label><input id="ag-e" type="email" autocomplete="off" inputmode="email"><label>Mot de passe (6 caractères min.)</label><input id="ag-p" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ag-b">Créer l’accès de l’agent</button></div>
-<div class="card"><b>Mon mot de passe (DG)</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div>
-<div class="card"><b>Mot de passe AGENT (pour tous les agents)</b><label>Ancien mot de passe AGENT</label><input id="pa-o" type="password" autocomplete="off"><label>Nouveau mot de passe AGENT</label><input id="pa-n" type="password" autocomplete="new-password"><button class="btn" id="pa-b">Changer le mot de passe AGENT</button><div class="mut" style="margin-top:6px">Mot de passe AGENT par défaut : 1111 (à changer ici).</div></div></section>
+<div class="card"><b>Stock</b><div class="kpi" id="k-s"></div></div><div class="card"><b>Sauvegarde</b><div class="mut" style="margin-top:4px">Télécharge les ventes, dépenses, entrées, articles et paiements dans un fichier Excel.</div><button class="btn" id="ex-b">Exporter vers Excel</button></div><div class="card"><b>Agents (vendeurs)</b><div class="mut" style="margin:4px 0 0">Identifiant de connexion = nom + code entreprise · ✉ réinitialisation par e-mail (si e-mail réel) · ✕ retire l’accès</div><div id="ag-l"></div>
+<label>Nom de l’agent</label><input id="ag-n" autocomplete="off"><label>Identifiant de connexion (ex : marie) ou e-mail</label><input id="ag-e" autocomplete="off" autocapitalize="none"><label>Mot de passe (4 caractères min.)</label><input id="ag-p" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ag-b">Créer l’accès de l’agent</button></div>
+<div class="card"><b>Mon mot de passe</b><label>Nouveau mot de passe</label><input id="pw-dg" type="password" autocomplete="new-password"><button class="btn" id="pw-b">Changer mon mot de passe</button></div>
+</section>
+<section class="tab" id="t-ent">
+<div class="card" id="ent-back" style="display:none"><button class="btn alt" id="ent-bk" style="margin:0">← Fermer l’entreprise ouverte</button></div>
+<div class="card"><b>Entreprises</b><div class="mut" style="margin-top:4px">➜ ouvrir et gérer · ⏸ suspendre / ▶ réactiver · ✉ e-mail de réinitialisation du mot de passe de l’administrateur</div><div id="ent-l"></div></div>
+<div class="card"><b>Nouvelle entreprise</b><label>Nom de l’entreprise</label><input id="ent-n" autocomplete="off"><label>Nom de l’administrateur</label><input id="ent-an" autocomplete="off"><label>E-mail de l’administrateur</label><input id="ent-ae" type="email" autocomplete="off" inputmode="email" autocapitalize="none"><label>Mot de passe (6 caractères min.)</label><input id="ent-ap" type="text" autocomplete="off" autocapitalize="none"><button class="btn" id="ent-b">Créer l’entreprise et son administrateur</button></div>
+<div class="card"><b>Mon mot de passe (Super Admin)</b><label>Nouveau mot de passe</label><input id="pw-s" type="password" autocomplete="new-password"><button class="btn" id="pw-sb">Changer mon mot de passe</button></div></section>
+<section class="tab" id="t-mp"><div class="card"><b>Mon compte</b><div class="mut" id="mp-i" style="margin-top:4px"></div><label>Nouveau mot de passe</label><input id="mp-n" type="password" autocomplete="new-password"><button class="btn" id="mp-b">Changer mon mot de passe</button><button class="btn alt" id="mp-o">Se déconnecter</button></div></section>
 </main>
 <nav id="nav"></nav>
 <div id="toast"></div>
@@ -198,11 +202,12 @@ if(CUR==="USD"&&!(RATE>0))CUR="FC";
 const money=n=>CUR==="USD"&&RATE>0?((n||0)/RATE).toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" $":Math.round(n||0).toLocaleString("fr-FR");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-let db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
-const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[]};
-const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
+let role="",cid="",myCid="",coName="",coCode="",cu=[],db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
+const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[],companies:[]};
+const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,companies:v=>S.companies=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
 function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3200)}
-const col=n=>db.collection(n);
+const top=n=>db.collection(n);
+const col=n=>db.collection("companies").doc(cid).collection(n);
 function fail(e){toast(e&&e.code==="permission-denied"?"Action refusée : droits insuffisants":"Erreur : "+((e&&e.message)||"réessayez"))}
 function commit(b,msg){b.commit().catch(fail);if(msg)toast(navigator.onLine?msg:msg+" · hors ligne : synchronisé au retour d’internet")}
 function ind(){const off=!navigator.onLine,pend=Object.values(P).some(Boolean),n=$("net");
@@ -212,11 +217,11 @@ const art=id=>S.catalog.find(a=>a.id===id);
 const stock=id=>S.stockin.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0)-S.sales.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0);
 const nm=id=>art(id)?art(id).name:"(supprimé)";
 
-const IC={cr:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sv:'<path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/>',dp:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 10h18"/>',mq:'<path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17v.5"/>',ar:'<path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/>',en:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',td:'<path d="M5 20V10M12 20V4M19 20v-7"/>'};
+const IC={cr:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sv:'<path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/>',dp:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 10h18"/>',mq:'<path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17v.5"/>',ar:'<path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/>',en:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',td:'<path d="M5 20V10M12 20V4M19 20v-7"/>',ent:'<path d="M4 20V8l8-4 8 4v12M9 20v-6h6v6"/>',mp:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
 function buildNav(){
-  const tabs=[["sv","Vente"],["cr","Crédits"],["dp","Dépenses"],["mq","Manquants"]];
-  if(owner)tabs.push(["ar","Produits"],["en","Entrées"],["td","Bilan"]);
-  if(!tabs.some(t=>t[0]===tab))tab="sv";
+  const tabs=[];if(role==="super")tabs.push(["ent","Système"]);if(role!=="super"||cid)tabs.push(["sv","Vente"],["cr","Crédits"],["dp","Dépenses"],["mq","Manquants"]);if(role==="agent")tabs.push(["mp","Compte"]);
+  if(owner&&(role!=="super"||cid))tabs.push(["ar","Produits"],["en","Entrées"],["td","Bilan"]);
+  if(!tabs.some(t=>t[0]===tab))tab=tabs[0][0];
   $("nav").innerHTML=tabs.map(t=>`<button data-t="${t[0]}"><svg viewBox="0 0 24 24">${IC[t[0]]}</svg>${t[1]}</button>`).join("");
   $("nav").onclick=e=>{if(e.target.dataset.t)go(e.target.dataset.t)};
   go(tab);
@@ -250,8 +255,8 @@ function fillSelect(sel,q){const v=sel.value,r=searchCat(q),L=r.list,hh=$(sel.id
   sel.innerHTML=L.length?L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""):'<option value="" disabled selected>Aucun produit trouvé</option>';
   if(v&&L.some(a=>a.id===v))sel.value=v}
 function render(){
-  FIF=owner?fifo():null;
-  {const tdy=today(),ds=S.sales.filter(s=>s.date===tdy);$("h-tot").textContent=money(ds.reduce((t,s)=>t+s.qty*s.price,0));$("h-sub").textContent=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" · "+ds.length+(ds.length>1?" ventes":" vente")}
+  if(role==="super")drawEnt();FIF=owner?fifo():null;
+  {const tdy=today(),ds=S.sales.filter(s=>s.date===tdy);$("h-tot").textContent=money(ds.reduce((t,s)=>t+s.qty*s.price,0));$("h-sub").textContent=(coName?coName+" · ":"")+new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" · "+ds.length+(ds.length>1?" ventes":" vente")}
   fillSelect($("sv-a"),$("sv-s").value);fillSelect($("en-a"),$("en-s").value);svPrice();enInfo();
   const td=$("sv-d").value||today(),mine=S.sales.filter(s=>s.date===td).sort((a,b)=>b.ts-a.ts);
   const G={};mine.forEach(s=>{const k=s.rid||s.id;(G[k]=G[k]||[]).push(s)});const gr=Object.entries(G).map(([k,a])=>({k,a,ts:Math.max(...a.map(x=>x.ts||0))})).sort((x,y)=>y.ts-x.ts);
@@ -269,7 +274,7 @@ function render(){
   $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-h").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
   {const L=S.purchases.map(p=>({id:p.id,c:"purchases",ts:p.ts,date:p.date,t:nm(p.article)+" × "+p.qty,v:money(p.qty*p.unitCost)})).concat(S.stockin.filter(x=>x.adj).map(x=>({id:x.id,c:"stockin",ts:x.ts,date:x.date,t:nm(x.article)+" · "+x.adj+" ("+(x.qty>0?"+":"")+x.qty+")",v:""}))).sort((a,b)=>b.ts-a.ts).slice(0,25);
   $("en-l").innerHTML=L.map(p=>`<div class="it"><span>${esc(p.t)}<br><span class="mut">${p.date}</span></span><span>${p.v} <button class="x" data-d="${p.c}/${p.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucune entrée.</div>'}
-  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent").sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(u.email||"")}</span></span><span><button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button><button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
+  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
   bilan();
 }
 /* ---------- Coût réel par lots (FIFO : le plus ancien stock part en premier) ---------- */
@@ -316,7 +321,7 @@ function debts(){const m={};S.sales.forEach(s=>{if(s.credit&&s.client)m[s.client
 function drawCart(){$("cart").style.display=cart.length?"block":"none";$("cart-l").innerHTML=cart.map((l,i)=>`<div class="it"><span>${esc(l.name)}${l.free?" (hors liste)":""} × ${l.qty}<br><span class="mut">à ${money(l.price)}${l.list&&l.price!==l.list?" · prix liste "+money(l.list):""}</span></span><span>${money(l.qty*l.price)} <button class="x" data-c="${i}">✕</button></span></div>`).join("");$("cart-t").textContent="Total : "+money(cart.reduce((t,l)=>t+l.qty*l.price,0))}
 function ask(m,l){return new Promise(r=>{$("cf-m").textContent=m;$("cf-y").textContent=l||"Supprimer";$("cf").style.display="flex";$("cf-y").onclick=()=>{$("cf").style.display="none";r(true)};$("cf-n").onclick=()=>{$("cf").style.display="none";r(false)}})}
 function showReceipt(lines,m){const tot=lines.reduce((t,l)=>t+l.qty*l.price,0);
-  $("rc-t").textContent=["QUIN WINNER","Date : "+m.date,"Vendeur : "+(m.by||""),m.client?"Client : "+m.client:"",""].filter((x,i)=>x||i===4).concat(lines.map(l=>l.name+" × "+l.qty+" = "+money(l.qty*l.price)),["","TOTAL : "+money(tot),m.credit?"À crédit : à payer plus tard":"Payé comptant"]).join("\n");$("rc").style.display="flex"}
+  $("rc-t").textContent=[(coName||"QUIN WINNER"),"Date : "+m.date,"Vendeur : "+(m.by||""),m.client?"Client : "+m.client:"",""].filter((x,i)=>x||i===4).concat(lines.map(l=>l.name+" × "+l.qty+" = "+money(l.qty*l.price)),["","TOTAL : "+money(tot),m.credit?"À crédit : à payer plus tard":"Payé comptant"]).join("\n");$("rc").style.display="flex"}
 $("rc-x").onclick=()=>$("rc").style.display="none";
 $("rc-c").onclick=async()=>{try{await navigator.clipboard.writeText($("rc-t").textContent);toast("Reçu copié")}catch(e){toast("Copie impossible : faites une capture d’écran")}};
 $("rc-p").onclick=()=>{try{window.print()}catch(e){toast("Impression impossible : faites une capture d’écran")}};
@@ -372,75 +377,111 @@ document.addEventListener("click",e=>{
   const rp=e.target.closest("[data-rp]");if(rp){const m=rp.dataset.rp;if(!m)return;auth.sendPasswordResetEmail(m).then(()=>toast("E-mail de réinitialisation envoyé à "+m)).catch(()=>toast("Envoi impossible"));return}
   const d=e.target.closest("[data-d]");
   if(d){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
-    ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete(col(cc).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
+    ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete((cc==="users"?top(cc):col(cc)).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé")}});return}
   const r=e.target.closest("[data-e]");
   if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";$("ar-x").style.display="block";scrollTo(0,0)}
 });
 
 /* ---------- Synchronisation temps réel (Firestore) ---------- */
-function sub(name){
-  unsubs.push(col(name).onSnapshot({includeMetadataChanges:true},s=>{
+function sub(name,ref,L){
+  (L||unsubs).push((ref||col(name)).onSnapshot({includeMetadataChanges:true},s=>{
     P[name]=s.metadata.hasPendingWrites;
     if(!got[name]||s.docChanges().length){got[name]=1;SET[name](s.docs.map(d=>({id:d.id,...d.data()})));render()}
     ind()},e=>toast("Synchronisation interrompue : "+(e.code||""))))}
-function stopSubs(){unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P={};got={};
-  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];S.users=[];owner=false}
+function stopSubs(){stopCo();unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P={};got={};
+  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];S.users=[];S.companies=[];owner=false}
 
 /* ---------- Connexion ---------- */
-// ====== COMPTES : e-mail réel du DG (une seule fois) ; l’e-mail AGENT est interne, jamais saisi ======
-const DG_EMAIL="patrickmebaa@gmail.com", AGENT_EMAIL="agent@quin-winner.app", DEF_AGENT="1111";
-const DG_OK=!/COLLEZ/.test(DG_EMAIL);
+// ====== COMPTES : Super Admin (propriétaire du système) > Administrateur (par entreprise) > Agents ======
+const SUPER_EMAIL="patrickmebaa@gmail.com",AG_DOM="@agents.quin-winner.app";
 const fp=p=>"qw#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
-let flash="",pickR="dg",wanted=null,pendEm="";
-function setPick(r){pickR=r;$("lg-dg").classList.toggle("on",r==="dg");$("lg-ag").classList.toggle("on",r==="agent");
-  const need=r==="dg"&&!DG_OK;let e="";if(need)try{e=localStorage.getItem("qw-em-dg")||""}catch(x){}
-  if(need&&e)$("lg-em").value=e;
-  $("lg-emw").style.display=need&&!e?"block":"none";$("lg-ce").style.display=need&&e?"block":"none";
-  $("lg-nmw").style.display=r==="agent"?"block":"none";
-  if(r==="agent"&&!$("lg-nm").value)try{$("lg-nm").value=localStorage.getItem("qw-name")||""}catch(x){}}
-function emailFor(){return pickR==="agent"?AGENT_EMAIL:(DG_OK?DG_EMAIL:$("lg-em").value.trim())}
-$("lg-dg").onclick=()=>setPick("dg");$("lg-ag").onclick=()=>setPick("agent");
-$("lg-ce").onclick=()=>{$("lg-em").value="";$("lg-emw").style.display="block";$("lg-ce").style.display="none";try{localStorage.removeItem("qw-em-dg")}catch(x){}};
+const realEm=e=>!!e&&!String(e).endsWith(AG_DOM);
+const disp=e=>realEm(e)?e:"identifiant : "+String(e||"").replace(AG_DOM,"");
+let flash="";
+function loginEmail(v){v=String(v||"").trim().toLowerCase();return v.includes("@")?v:v.replace(/[^a-z0-9._-]/g,"")+AG_DOM}
 function showLogin(msg,activate){$("cfgbox").style.display="none";$("lgbox").style.display="block";$("login").style.display="flex";
-  $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…";if(!activate)setPick(pickR)}
+  if(!$("lg-em").value)try{$("lg-em").value=localStorage.getItem("qw-id")||""}catch(x){}
+  $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…"}
+
+/* ----- données d'une entreprise (chargées seulement pour l'entreprise active) ----- */
+function stopCo(){cu.forEach(u=>{try{u()}catch(e){}});cu=[];
+  ["catalog","stockin","sales","expenses","payments","costs","purchases"].forEach(n=>{delete P[n];delete got[n]});
+  S.payments=[];S.catalog=[];S.stockin=[];S.sales=[];S.expenses=[];S.costs={};S.purchases=[];cid="";coName="";coCode="";owner=false}
+function subCo(){["catalog","stockin","sales","expenses","payments"].forEach(n=>sub(n,null,cu));if(owner)["costs","purchases"].forEach(n=>sub(n,null,cu))}
+function openCo(id){const c=S.companies.find(x=>x.id===id);if(!c)return;stopCo();cid=id;coName=c.name||"";coCode=c.code||"";owner=true;subCo();buildNav();go("sv")}
+function closeCo(){stopCo();buildNav();go("ent")}
+
 async function start(u){
   let d;
-  try{d=await col("users").doc(u.uid).get()}catch(e){try{d=await col("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
-  if(!d.exists)return showLogin("Ce compte n’est pas encore activé.",true);
-  const r=d.data();if(r.role!=="dg"&&r.role!=="agent")return showLogin("Compte non autorisé.");
-  const w=wanted;wanted=null;
-  if(w&&r.role!==w){flash=w==="dg"?"Ce compte n’est pas le compte DG. Choisissez AGENT.":"Ce compte est celui du DG. Choisissez DG.";auth.signOut();return}
-  if(w&&pendEm)try{localStorage.setItem("qw-em-"+r.role,pendEm)}catch(x){}
-  stopSubs();owner=r.role==="dg";who=owner?"DG":((()=>{try{return localStorage.getItem("qw-name")}catch(e){return ""}})()||r.name||"Agent");
-  $("role").textContent="ACCÈS";$("role").title="Connecté : "+who+" — touchez pour changer d’accès";$("login").style.display="none";
-  ["catalog","stockin","sales","expenses","payments"].forEach(sub);
-  if(owner)["costs","purchases","users"].forEach(sub);
-  if(owner)ensureAgent();
+  try{d=await top("users").doc(u.uid).get()}catch(e){try{d=await top("users").doc(u.uid).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier le compte. Vérifiez la connexion internet.")}}
+  if(!d.exists){if((u.email||"").toLowerCase()===SUPER_EMAIL)return showLogin("Premier démarrage du système.",true);flash="Ce compte n’est pas activé. Contactez votre administrateur.";auth.signOut();return}
+  const r=d.data();if(!["super","admin","agent"].includes(r.role)){flash="Compte non autorisé.";auth.signOut();return}
+  stopSubs();role=r.role;
+  if(role!=="super"){
+    let c;try{c=await top("companies").doc(r.companyId).get()}catch(e){try{c=await top("companies").doc(r.companyId).get({source:"cache"})}catch(x){return showLogin("Impossible de vérifier l’entreprise. Vérifiez la connexion internet.")}}
+    if(!c.exists){flash="Entreprise introuvable. Contactez le Super Admin.";auth.signOut();return}
+    const cd=c.data();if(cd.active===false){flash="Cette entreprise est suspendue. Contactez le Super Admin.";auth.signOut();return}
+    cid=r.companyId;coName=cd.name||"";coCode=cd.code||""}
+  owner=role!=="agent";
+  who=role==="super"?"Super Admin":(r.name||(owner?"Administrateur":"Agent"));
+  $("role").textContent=role==="super"?"SUPER":role==="admin"?"ADMIN":"AGENT";$("role").title="Connecté : "+who+" — touchez pour se déconnecter";$("login").style.display="none";
+  if($("mp-i"))$("mp-i").textContent=who+(coName?" · "+coName:"");
+  if(role==="super"){sub("companies",top("companies"));sub("users",top("users"))}
+  else{subCo();if(owner)sub("users",top("users").where("companyId","==",cid))}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("lg-go").onclick=async()=>{const e=emailFor(),p=$("lg-pw").value;if(!p){$("lg-err").textContent="Entrez le mot de passe";return}if(!e){$("lg-err").textContent="Entrez l’e-mail du DG (une seule fois)";return}
-  if(pickR==="agent"){const n=$("lg-nm").value.trim();if(!n){$("lg-err").textContent="Entrez votre nom";return}try{localStorage.setItem("qw-name",n)}catch(x){}}
-  $("lg-err").textContent="";wanted=pickR;pendEm=e;
+$("lg-go").onclick=async()=>{const raw=$("lg-em").value.trim(),p=$("lg-pw").value;if(!raw||!p){$("lg-err").textContent="Entrez l’identifiant et le mot de passe";return}
+  const e=loginEmail(raw);$("lg-err").textContent="";
   try{try{await auth.signInWithEmailAndPassword(e,fp(p))}catch(y){const k=y.code||"";
-      if(k==="auth/invalid-credential"||k==="auth/wrong-password"){await auth.signInWithEmailAndPassword(e,p);try{await auth.currentUser.updatePassword(fp(p));toast("Ancien mot de passe accepté. Choisissez un mot de passe simple dans Bilan > Mon mot de passe (DG).")}catch(z){}}else throw y}
-    $("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"Mot de passe incorrect"}};
+      if((k==="auth/invalid-credential"||k==="auth/wrong-password")&&realEm(e)){await auth.signInWithEmailAndPassword(e,p);try{await auth.currentUser.updatePassword(fp(p))}catch(z){}}else throw y}
+    try{localStorage.setItem("qw-id",raw)}catch(z){}
+    $("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"Identifiant ou mot de passe incorrect"}};
 $("lg-cfg").onclick=()=>showCfg();$("cfg-back").onclick=()=>showLogin();
 $("lg-pw").onkeydown=$("lg-em").onkeydown=e=>{if(e.key==="Enter")$("lg-go").click()};
-$("lg-fp").onclick=()=>{if(pickR==="agent")return $("lg-err").textContent="Le mot de passe AGENT se change par le DG (Bilan).";const e=emailFor();if(!e)return $("lg-err").textContent="Entrez d’abord l’e-mail du DG";
-  auth.sendPasswordResetEmail(e).then(()=>$("lg-err").textContent="E-mail de réinitialisation envoyé (pensez aux spams).").catch(()=>$("lg-err").textContent="Envoi impossible")};
+$("lg-fp").onclick=()=>{const raw=$("lg-em").value.trim();if(!raw.includes("@"))return $("lg-err").textContent="Entrez votre e-mail. Les agents sans e-mail : demandez à votre administrateur.";
+  auth.sendPasswordResetEmail(raw).then(()=>$("lg-err").textContent="E-mail de réinitialisation envoyé (pensez aux spams).").catch(()=>$("lg-err").textContent="Envoi impossible")};
 $("lg-ac").onclick=()=>{const u=auth.currentUser;if(!u)return;
-  col("users").doc(u.uid).set({role:"dg",name:"DG",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le compte DG défini dans les règles Firestore."})};
+  top("users").doc(u.uid).set({role:"super",name:"Super Admin",email:u.email,ts:Date.now()}).then(()=>start(u)).catch(()=>{$("lg-err").textContent="Activation refusée : ce compte n’est pas le Super Admin défini dans les règles Firestore."})};
 $("lg-out").onclick=()=>auth.signOut();
-$("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),e=$("ag-e").value.trim(),p=$("ag-p").value;
-  if(!n||!e||p.length<6)return toast("Nom, e-mail et mot de passe (6 caractères min.) requis");
+
+/* ----- création de comptes (app secondaire pour ne pas déconnecter le créateur) ----- */
+async function mkUser(email,pw){const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
+  const c=await a2.auth().createUserWithEmailAndPassword(email,fp(pw));const id=c.user.uid;await a2.auth().signOut();return id}
+const mkErr=x=>x.code==="auth/email-already-in-use"?"Cet identifiant / e-mail est déjà utilisé":x.code==="auth/weak-password"?"Mot de passe trop faible":x.code==="auth/invalid-email"?"E-mail ou identifiant invalide":"Création impossible"+(x.code==="permission-denied"?" : droits insuffisants":"");
+
+/* ----- Administrateur : agents de son entreprise ----- */
+$("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),raw=$("ag-e").value.trim(),p=$("ag-p").value;
+  if(!n||!raw||p.length<4)return toast("Nom, identifiant et mot de passe (4 caractères min.) requis");
+  if(!cid||!coCode)return toast("Entreprise non identifiée");
   if(!navigator.onLine)return toast("Connexion internet requise pour créer un agent");
-  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
-    const c=await a2.auth().createUserWithEmailAndPassword(e,p);const id=c.user.uid;await a2.auth().signOut();
-    await col("users").doc(id).set({role:"agent",name:n,email:e,ts:Date.now()});
-    ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé")}
-  catch(x){toast(x.code==="auth/email-already-in-use"?"Cet e-mail est déjà utilisé":x.code==="auth/weak-password"?"Mot de passe trop faible":x.code==="auth/invalid-email"?"E-mail invalide":"Création impossible")}};
-$("pw-b").onclick=()=>{const p=$("pw-dg").value;if(p.length<4)return toast("4 caractères minimum");
-  auth.currentUser.updatePassword(fp(p)).then(()=>{$("pw-dg").value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))};
+  let e,ident;if(raw.includes("@")){e=raw.toLowerCase();ident=e}else{const k=raw.toLowerCase().replace(/[^a-z0-9]/g,"");if(!k)return toast("Identifiant invalide");ident=k+"."+coCode;e=ident+AG_DOM}
+  try{const id=await mkUser(e,p);await top("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});
+    ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé. Identifiant de connexion : "+ident)}
+  catch(x){toast(mkErr(x))}};
+
+/* ----- Super Admin : entreprises ----- */
+function drawEnt(){$("ent-back").style.display=cid?"block":"none";
+  $("ent-l").innerHTML=S.companies.slice().sort(cmp).map(c=>{const n=S.users.filter(u=>u.companyId===c.id&&u.role==="agent").length;
+    return `<div class="it"><span><b>${esc(c.name)}</b>${c.active===false?' <span class="bad">suspendue</span>':""}${c.id===cid?' <span class="ok">ouverte</span>':""}<br><span class="mut">Admin : ${esc(c.adminName||"")} · ${esc(c.adminEmail||"")}<br>${n} agent(s) · code ${esc(c.code||"")}</span></span><span><button class="x" data-eo="${c.id}" title="Ouvrir">➜</button><button class="x" data-es="${c.id}" title="Suspendre / réactiver">${c.active===false?"▶":"⏸"}</button><button class="x" data-rp="${esc(c.adminEmail||"")}" title="E-mail de réinitialisation du mot de passe">✉</button></span></div>`}).join("")||'<div class="mut">Aucune entreprise. Créez la première ci-dessous.</div>'}
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-eo]");if(o){openCo(o.dataset.eo);return}
+  const t=e.target.closest("[data-es]");if(t){const c=S.companies.find(x=>x.id===t.dataset.es);if(!c)return;const on=c.active===false;
+    ask(on?"Réactiver cette entreprise ?":"Suspendre cette entreprise ? Ses utilisateurs ne pourront plus se connecter.",on?"Réactiver":"Suspendre").then(ok=>{if(ok)top("companies").doc(c.id).set({active:on},{merge:true}).then(()=>toast(on?"Entreprise réactivée":"Entreprise suspendue")).catch(fail)})}});
+$("ent-bk").onclick=closeCo;
+$("ent-b").onclick=async()=>{const n=$("ent-n").value.trim(),an=$("ent-an").value.trim(),ae=$("ent-ae").value.trim().toLowerCase(),ap=$("ent-ap").value;
+  if(!n||!an||!ae.includes("@")||ap.length<6)return toast("Nom, administrateur, e-mail valide et mot de passe (6 caractères min.) requis");
+  if(S.companies.some(c=>(c.name||"").trim().toLowerCase()===n.toLowerCase()))return toast("Cette entreprise existe déjà");
+  if(!navigator.onLine)return toast("Connexion internet requise");
+  try{const id=await mkUser(ae,ap),nid=uid(),code=Math.random().toString(36).slice(2,6),b=db.batch();
+    b.set(top("companies").doc(nid),{name:n,code,active:true,adminName:an,adminEmail:ae,ts:Date.now()});
+    b.set(top("users").doc(id),{role:"admin",name:an,email:ae,companyId:nid,ts:Date.now()});
+    await b.commit();["ent-n","ent-an","ent-ae","ent-ap"].forEach(i=>$(i).value="");toast("Entreprise créée : l’administrateur peut se connecter avec son e-mail")}
+  catch(x){toast(mkErr(x))}};
+
+/* ----- mots de passe personnels ----- */
+function chPw(id){const p=$(id).value;if(p.length<4)return toast("4 caractères minimum");
+  auth.currentUser.updatePassword(fp(p)).then(()=>{$(id).value="";toast("Mot de passe changé")}).catch(x=>toast(x.code==="auth/requires-recent-login"?"Reconnectez-vous puis réessayez":"Changement impossible"))}
+$("pw-b").onclick=()=>chPw("pw-dg");$("pw-sb").onclick=()=>chPw("pw-s");$("mp-b").onclick=()=>chPw("mp-n");$("mp-o").onclick=()=>auth.signOut();
 /* ---------- Import Excel (réapprovisionnement) ---------- */
 const nz=s=>String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 const nn=v=>{if(typeof v==="number")return v;const s=String(v==null?"":v).replace(/[\s\u00a0]/g,"").replace(",",".");return s!==""&&isFinite(+s)?+s:NaN};
@@ -501,22 +542,6 @@ $("ex-b").onclick=()=>{
   add("Articles",catAlpha().map(a=>({Article:a.name,"Prix d’achat":(S.costs[a.id]||{}).cost||0,"Prix de vente":a.price,"Seuil d’alerte":a.threshold,"Stock actuel":stock(a.id)})));
   add("Paiements",S.payments.slice().sort(by).map(p=>({Date:p.date,Client:p.client,Montant:p.amount,Par:p.by||""})));
   try{XLSX.writeFile(wb,"QUIN_WINNER_"+today()+".xlsx");toast("Fichier Excel téléchargé")}catch(e){toast("Export impossible")}};
-
-/* ---------- Accès AGENT partagé ---------- */
-async function ensureAgent(){try{if(localStorage.getItem("qw-agent-ok")==="1")return}catch(e){}
-  if(!navigator.onLine)return;
-  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
-    try{const c=await a2.auth().createUserWithEmailAndPassword(AGENT_EMAIL,fp(DEF_AGENT));
-      await col("users").doc(c.user.uid).set({role:"agent",name:"Agent",email:AGENT_EMAIL,ts:Date.now()});await a2.auth().signOut();
-      toast("Accès AGENT créé : mot de passe par défaut "+DEF_AGENT)}
-    catch(x){if(x.code!=="auth/email-already-in-use")throw x}
-    try{localStorage.setItem("qw-agent-ok","1")}catch(e){}}catch(x){}}
-$("pa-b").onclick=async()=>{const o=$("pa-o").value,n=$("pa-n").value;if(n.length<4)return toast("4 caractères minimum");if(!o)return toast("Entrez l’ancien mot de passe AGENT");
-  if(!navigator.onLine)return toast("Connexion internet requise");
-  try{const a2=firebase.apps.find(a=>a.name==="sec")||firebase.initializeApp(cfg,"sec");
-    await a2.auth().signInWithEmailAndPassword(AGENT_EMAIL,fp(o));await a2.auth().currentUser.updatePassword(fp(n));await a2.auth().signOut();
-    $("pa-o").value="";$("pa-n").value="";toast("Mot de passe AGENT changé")}
-  catch(x){toast("Ancien mot de passe AGENT incorrect")}};
 
 /* ---------- Monnaie ---------- */
 function curUI(){$("cur-b").textContent=CUR==="USD"?"$":"FC";$("cv-r").value=RATE||""}
