@@ -86,11 +86,17 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 #ms-l .mm{margin:6px 0 10px;padding:10px 12px;background:var(--inp);border-radius:12px}
 #sm-b{background:var(--acc);color:#17140D}
 
-#hp{display:none;position:fixed;inset:0;z-index:40;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px}
-#hp .lgc{max-height:85vh;overflow:auto}
-#hp h3{font:800 16px var(--fh);margin:14px 0 6px}
-#hp ol{margin:0;padding-left:20px}#hp li{margin:5px 0}
-#hp .rl{background:var(--inp);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14px}
+#hp{display:none;position:fixed;inset:0;z-index:40;background:var(--bg);color:var(--tx);overflow:auto;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+#hp .hpw{max-width:560px;margin:0 auto;padding:14px 16px 40px}
+#hp .hph{display:flex;align-items:center;gap:12px;font:800 20px var(--fh)}
+#hp .hph button{border:0;background:var(--card);color:var(--tx);width:42px;height:42px;border-radius:14px;font-size:20px;box-shadow:0 3px 10px rgba(40,30,10,.12);cursor:pointer}
+#hp .hpi{color:var(--mut);margin:12px 0}
+#hp .hpt{display:flex;gap:8px;margin-bottom:12px}
+#hp .hpt button{flex:1;padding:14px 6px;border-radius:14px;border:2px solid var(--bd);background:var(--inp);color:var(--tx);font:800 15px var(--fh);cursor:pointer}
+#hp .hpt button.on{background:var(--acc);border-color:var(--acc);color:#17140D}
+#hp h3{font:800 16px var(--fh);margin:16px 0 6px}
+#hp ol{margin:0;padding-left:20px}#hp li{margin:8px 0}
+#hp .rl{background:var(--card);border-radius:14px;padding:12px 14px;font-size:14.5px;box-shadow:0 3px 10px rgba(40,30,10,.08)}
 #help-b{font-weight:800}
 </style>
 </head>
@@ -110,22 +116,31 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="mut" style="margin-top:10px">Seul le nom change : le stock, les prix, les lots et l’historique des ventes restent identiques.</div></div></div>
 <div id="ms" style="display:none;position:fixed;inset:0;z-index:36;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px"><div class="lgc"><b style="font:800 20px var(--fh)">Message du Super Admin</b><div id="ms-l"></div><button class="btn" id="ms-ok">J’ai lu</button></div></div>
 <button type="button" id="lg-help" style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:21;border:0;border-radius:22px;padding:12px 20px;background:#D9AE3F;color:#17140D;font:800 15px var(--fb);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer">❓ Comment ça marche ?</button>
-<div id="hp"><div class="lgc"><b style="font:800 20px var(--fh)">Comment ça marche ?</b>
-<div class="rl"><b>👤 Administrateur = le patron</b><br>Il voit tout : ventes, bénéfices, stock et bilan. Il gère les produits et crée les accès des agents.</div>
-<div class="rl"><b>🧑‍💼 Agent = le vendeur</b><br>Il enregistre les ventes, les crédits et les dépenses. Il ne voit ni les prix d’achat ni les bénéfices.</div>
-<h3>Si vous êtes Administrateur</h3>
+<div id="hp"><div class="hpw">
+<div class="hph"><button type="button" id="hp-ok" aria-label="Retour">←</button><b>Page d’aide</b></div>
+<p class="hpi">Choisissez votre rôle pour voir quoi faire, étape par étape.</p>
+<div class="hpt"><button type="button" id="hp-ta" class="on">👤 Administrateur</button><button type="button" id="hp-tg">🧑‍💼 Agent</button></div>
+<div id="hp-a">
+<div class="rl"><b>Votre rôle</b><br>Vous êtes le patron. Vous voyez tout : ventes, bénéfices, stock et bilan. Vous gérez les produits et vous créez les accès des agents.</div>
+<h3>Quoi faire, simplement</h3>
 <ol><li><b>Produits</b> : ajoutez vos articles avec leur prix.</li>
-<li><b>Entrées</b> : notez chaque achat de stock reçu.</li>
-<li><b>Bilan</b> : consultez le bénéfice du jour et le stock restant.</li>
-<li><b>Créer un agent</b> : dans le Bilan, entrez son nom, son identifiant et un mot de passe (6 caractères min.), puis donnez-les-lui.</li>
+<li><b>Entrées</b> : notez chaque stock reçu (quantité et prix d’achat).</li>
+<li><b>Vente / Crédits / Dépenses</b> : vous pouvez aussi les saisir vous-même.</li>
+<li><b>Bilan</b> : regardez le bénéfice du jour et le stock restant.</li>
+<li><b>Créer un agent</b> : dans le Bilan, écrivez son nom, un identifiant (ex : marie) et un mot de passe de 6 caractères minimum. Donnez-lui ensuite ces informations.</li>
 <li><b>Sauvegarde</b> : téléchargez vos données de temps en temps.</li></ol>
-<h3>Si vous êtes Agent</h3>
+</div>
+<div id="hp-g" style="display:none">
+<div class="rl"><b>Votre rôle</b><br>Vous êtes le vendeur. Vous notez ce qui se passe dans la journée. Vous ne voyez ni les prix d’achat ni les bénéfices.</div>
+<h3>Quoi faire, simplement</h3>
 <ol><li><b>Vente</b> : choisissez l’article, la quantité, puis validez.</li>
 <li><b>Crédits</b> : notez le client qui paie plus tard, puis ses paiements.</li>
 <li><b>Dépenses</b> : écrivez chaque dépense de la journée.</li>
 <li><b>Manquants</b> : signalez les articles qui sont finis.</li>
-<li>Pour sortir : touchez <b>AGENT</b> en haut à droite.</li></ol>
-<button class="btn" id="hp-ok">J’ai compris</button></div></div>
+<li><b>Se déconnecter</b> : touchez <b>AGENT</b> en haut à droite.</li></ol>
+</div>
+<button class="btn" id="hp-ok2">Retour</button>
+</div></div>
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
 <div id="login"><svg class="lart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><h2>BIASHARA PRO</h2><p class="s">Connectez-vous à votre espace</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
@@ -480,7 +495,9 @@ async function start(u){
   else{subCo();if(owner){sub("users",tp("users").where("companyId","==",cid));if(role==="admin")unsubs.push(tp("secrets").where("companyId","==",cid).where("role","==","agent").onSnapshot(s=>{S.secrets=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{}))}}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("help-b").onclick=$("lg-help").onclick=()=>{$("hp").style.display="flex"};$("hp-ok").onclick=()=>{$("hp").style.display="none"};$("hp").onclick=e=>{if(e.target===$("hp"))$("hp").style.display="none"};
+const hpTab=a=>{$("hp-a").style.display=a?"":"none";$("hp-g").style.display=a?"none":"";$("hp-ta").classList.toggle("on",a);$("hp-tg").classList.toggle("on",!a)};
+$("help-b").onclick=$("lg-help").onclick=()=>{hpTab(role!=="agent");$("hp").style.display="block";$("hp").scrollTop=0};
+$("hp-ok").onclick=$("hp-ok2").onclick=()=>{$("hp").style.display="none"};$("hp-ta").onclick=()=>hpTab(true);$("hp-tg").onclick=()=>hpTab(false);
 
 /* ----- messages du Super Admin vers les administrateurs ----- */
 let msShown=0;
@@ -663,6 +680,7 @@ function showCfg(){$("login").style.display="flex";$("lgbox").style.display="non
 $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["']([^"']+)["']/g,(m,k,v)=>{o[k]=v});
   if(!o.apiKey||!o.projectId)return $("cfg-err").textContent="Configuration incomplète : collez tout le bloc firebaseConfig.";
   try{localStorage.setItem("bi-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
+try{if("serviceWorker" in navigator&&/^https?:/.test(location.protocol)&&localStorage.getItem("bi-build")!=="v2"){localStorage.setItem("bi-build","v2");navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister()))).then(()=>window.caches?caches.keys().then(k=>Promise.all(k.map(n=>caches.delete(n)))):0).then(()=>location.reload()).catch(()=>{})}}catch(e){}
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 (function(){
   if(typeof firebase==="undefined"){$("role").textContent="Hors service";$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("cfg-err").textContent="La bibliothèque Firebase n’a pas pu être chargée. Vérifiez la connexion internet puis rechargez.";return}
