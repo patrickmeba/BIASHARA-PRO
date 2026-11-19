@@ -109,6 +109,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="row"><button class="btn alt" id="rn-x" style="margin-top:6px">Annuler</button><button class="btn" id="rn-ok" style="margin-top:6px">Enregistrer</button></div>
 <div class="mut" style="margin-top:10px">Seul le nom change : le stock, les prix, les lots et l’historique des ventes restent identiques.</div></div></div>
 <div id="ms" style="display:none;position:fixed;inset:0;z-index:36;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px"><div class="lgc"><b style="font:800 20px var(--fh)">Message du Super Admin</b><div id="ms-l"></div><button class="btn" id="ms-ok">J’ai lu</button></div></div>
+<button type="button" id="lg-help" style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:21;border:0;border-radius:22px;padding:12px 20px;background:#D9AE3F;color:#17140D;font:800 15px var(--fb);box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer">❓ Comment ça marche ?</button>
 <div id="hp"><div class="lgc"><b style="font:800 20px var(--fh)">Comment ça marche ?</b>
 <div class="rl"><b>👤 Administrateur = le patron</b><br>Il voit tout : ventes, bénéfices, stock et bilan. Il gère les produits et crée les accès des agents.</div>
 <div class="rl"><b>🧑‍💼 Agent = le vendeur</b><br>Il enregistre les ventes, les crédits et les dépenses. Il ne voit ni les prix d’achat ni les bénéfices.</div>
@@ -479,7 +480,7 @@ async function start(u){
   else{subCo();if(owner){sub("users",tp("users").where("companyId","==",cid));if(role==="admin")unsubs.push(tp("secrets").where("companyId","==",cid).where("role","==","agent").onSnapshot(s=>{S.secrets=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{}))}}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("help-b").onclick=()=>{$("hp").style.display="flex"};$("hp-ok").onclick=()=>{$("hp").style.display="none"};$("hp").onclick=e=>{if(e.target===$("hp"))$("hp").style.display="none"};
+$("help-b").onclick=$("lg-help").onclick=()=>{$("hp").style.display="flex"};$("hp-ok").onclick=()=>{$("hp").style.display="none"};$("hp").onclick=e=>{if(e.target===$("hp"))$("hp").style.display="none"};
 
 /* ----- messages du Super Admin vers les administrateurs ----- */
 let msShown=0;
