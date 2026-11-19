@@ -45,19 +45,7 @@ input:focus,select:focus,button:focus-visible{outline:3px solid var(--acc);outli
 .mut{color:var(--mut);font-size:12.5px;font-weight:400}
 .bad{color:var(--bad)}.ok{color:var(--ok);font-weight:600}
 #mq-l .bad{background:var(--tint);padding:4px 10px;border-radius:20px;font-size:13px}
-.x{border:0;background:none;color:var(--mut);font-size:17px;padding:8px 10px;min-width:40px;min-height:40px;border-radius:10px;cursor:pointer}.x:hover{background:var(--inp)}
-.pi{display:flex;align-items:center;gap:10px;min-width:0}
-.th{width:46px;height:46px;border-radius:12px;object-fit:cover;background:var(--inp);flex:none;display:grid;place-items:center;font:800 18px var(--fh);color:var(--mut)}
-img.th{display:block}
-#ph-box{display:flex;align-items:center;gap:12px;margin-top:12px}
-.bs{border:1.5px solid var(--bd);background:var(--inp);color:var(--tx);border-radius:12px;padding:10px 12px;font:600 14px var(--fb);cursor:pointer}
-#sv-g{display:none;gap:8px;overflow-x:auto;padding:4px 0 2px;margin-top:8px;-webkit-overflow-scrolling:touch}
-.gi{flex:none;width:78px;border:2px solid transparent;border-radius:14px;background:var(--inp);padding:4px;text-align:center;cursor:pointer;font:600 11px/1.2 var(--fb);color:var(--tx)}
-.gi.on{border-color:var(--acc)}
-.gi .th{width:64px;height:64px;margin:0 auto 3px}
-.gi .n{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#sv-pv{display:none;align-items:center;gap:12px;margin-top:10px}
-#sv-pv .th{width:84px;height:84px;border-radius:16px}.x[data-d]{color:var(--bad)}
+.x{border:0;background:none;color:var(--mut);font-size:17px;padding:8px 10px;min-width:40px;min-height:40px;border-radius:10px;cursor:pointer}.x:hover{background:var(--inp)}.x[data-d]{color:var(--bad)}
 .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.kpi div{background:var(--inp);border-radius:14px;padding:11px;font-size:13px;color:var(--mut)}
 .kpi b{display:block;font:800 20px var(--fh);color:var(--tx);margin-top:2px}
 .kpi div:last-child:nth-child(odd){grid-column:1/-1;background:var(--pri);color:#fff}.kpi div:last-child:nth-child(odd) b{color:var(--acc)}
@@ -138,7 +126,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <section class="tab" id="t-sv"><div class="card">
 <button class="btn alt" id="sv-fr" style="margin-top:0;margin-bottom:4px">Produit absent de la liste ? Vente libre</button>
 <div id="sv-cat"><label>Rechercher un produit</label><input id="sv-s" type="search" placeholder="Tapez le nom…" autocomplete="off"><div class="mut" id="sv-h" style="margin-top:4px"></div>
-<div id="sv-g"></div><label>Produit</label><select id="sv-a"></select><div id="sv-pv"><span id="sv-pi"></span><b id="sv-pn" style="font:700 16px var(--fh)"></b></div></div>
+<label>Produit</label><select id="sv-a"></select></div>
 <div id="sv-fw" style="display:none"><label>Nom du produit (hors liste)</label><input id="sv-fn" autocomplete="off">
 <div id="sv-fcw" style="display:none"><label>Prix d’achat (facultatif, pour le bénéfice)</label><input id="sv-fc" type="number" inputmode="numeric"></div></div>
 <div class="row"><div><label>Quantité</label><input id="sv-q" type="number" min="1" value="1" inputmode="numeric"></div><div><label>Prix de vente (modifiable)</label><input id="sv-p" type="number" inputmode="numeric"></div></div>
@@ -163,11 +151,10 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 
 <section class="tab" id="t-ar"><div class="card"><b id="ar-h">Nouveau produit</b>
 <label>Désignation</label><input id="ar-n">
-<div id="ph-box"><span id="ph-pv"></span><div><button type="button" class="bs" id="ph-b">📷 Ajouter une photo</button> <button type="button" class="bs" id="ph-r" style="display:none">Retirer</button><div class="mut" style="margin-top:4px">Appareil photo ou galerie du téléphone</div></div></div><input type="file" id="ph-f" accept="image/*" style="display:none">
 <div class="row"><div><label>Prix d’achat</label><input id="ar-c" type="number" inputmode="numeric"></div><div><label>Prix de vente</label><input id="ar-p" type="number" inputmode="numeric"></div></div>
 <div class="row"><div><label>Seuil d’alerte</label><input id="ar-s" type="number" value="3" inputmode="numeric"></div><div><label>Stock initial</label><input id="ar-i" type="number" value="0" inputmode="numeric"></div></div>
 <button class="btn" id="ar-b">Enregistrer le produit</button><button class="btn alt" id="ar-x" style="display:none">Annuler la modification</button></div>
-<div class="card"><b>Produits</b> <span class="mut">(touchez pour modifier)</span><div style="margin-top:10px"><button type="button" class="bs" id="ph-bulk">🖼 Importer plusieurs photos</button><input type="file" id="ph-bf" accept="image/*" multiple style="display:none"><div class="mut" style="margin-top:4px">Nom du fichier = nom du produit (ex : ciment.jpg)</div></div><input id="ar-f" placeholder="Rechercher un produit" style="margin-top:8px"><div class="mut" id="ar-hn" style="margin-top:4px"></div><div id="ar-l"></div></div></section>
+<div class="card"><b>Produits</b> <span class="mut">(touchez pour modifier)</span><input id="ar-f" placeholder="Rechercher un produit" style="margin-top:8px"><div class="mut" id="ar-hn" style="margin-top:4px"></div><div id="ar-l"></div></div></section>
 
 <section class="tab" id="t-en"><div class="card">
 <label>Type d’opération</label><select id="en-t"><option value="a">Achat (entrée de stock)</option><option value="l">Perte, casse ou vol (sortie)</option><option value="i">Inventaire (indiquer le stock réel)</option></select>
@@ -255,18 +242,6 @@ function ind(){const off=!navigator.onLine,pend=Object.values(P).some(Boolean),n
   n.textContent=off?"● Hors ligne : vos opérations seront synchronisées":(pend?"● Synchronisation…":"● Synchronisé en temps réel");n.className=off?"off":(pend?"pend":"")}
 addEventListener("online",ind);addEventListener("offline",ind);
 const art=id=>S.catalog.find(a=>a.id===id);
-let phData;
-const okPh=a=>!!a&&typeof a.photo==="string"&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/.test(a.photo);
-const thumb=a=>okPh(a)?`<img class="th" src="${a.photo}" alt="">`:`<div class="th">${esc((a&&a.name||"?").trim().charAt(0).toUpperCase())}</div>`;
-function shrink(file,max=256,q=.72){return new Promise((ok,ko)=>{const im=new Image(),u=URL.createObjectURL(file);
-  im.onload=()=>{try{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));
-    const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL("image/jpeg",q))}catch(e){ko(e)}};
-  im.onerror=()=>{URL.revokeObjectURL(u);ko(new Error("img"))};im.src=u})}
-function svPv(){const a=art($("sv-a").value),pv=$("sv-pv");
-  if(freeMode||!a||!okPh(a))pv.style.display="none";else{pv.style.display="flex";$("sv-pi").innerHTML=thumb(a);$("sv-pn").textContent=a.name}
-  document.querySelectorAll("#sv-g .gi").forEach(b=>b.classList.toggle("on",b.dataset.g===$("sv-a").value))}
-function svGrid(L){const g=$("sv-g");if(!S.catalog.some(okPh)||!L.length){g.innerHTML="";g.style.display="none";return}
-  g.style.display="flex";g.innerHTML=L.slice(0,15).map(a=>`<button type="button" class="gi" data-g="${a.id}">${thumb(a)}<span class="n">${esc(a.name)}</span></button>`).join("")}
 const stock=id=>S.stockin.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0)-S.sales.filter(x=>x.article===id).reduce((s,x)=>s+(+x.qty||0),0);
 const nm=id=>art(id)?art(id).name:"(supprimé)";
 
@@ -306,7 +281,7 @@ function searchCat(q){const all=catAlpha(),qn=norm(q);if(!qn)return{list:all,app
 const hintTxt=(q,r)=>r.approx?"Aucun nom exact pour « "+q.trim()+" » : voici les produits proches.":"";
 function fillSelect(sel,q){const v=sel.value,r=searchCat(q),L=r.list,hh=$(sel.id==="sv-a"?"sv-h":"en-h");if(hh)hh.textContent=hintTxt(q||"",r);
   sel.innerHTML=L.length?L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""):'<option value="" disabled selected>Aucun produit trouvé</option>';
-  if(v&&L.some(a=>a.id===v))sel.value=v;if(sel.id==="sv-a")svGrid(L)}
+  if(v&&L.some(a=>a.id===v))sel.value=v}
 function render(){
   if(role==="super"){drawEnt();chkRen()}$("ms-card").style.display=role==="admin"?"":"none";chkMsgs();FIF=owner?fifo():null;
   if(role==="super"&&!cid){const n=S.companies.length;$("h-lab").textContent="Espace Super Admin";$("h-tot").textContent=n+(n>1?" entreprises":" entreprise");$("h-sub").textContent=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});$("cur-b").style.display="none"}
@@ -325,7 +300,7 @@ function render(){
   $("cr-l").innerHTML=open.map(c=>`<div class="it"><span>${esc(c)}</span><span class="bad">doit ${money(D[c])}</span></div>`).join("")||'<div class="ok">Aucune dette en cours.</div>';
   $("cr-h").innerHTML=S.payments.slice().sort((a,b)=>b.ts-a.ts).slice(0,15).map(p=>`<div class="it"><span>${esc(p.client)}<br><span class="mut">${p.date} · ${esc(p.by||"")}</span></span><span class="ok">+${money(p.amount)}${owner?` <button class="x" data-d="payments/${p.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucun paiement.</div>'}
   if(!owner)return;
-  $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-hn").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span class="pi">${thumb(a)}<span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
+  $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-hn").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
   {const L=S.purchases.map(p=>({id:p.id,c:"purchases",ts:p.ts,date:p.date,t:nm(p.article)+" × "+p.qty,v:money(p.qty*p.unitCost)})).concat(S.stockin.filter(x=>x.adj).map(x=>({id:x.id,c:"stockin",ts:x.ts,date:x.date,t:nm(x.article)+" · "+x.adj+" ("+(x.qty>0?"+":"")+x.qty+")",v:""}))).sort((a,b)=>b.ts-a.ts).slice(0,25);
   $("en-l").innerHTML=L.map(p=>`<div class="it"><span>${esc(p.t)}<br><span class="mut">${p.date}</span></span><span>${p.v} <button class="x" data-d="${p.c}/${p.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucune entrée.</div>'}
   $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span><button class="x" data-pk="${u.id}" title="Voir le mot de passe">🔑</button>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
@@ -365,7 +340,7 @@ function enInfo(){const a=art($("en-a").value),i=$("en-i");if(!i)return;
   const pv=$("en-pv").value,pr=pv!==""&&+pv>0?+pv:+a.price,c=$("en-c").value===""?NaN:+$("en-c").value;
   i.textContent="Prix de vente actuel : "+money(a.price)+(pv!==""&&+pv>0?" → nouveau prix : "+money(pr):" (inchangé)")+" · stock actuel : "+stock(a.id)+(isNaN(c)?"":" · marge par unité : "+money(pr-c))}
 let freeMode=false;
-function svPrice(){svPv();const a=art($("sv-a").value),p=$("sv-p");
+function svPrice(){const a=art($("sv-a").value),p=$("sv-p");
   if(!freeMode){const k=a?a.id:"";if(p.dataset.a!==k){p.dataset.a=k;p.value=a?a.price:""}}
   const q=+$("sv-q").value||0,pr=+p.value||0;
   $("sv-t").textContent=freeMode?`Total : ${money(q*pr)} · produit hors liste`:(a?`Total : ${money(q*pr)} · stock : ${stock(a.id)}${pr&&pr!==+a.price?" · prix liste : "+money(a.price):""}`:"")}
@@ -398,27 +373,12 @@ $("cr-b").onclick=()=>{const c=$("cr-c").value,m=+$("cr-m").value,D=debts();if(!
   const b=db.batch();b.set(col("payments").doc(uid()),{client:c,amount:m,date:today(),ts:Date.now(),by:who});commit(b,"Paiement enregistré");$("cr-m").value=""};
 $("dp-b").onclick=()=>{const l=$("dp-l").value.trim(),m=+$("dp-m").value;if(!l||!(m>0))return toast("Libellé et montant requis");
   const b=db.batch();b.set(col("expenses").doc(uid()),{date:today(),ts:Date.now(),label:l,amount:m,by:who});commit(b,"Dépense enregistrée");$("dp-l").value="";$("dp-m").value=""};
-function resetAr(){editId=null;["ar-n","ar-c","ar-p"].forEach(i=>$(i).value="");$("ar-s").value=3;$("ar-i").value=0;$("ar-i").disabled=false;$("ar-h").textContent="Nouveau produit";$("ar-x").style.display="none";phData=undefined;phUI()}
+function resetAr(){editId=null;["ar-n","ar-c","ar-p"].forEach(i=>$(i).value="");$("ar-s").value=3;$("ar-i").value=0;$("ar-i").disabled=false;$("ar-h").textContent="Nouveau produit";$("ar-x").style.display="none"}
 $("ar-x").onclick=resetAr;
-function phUI(){const a=editId?art(editId):null,cur=phData===undefined?(okPh(a)?a.photo:""):phData;
-  $("ph-pv").innerHTML=cur?`<img class="th" style="width:72px;height:72px;border-radius:16px" src="${cur}" alt="">`:'<div class="th" style="width:72px;height:72px;border-radius:16px;font-size:26px">📷</div>';
-  $("ph-r").style.display=cur?"":"none";$("ph-b").textContent=cur?"📷 Changer la photo":"📷 Ajouter une photo"}
-$("ph-b").onclick=()=>$("ph-f").click();
-$("ph-f").onchange=async()=>{const f=$("ph-f").files[0];$("ph-f").value="";if(!f)return;try{phData=await shrink(f);phUI()}catch(e){toast("Photo illisible : essayez une autre image")}};
-$("ph-r").onclick=()=>{phData="";phUI()};
-$("ph-bulk").onclick=()=>$("ph-bf").click();
-$("ph-bf").onchange=async()=>{const fs=[...$("ph-bf").files];$("ph-bf").value="";if(!fs.length)return;
-  let b=db.batch(),n=0,pend=0;const no=[];toast("Traitement des photos…");
-  for(const f of fs){const base=norm(f.name.replace(/\.[^.]+$/,"")),a=S.catalog.find(x=>norm(x.name)===base);if(!a){no.push(f.name);continue}
-    try{const d=await shrink(f);b.set(col("catalog").doc(a.id),{photo:d},{merge:true});n++;pend++;if(pend>=25){commit(b);b=db.batch();pend=0}}catch(e){no.push(f.name)}}
-  const msg=n+" photo(s) associée(s)"+(no.length?" · non reconnues : "+no.slice(0,3).join(", ")+(no.length>3?"…":""):"");
-  if(pend)commit(b,msg);else toast(msg)};
-$("sv-g").onclick=e=>{const g=e.target.closest("[data-g]");if(!g)return;$("sv-a").value=g.dataset.g;svPrice()};
-phUI();
 $("ar-b").onclick=()=>{const n=$("ar-n").value.trim(),c=+$("ar-c").value,p=+$("ar-p").value,s=+$("ar-s").value||0,i=+$("ar-i").value||0;if(!n||!(p>0||(editId&&p===0)))return toast("Nom et prix de vente requis");
   if(S.catalog.some(x=>x.id!==editId&&x.name.toLowerCase()===n.toLowerCase()))return toast("Ce produit existe déjà");
   const id=editId||uid(),isNew=!editId,b=db.batch();
-  const cd=isNew?{name:n,price:p,threshold:s,ts:Date.now()}:{name:n,price:p,threshold:s};if(phData)cd.photo=phData;else if(phData===""&&!isNew)cd.photo=firebase.firestore.FieldValue.delete();b.set(col("catalog").doc(id),cd,{merge:true});if(isNew||c!==((S.costs[id]||{}).cost||0))b.set(col("costs").doc(id),{cost:c});
+  b.set(col("catalog").doc(id),isNew?{name:n,price:p,threshold:s,ts:Date.now()}:{name:n,price:p,threshold:s},{merge:true});if(isNew||c!==((S.costs[id]||{}).cost||0))b.set(col("costs").doc(id),{cost:c});
   if(isNew&&i>0){const pid=uid();b.set(col("stockin").doc(pid),{article:id,qty:i,date:today(),ts:Date.now()});b.set(col("purchases").doc(pid),{article:id,qty:i,unitCost:c,date:today(),ts:Date.now()})}
   commit(b,isNew?"Produit enregistré":"Produit modifié : historique conservé");resetAr()};
 $("en-a").onchange=()=>{$("en-c").value=(S.costs[$("en-a").value]||{}).cost||"";enInfo()};
@@ -450,7 +410,7 @@ document.addEventListener("click",e=>{
   if(d&&owner){e.stopPropagation();const[cc,id]=d.dataset.d.split("/");
     ask(cc==="users"?"Retirer l’accès de cet agent ?":"Supprimer cet élément ?").then(ok=>{if(ok){const b=db.batch();b.delete((cc==="users"?tp(cc):col(cc)).doc(id));if(cc==="purchases")b.delete(col("stockin").doc(id));if(cc==="catalog")b.delete(col("costs").doc(id));commit(b,"Supprimé");if(cc==="users")tp("secrets").doc(id).delete().catch(()=>{})}});return}
   const r=e.target.closest("[data-e]");
-  if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";phData=undefined;phUI();$("ar-x").style.display="block";scrollTo(0,0)}
+  if(r&&owner){const a=art(r.dataset.e);editId=a.id;$("ar-n").value=a.name;$("ar-c").value=(S.costs[a.id]||{}).cost||"";$("ar-p").value=a.price;$("ar-s").value=a.threshold;$("ar-i").value=0;$("ar-i").disabled=true;$("ar-h").textContent="Modifier le produit";$("ar-x").style.display="block";scrollTo(0,0)}
 });
 
 /* ---------- Synchronisation temps réel (Firestore) ---------- */
