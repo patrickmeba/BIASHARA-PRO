@@ -85,6 +85,13 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 #ms-l .it{display:block}
 #ms-l .mm{margin:6px 0 10px;padding:10px 12px;background:var(--inp);border-radius:12px}
 #sm-b{background:var(--acc);color:#17140D}
+
+#hp{display:none;position:fixed;inset:0;z-index:40;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px}
+#hp .lgc{max-height:85vh;overflow:auto}
+#hp h3{font:800 16px var(--fh);margin:14px 0 6px}
+#hp ol{margin:0;padding-left:20px}#hp li{margin:5px 0}
+#hp .rl{background:var(--inp);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14px}
+#help-b{font-weight:800}
 </style>
 </head>
 <body>
@@ -102,6 +109,22 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="row"><button class="btn alt" id="rn-x" style="margin-top:6px">Annuler</button><button class="btn" id="rn-ok" style="margin-top:6px">Enregistrer</button></div>
 <div class="mut" style="margin-top:10px">Seul le nom change : le stock, les prix, les lots et l’historique des ventes restent identiques.</div></div></div>
 <div id="ms" style="display:none;position:fixed;inset:0;z-index:36;background:rgba(8,7,4,.75);align-items:center;justify-content:center;padding:20px"><div class="lgc"><b style="font:800 20px var(--fh)">Message du Super Admin</b><div id="ms-l"></div><button class="btn" id="ms-ok">J’ai lu</button></div></div>
+<div id="hp"><div class="lgc"><b style="font:800 20px var(--fh)">Comment ça marche ?</b>
+<div class="rl"><b>👤 Administrateur = le patron</b><br>Il voit tout : ventes, bénéfices, stock et bilan. Il gère les produits et crée les accès des agents.</div>
+<div class="rl"><b>🧑‍💼 Agent = le vendeur</b><br>Il enregistre les ventes, les crédits et les dépenses. Il ne voit ni les prix d’achat ni les bénéfices.</div>
+<h3>Si vous êtes Administrateur</h3>
+<ol><li><b>Produits</b> : ajoutez vos articles avec leur prix.</li>
+<li><b>Entrées</b> : notez chaque achat de stock reçu.</li>
+<li><b>Bilan</b> : consultez le bénéfice du jour et le stock restant.</li>
+<li><b>Créer un agent</b> : dans le Bilan, entrez son nom, son identifiant et un mot de passe (6 caractères min.), puis donnez-les-lui.</li>
+<li><b>Sauvegarde</b> : téléchargez vos données de temps en temps.</li></ol>
+<h3>Si vous êtes Agent</h3>
+<ol><li><b>Vente</b> : choisissez l’article, la quantité, puis validez.</li>
+<li><b>Crédits</b> : notez le client qui paie plus tard, puis ses paiements.</li>
+<li><b>Dépenses</b> : écrivez chaque dépense de la journée.</li>
+<li><b>Manquants</b> : signalez les articles qui sont finis.</li>
+<li>Pour sortir : touchez <b>AGENT</b> en haut à droite.</li></ol>
+<button class="btn" id="hp-ok">J’ai compris</button></div></div>
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
 <div id="login"><svg class="lart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><h2>BIASHARA PRO</h2><p class="s">Connectez-vous à votre espace</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
@@ -120,7 +143,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <textarea id="cfg-t" placeholder='apiKey: "…", authDomain: "…", projectId: "…", appId: "…"'></textarea>
 <div id="cfg-err" style="color:var(--bad);font-weight:600;min-height:20px;margin-top:8px;font-size:14px"></div>
 <button class="btn" id="cfg-go" style="margin-top:8px">Enregistrer</button><button class="btn alt" id="cfg-back" style="margin-top:8px">Retour</button></div></div>
-<div class="hero"><svg class="hart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg></span><div class="mq"><div class="mqi"><span>BIASHARA PRO</span><span>BIASHARA PRO</span><span>BIASHARA PRO</span><span>BIASHARA PRO</span></div></div></div><span style="display:flex;gap:6px;align-items:center"><button class="role" id="snd-b" aria-label="Son">🔔</button><button class="role" id="cur-b">FC</button><button class="role" id="role">Connexion…</button></span></div>
+<div class="hero"><svg class="hart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><div class="top"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg></span><div class="mq"><div class="mqi"><span>BIASHARA PRO</span><span>BIASHARA PRO</span><span>BIASHARA PRO</span><span>BIASHARA PRO</span></div></div></div><span style="display:flex;gap:6px;align-items:center"><button class="role" id="help-b" aria-label="Aide" title="Aide : comment ça marche ?">?</button><button class="role" id="cur-b">FC</button><button class="role" id="role">Connexion…</button></span></div>
 <div class="lab" id="h-lab">Ventes du jour</div><div class="big" id="h-tot">0</div><div class="sub" id="h-sub"></div><div id="net">● Connexion…</div></div>
 <main>
 <section class="tab" id="t-sv"><div class="card">
@@ -217,22 +240,6 @@ const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 let role="",cid="",myCid="",coName="",coCode="",cu=[],db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
 const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[],companies:[],messages:[],secrets:[],logs:[]};
 const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,companies:v=>S.companies=v,messages:v=>S.messages=v,secrets:v=>S.secrets=v,logs:v=>S.logs=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
-let SND=true;try{SND=localStorage.getItem("bi-snd")!=="0"}catch(e){}
-let AC=null,chimed=false;
-function ac(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();return AC}catch(e){return null}}
-function tone(f,t0,d,v,ty){const c=AC,o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
-function padTone(f,t0,att,d,v,ty){const c=AC,o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+att);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
-function startup(c){const t=c.currentTime+0.05;
-  [[311.13,0],[466.16,.22],[622.25,.44],[783.99,.66],[932.33,.88],[1244.5,1.12]].forEach(n=>{tone(n[0],t+n[1],1.5,.15,"sine");tone(n[0]*2,t+n[1],1,.05,"triangle")});
-  [155.56,311.13,466.16,622.25,783.99].forEach(f=>padTone(f,t+1.1,.5,2.9,.07,"sine"))}
-function ring(kind){if(!SND)return;const c=ac();if(!c)return;
-  const go=()=>{if(kind==="open"){if(chimed)return;chimed=true;startup(c);return}
-    const t=c.currentTime+0.05,N=[[880,0],[1318.5,.18]];
-    N.forEach(n=>{tone(n[0],t+n[1],.6,.18,"triangle");tone(n[0]*2,t+n[1],.4,.04,"sine")})};
-  if(c.state==="running")go();else{try{c.resume().then(go).catch(()=>{})}catch(e){}}}
-function sndUI(){$("snd-b").textContent=SND?"🔔":"🔕"}
-const sndGo=()=>{const c0=ac();if(c0&&c0.state==="suspended"){try{c0.resume()}catch(e){}}if(chimed){["pointerdown","keydown","touchstart"].forEach(e=>removeEventListener(e,sndGo));return}if(getComputedStyle($("login")).display==="none")ring("open")};
-["pointerdown","keydown","touchstart"].forEach(e=>addEventListener(e,sndGo,{passive:true}));
 function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display="none",3200)}
 const tp=n=>db.collection(n);
 const col=n=>db.collection("companies").doc(cid).collection(n);
@@ -472,14 +479,14 @@ async function start(u){
   else{subCo();if(owner){sub("users",tp("users").where("companyId","==",cid));if(role==="admin")unsubs.push(tp("secrets").where("companyId","==",cid).where("role","==","agent").onSnapshot(s=>{S.secrets=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{}))}}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("snd-b").onclick=()=>{SND=!SND;try{localStorage.setItem("bi-snd",SND?"1":"0")}catch(e){}sndUI();toast(SND?"Son activé":"Son coupé");if(SND)ring("msg")};sndUI();
-chimed=false;setTimeout(()=>ring("open"),400);
+$("help-b").onclick=()=>{$("hp").style.display="flex"};$("hp-ok").onclick=()=>{$("hp").style.display="none"};$("hp").onclick=e=>{if(e.target===$("hp"))$("hp").style.display="none"};
+
 /* ----- messages du Super Admin vers les administrateurs ----- */
 let msShown=0;
 function chkMsgs(){if(role!=="admin")return;
   const all=S.messages.slice().sort((a,b)=>b.ts-a.ts),un=all.filter(m=>!m.read).sort((a,b)=>a.ts-b.ts);
   $("ms-h").innerHTML=all.slice(0,10).map(m=>`<div class="it"><span>${esc(m.text)}<br><span class="mut">${new Date(m.ts).toLocaleString("fr-FR")}${m.read?"":" · nouveau"}</span></span></div>`).join("")||'<div class="mut">Aucun message.</div>';
-  if(un.length&&$("ms").style.display==="none"){$("ms-l").innerHTML=un.map(m=>`<div class="mm">${esc(m.text)}<div class="mut">${new Date(m.ts).toLocaleString("fr-FR")}</div></div>`).join("");$("ms").style.display="flex";ring("msg")}}
+  if(un.length&&$("ms").style.display==="none"){$("ms-l").innerHTML=un.map(m=>`<div class="mm">${esc(m.text)}<div class="mut">${new Date(m.ts).toLocaleString("fr-FR")}</div></div>`).join("");$("ms").style.display="flex"}}
 $("ms-ok").onclick=()=>{$("ms").style.display="none";const un=S.messages.filter(m=>!m.read);if(!un.length)return;const b=db.batch();un.forEach(m=>{m.read=true;b.set(col("messages").doc(m.id),{read:true},{merge:true})});commit(b)};
 $("sm-b").onclick=()=>{const t=$("sm-t").value.trim(),to=$("sm-to").value;if(!t)return toast("Écrivez le message");
   const L=to==="*"?S.companies:S.companies.filter(c=>c.id===to);if(!L.length)return toast("Aucune entreprise");
@@ -564,7 +571,7 @@ $("nm-b").onclick=()=>{if(!cid||(role!=="admin"&&role!=="super"))return;const n=
   const old=coName;tp("companies").doc(cid).set({name:n,renamed:{from:old,to:n,by:who,ts:Date.now(),seen:role==="super"}},{merge:true}).then(()=>{toast("Nom modifié");logA("Nom d’entreprise modifié : "+old+" → "+n)}).catch(fail)};
 const renShown={};
 function chkRen(){if(role!=="super")return;const un=S.companies.filter(c=>c.renamed&&c.renamed.seen===false&&!renShown[c.id+":"+c.renamed.ts]);if(!un.length)return;
-  un.forEach(c=>renShown[c.id+":"+c.renamed.ts]=1);ring("msg");
+  un.forEach(c=>renShown[c.id+":"+c.renamed.ts]=1);
   const txt=un.map(c=>"« "+c.renamed.from+" » → « "+c.renamed.to+" » (par "+(c.renamed.by||"admin")+")").join(" · ");
   ask("Changement de nom d’entreprise : "+txt,"OK, compris").then(()=>{const b=db.batch();un.forEach(c=>b.set(tp("companies").doc(c.id),{renamed:{...c.renamed,seen:true}},{merge:true}));b.commit().catch(()=>{})})}
 
