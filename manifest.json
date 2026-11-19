@@ -1,0 +1,33 @@
+{
+ "id": "./",
+ "name": "BIASHARA PRO",
+ "short_name": "BIASHARA",
+ "description": "Gestion des ventes, crédits, dépenses et stock",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#1C1812",
+ "theme_color": "#1C1812",
+ "lang": "fr",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
