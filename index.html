@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -105,6 +105,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div id="cf" style="display:none"><div class="lgc"><p id="cf-m" style="font-weight:600;margin:0 0 6px"></p><div class="row"><button class="btn alt" id="cf-n">Annuler</button><button class="btn" id="cf-y" style="background:var(--bad);color:#fff">Supprimer</button></div></div></div>
 <div id="login"><svg class="lart" viewBox="0 0 120 100" aria-hidden="true"><rect x="18" y="40" width="62" height="44" fill="#F4F2EC"/><polygon points="22.0,22 32.8,22 28,40 14,40" fill="#D9AE3F"/><polygon points="32.8,22 43.6,22 42,40 28,40" fill="#FFFFFF"/><polygon points="43.6,22 54.4,22 56,40 42,40" fill="#D9AE3F"/><polygon points="54.4,22 65.2,22 70,40 56,40" fill="#FFFFFF"/><polygon points="65.2,22 76.0,22 84,40 70,40" fill="#D9AE3F"/><circle cx="21" cy="40" r="7" fill="#D9AE3F"/><circle cx="35" cy="40" r="7" fill="#FFFFFF"/><circle cx="49" cy="40" r="7" fill="#D9AE3F"/><circle cx="63" cy="40" r="7" fill="#FFFFFF"/><circle cx="77" cy="40" r="7" fill="#D9AE3F"/><rect x="30" y="58" width="16" height="26" rx="2" fill="#1C1812"/><rect x="54" y="52" width="20" height="18" rx="2" fill="#2B2415" stroke="#D9AE3F" stroke-width="2"/><rect x="88" y="70" width="18" height="14" rx="2" fill="#D9AE3F"/><rect x="94" y="56" width="14" height="14" rx="2" fill="#FFFFFF"/><rect x="92" y="26" width="5" height="10" fill="#D9AE3F"/><rect x="100" y="20" width="5" height="16" fill="#FFFFFF"/><rect x="108" y="12" width="5" height="24" fill="#D9AE3F"/><line x1="6" y1="84" x2="116" y2="84" stroke="#D9AE3F" stroke-width="2" stroke-linecap="round"/></svg><h2>BIASHARA PRO</h2><p class="s">Connectez-vous à votre espace</p>
 <div class="lgc" id="lgbox"><div id="lg-form">
+<div id="lg-who" style="display:none;text-align:center;margin:2px 0 10px"><div style="font-size:13px;color:var(--mut)">Compte enregistré sur cet appareil</div><b id="lg-wn" style="font-size:18px"></b><br><button type="button" id="lg-chg" style="border:0;background:none;color:var(--mut);text-decoration:underline;font:600 13px var(--fb);padding:8px;cursor:pointer">Changer de compte</button></div>
 <div id="lg-idw"><label id="lg-idl">Identifiant (laisser vide pour le Super Admin)</label><input id="lg-em" autocomplete="username" autocapitalize="none"></div><div id="lg-co" style="display:none;text-align:center;font-weight:700;margin-bottom:4px">🔒 Accès à votre entreprise</div>
 <div id="lg-ch" style="display:none"><div style="text-align:center;margin:6px 0 12px">Qui êtes-vous ?</div><button class="btn" id="lg-ad">👤 Administrateur</button><button class="btn alt" id="lg-ag" style="margin-top:8px">🧾 Agent (vendeur)</button></div>
 <div id="lg-pwb"><label>Code d’accès ou mot de passe</label><input id="lg-pw" type="password" autocomplete="current-password">
@@ -153,7 +154,7 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <div class="row"><div><label>Prix d’achat</label><input id="ar-c" type="number" inputmode="numeric"></div><div><label>Prix de vente</label><input id="ar-p" type="number" inputmode="numeric"></div></div>
 <div class="row"><div><label>Seuil d’alerte</label><input id="ar-s" type="number" value="3" inputmode="numeric"></div><div><label>Stock initial</label><input id="ar-i" type="number" value="0" inputmode="numeric"></div></div>
 <button class="btn" id="ar-b">Enregistrer le produit</button><button class="btn alt" id="ar-x" style="display:none">Annuler la modification</button></div>
-<div class="card"><b>Produits</b> <span class="mut">(touchez pour modifier)</span><input id="ar-f" placeholder="Rechercher un produit" style="margin-top:8px"><div class="mut" id="ar-hn" style="margin-top:4px"></div><div id="ar-l"></div></div></section>
+<div class="card"><b>Produits</b> <span class="mut">(touchez pour modifier)</span><input id="ar-f" placeholder="Rechercher un produit" style="margin-top:8px"><div class="mut" id="ar-h" style="margin-top:4px"></div><div id="ar-l"></div></div></section>
 
 <section class="tab" id="t-en"><div class="card">
 <label>Type d’opération</label><select id="en-t"><option value="a">Achat (entrée de stock)</option><option value="l">Perte, casse ou vol (sortie)</option><option value="i">Inventaire (indiquer le stock réel)</option></select>
@@ -197,18 +198,18 @@ button.role{border:0;color:#fff;font-family:var(--fb);cursor:pointer}
 <script>
 // ====== CONFIGURATION FIREBASE (à remplir avant la mise en ligne, voir LISEZ-MOI.md) ======
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDcr3bi_ykud1xeyU3MT1v0tOk0TDTp2Ik",
-  authDomain: "biashara-pro-c363f.firebaseapp.com",
-  projectId: "biashara-pro-c363f",
-  storageBucket: "biashara-pro-c363f.firebasestorage.app",
-  messagingSenderId: "454924598585",
-  appId: "1:454924598585:web:be7bed9978d9b7b706bce8"
+  apiKey: "AIzaSyAzFf_uiyr-ZpYfVxnj_7tSkhspAyhX2GI",
+  authDomain: "quin-winner-ee316.firebaseapp.com",
+  projectId: "quin-winner-ee316",
+  storageBucket: "quin-winner-ee316.firebasestorage.app",
+  messagingSenderId: "841086903763",
+  appId: "1:841086903763:web:93f3e92504cf3e5baa7b26"
 };
 // ==========================================================================================
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
-let CUR="FC",RATE=0;try{CUR=localStorage.getItem("bp-cur")||"FC";RATE=+localStorage.getItem("bp-rate")||0}catch(e){}
+let CUR="FC",RATE=0;try{CUR=localStorage.getItem("bi-cur")||"FC";RATE=+localStorage.getItem("bi-rate")||0}catch(e){}
 if(CUR==="USD"&&!(RATE>0))CUR="FC";
 const money=n=>CUR==="USD"&&RATE>0?((n||0)/RATE).toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" $":Math.round(n||0).toLocaleString("fr-FR");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -216,7 +217,7 @@ const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 let role="",cid="",myCid="",coName="",coCode="",cu=[],db=null,auth=null,cfg=null,owner=false,editId=null,tab="sv",who="Agent",unsubs=[],P={},got={};
 const S={payments:[],catalog:[],stockin:[],sales:[],expenses:[],costs:{},purchases:[],users:[],companies:[],messages:[],secrets:[],logs:[]};
 const SET={catalog:v=>S.catalog=v,stockin:v=>S.stockin=v,sales:v=>S.sales=v,expenses:v=>S.expenses=v,payments:v=>S.payments=v,purchases:v=>S.purchases=v,users:v=>S.users=v,companies:v=>S.companies=v,messages:v=>S.messages=v,secrets:v=>S.secrets=v,logs:v=>S.logs=v,costs:v=>{S.costs={};v.forEach(c=>S.costs[c.id]=c)}};
-let SND=true;try{SND=localStorage.getItem("bp-snd")!=="0"}catch(e){}
+let SND=true;try{SND=localStorage.getItem("bi-snd")!=="0"}catch(e){}
 let AC=null,chimed=false;
 function ac(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();return AC}catch(e){return null}}
 function tone(f,t0,d,v,ty){const c=AC,o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
@@ -299,10 +300,10 @@ function render(){
   $("cr-l").innerHTML=open.map(c=>`<div class="it"><span>${esc(c)}</span><span class="bad">doit ${money(D[c])}</span></div>`).join("")||'<div class="ok">Aucune dette en cours.</div>';
   $("cr-h").innerHTML=S.payments.slice().sort((a,b)=>b.ts-a.ts).slice(0,15).map(p=>`<div class="it"><span>${esc(p.client)}<br><span class="mut">${p.date} · ${esc(p.by||"")}</span></span><span class="ok">+${money(p.amount)}${owner?` <button class="x" data-d="payments/${p.id}">✕</button>`:""}</span></div>`).join("")||'<div class="mut">Aucun paiement.</div>'}
   if(!owner)return;
-  $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-hn").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
+  $("ar-l").innerHTML=(()=>{const r=searchCat($("ar-f").value);$("ar-h").textContent=hintTxt($("ar-f").value,r);return r.list})().map(a=>`<div class="it" data-e="${a.id}"><span>${esc(a.name)}<br><span class="mut">${lotsTxt(a.id)} · vente ${money(a.price)}</span></span><span class="${stock(a.id)<=(+a.threshold||0)?"bad":""}">${stock(a.id)} <button class="x" data-rn="${a.id}" title="Modifier le nom">✎</button><button class="x" data-d="catalog/${a.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucun produit.</div>';
   {const L=S.purchases.map(p=>({id:p.id,c:"purchases",ts:p.ts,date:p.date,t:nm(p.article)+" × "+p.qty,v:money(p.qty*p.unitCost)})).concat(S.stockin.filter(x=>x.adj).map(x=>({id:x.id,c:"stockin",ts:x.ts,date:x.date,t:nm(x.article)+" · "+x.adj+" ("+(x.qty>0?"+":"")+x.qty+")",v:""}))).sort((a,b)=>b.ts-a.ts).slice(0,25);
   $("en-l").innerHTML=L.map(p=>`<div class="it"><span>${esc(p.t)}<br><span class="mut">${p.date}</span></span><span>${p.v} <button class="x" data-d="${p.c}/${p.id}">✕</button></span></div>`).join("")||'<div class="mut">Aucune entrée.</div>'}
-  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
+  $("ag-l").innerHTML=S.users.filter(u=>u.role==="agent"&&u.companyId===cid).sort((a,b)=>(a.name||"").localeCompare(b.name||"")).map(u=>`<div class="it"><span>${esc(u.name||"Agent")}<br><span class="mut">${esc(disp(u.email))}</span></span><span><button class="x" data-pk="${u.id}" title="Voir le mot de passe">🔑</button>${realEm(u.email)?`<button class="x" data-rp="${esc(u.email||"")}" title="Envoyer un e-mail de réinitialisation du mot de passe">✉</button>`:""}<button class="x" data-d="users/${u.id}" title="Retirer l’accès">✕</button></span></div>`).join("")||'<div class="mut">Aucun agent. Créez-en un ci-dessous.</div>';
   bilan();
 }
 /* ---------- Coût réel par lots (FIFO : le plus ancien stock part en premier) ---------- */
@@ -398,6 +399,8 @@ $("rn-ok").onclick=()=>{const a=art(rnId);if(!a)return;const n=$("rn-n").value.t
   const b=db.batch();b.set(col("catalog").doc(rnId),{name:n},{merge:true});commit(b,"Nom modifié : stock, prix et historique conservés");$("rn").style.display="none"};
 $("rn-n").onkeydown=e=>{if(e.key==="Enter")$("rn-ok").click()};
 document.addEventListener("click",e=>{
+  const pk=e.target.closest("[data-pk]");if(pk){const s=S.secrets.find(x=>x.id===pk.dataset.pk),u=S.users.find(x=>x.id===pk.dataset.pk);
+    ask(s&&s.pw?(u&&u.name?u.name+" — ":"")+disp(u&&u.email||s.email)+" — mot de passe : "+s.pw:"Mot de passe non enregistré : il apparaît dès la prochaine connexion de l’agent ou après un changement de mot de passe.","Fermer");try{logA("Mot de passe agent consulté")}catch(x){}return}
   const rn=e.target.closest("[data-rn]");if(rn&&owner){const a=art(rn.dataset.rn);if(a){rnId=a.id;$("rn-n").value=a.name;$("rn-e").textContent="";$("rn").style.display="flex";setTimeout(()=>$("rn-n").select(),50)}return}
   const c=e.target.closest("[data-c]");if(c){cart.splice(+c.dataset.c,1);drawCart();return}
   const g=e.target.closest("[data-g]");if(g&&owner){const k=g.dataset.g;ask("Supprimer cette vente ?").then(ok=>{if(ok){const b=db.batch();S.sales.filter(s=>(s.rid||s.id)===k).forEach(s=>b.delete(col("sales").doc(s.id)));commit(b,"Vente supprimée")}});return}
@@ -421,17 +424,24 @@ function stopSubs(){stopCo();unsubs.forEach(u=>{try{u()}catch(e){}});unsubs=[];P
 
 /* ---------- Connexion ---------- */
 // ====== COMPTES : Super Admin (propriétaire du système) > Administrateur (par entreprise) > Agents ======
-const SUPER_EMAIL="patrickmebaa@gmail.com",AG_DOM="@agents.biashara-pro.app";
+const SUPER_EMAIL="patrickmebaa@gmail.com",AG_DOM="@agents.quin-winner.app";
 const fp=p=>"bp#"+p+"#2026"; /* Firebase exige 6 caractères : on complète le mot de passe simple */
 const realEm=e=>!!e&&!String(e).endsWith(AG_DOM);
 const disp=e=>realEm(e)?e:"identifiant : "+String(e||"").replace(AG_DOM,"");
 let flash="";const LINK=(new URLSearchParams(location.search).get("e")||"").trim().toLowerCase();let lmode="";const LCODE=(new URLSearchParams(location.search).get("k")||"").trim().toLowerCase();
 function loginRaw(){let raw=$("lg-em").value.trim();if(LINK&&lmode==="agent"&&raw&&!raw.includes("@")){let k=raw.toLowerCase().replace(/[^a-z0-9.]/g,"");if(LCODE&&!k.endsWith("."+LCODE))k=k.replace(/[^a-z0-9]/g,"")+"."+LCODE;raw=k}return raw}
 function loginEmail(v){v=String(v||"").trim().toLowerCase();return v.includes("@")?v:v.replace(/[^a-z0-9._-]/g,"")+AG_DOM}
+let forceId=false;
+function knownUI(){let kn=null;try{kn=localStorage.getItem("bi-id")}catch(x){}
+  let hide=false,label="";
+  if(kn!==null&&!forceId){
+    if(!LINK){hide=true;$("lg-em").value=kn;label=kn===""?"Super Admin":(kn.includes("@")?kn:kn.replace(/\.[a-z0-9]+$/,""))}
+    else if(lmode==="agent"&&kn&&!kn.includes("@")&&(!LCODE||kn.endsWith("."+LCODE))){hide=true;$("lg-em").value=kn;label=kn.replace(/\.[a-z0-9]+$/,"")}}
+  $("lg-who").style.display=hide?"block":"none";if(hide){$("lg-idw").style.display="none";$("lg-wn").textContent=label}}
 function showLogin(msg,activate){$("cfgbox").style.display="none";$("lgbox").style.display="block";$("login").style.display="flex";
-  if(!$("lg-em").value&&!LINK)try{$("lg-em").value=localStorage.getItem("bp-id")||""}catch(x){}
+  if(!$("lg-em").value&&!LINK&&!forceId)try{$("lg-em").value=localStorage.getItem("bi-id")||""}catch(x){}
   const lk=!!LINK,ch=lk&&!lmode;$("lg-co").style.display=lk?"block":"none";$("lg-ch").style.display=ch?"block":"none";$("lg-pwb").style.display=ch?"none":"block";$("lg-idw").style.display=lk&&lmode!=="agent"?"none":"block";$("lg-oth").style.display=lk&&lmode?"block":"none";$("lg-idl").textContent=lk?"Votre identifiant (ex : marie)":"Identifiant (laisser vide pour le Super Admin)";
-  $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…"}
+  $("lg-err").textContent=msg||flash||"";flash="";$("lg-act").style.display=activate?"block":"none";$("lg-form").style.display=activate?"none":"block";$("role").textContent="Connexion…";knownUI()}
 
 /* ----- données d'une entreprise (chargées seulement pour l'entreprise active) ----- */
 function setMq(){const t=esc(coName||"BIASHARA PRO"),i=document.querySelector(".mqi");if(i)i.innerHTML=("<span>"+t+"</span>").repeat(4);const n=$("nm-i");if(n&&document.activeElement!==n)n.value=coName||""}
@@ -459,10 +469,10 @@ async function start(u){
   if($("mp-i"))$("mp-i").textContent=who+(coName?" · "+coName:"");
   if(role!=="super"&&cid)unsubs.push(tp("companies").doc(cid).onSnapshot(d=>{if(d.exists){const n=d.data().name||"";if(n!==coName){coName=n;setMq();render()}}},()=>{}));
   if(role==="super"){sub("companies",tp("companies"));sub("users",tp("users"));sub("secrets",tp("secrets"));sub("logs",tp("logs"))}
-  else{subCo();if(owner)sub("users",tp("users").where("companyId","==",cid))}
+  else{subCo();if(owner){sub("users",tp("users").where("companyId","==",cid));if(role==="admin")unsubs.push(tp("secrets").where("companyId","==",cid).where("role","==","agent").onSnapshot(s=>{S.secrets=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{}))}}
   buildNav();render();ind()}
 $("role").onclick=()=>auth&&auth.signOut();
-$("snd-b").onclick=()=>{SND=!SND;try{localStorage.setItem("bp-snd",SND?"1":"0")}catch(e){}sndUI();toast(SND?"Son activé":"Son coupé");if(SND)ring("msg")};sndUI();
+$("snd-b").onclick=()=>{SND=!SND;try{localStorage.setItem("bi-snd",SND?"1":"0")}catch(e){}sndUI();toast(SND?"Son activé":"Son coupé");if(SND)ring("msg")};sndUI();
 chimed=false;setTimeout(()=>ring("open"),400);
 /* ----- messages du Super Admin vers les administrateurs ----- */
 let msShown=0;
@@ -480,8 +490,9 @@ $("lg-go").onclick=async()=>{const raw=loginRaw(),p=$("lg-pw").value;if(LINK&&lm
   const e=raw?loginEmail(raw):SUPER_EMAIL;$("lg-err").textContent="";
   try{try{await auth.signInWithEmailAndPassword(e,fp(p))}catch(y){const k=y.code||"";
       if((k==="auth/invalid-credential"||k==="auth/wrong-password")&&realEm(e)){await auth.signInWithEmailAndPassword(e,p);try{await auth.currentUser.updatePassword(fp(p))}catch(z){}}else throw y}
-    try{localStorage.setItem("bp-id",raw)}catch(z){}
+    try{localStorage.setItem("bi-id",raw)}catch(z){}forceId=false;
     const pp=p;setTimeout(()=>{syncPw(pp);logA("Connexion")},2500);$("lg-pw").value=""}catch(x){const c=x.code||"";$("lg-err").textContent=c==="auth/network-request-failed"?"Pas de connexion internet":c==="auth/too-many-requests"?"Trop d’essais : patientez quelques minutes":/api-key/.test(c)?"Clé Firebase invalide : touchez « Reconfigurer Firebase » et recollez la configuration.":c==="auth/unauthorized-domain"?"Adresse du site non autorisée : ajoutez-la dans Firebase > Authentication > Paramètres > Domaines autorisés.":c==="auth/operation-not-allowed"?"La connexion par e-mail n’est pas activée dans Firebase.":"Identifiant ou mot de passe incorrect"}};
+$("lg-chg").onclick=()=>{forceId=true;$("lg-em").value="";showLogin();setTimeout(()=>{if($("lg-idw").style.display!=="none")$("lg-em").focus()},50)};
 $("lg-oth").onclick=()=>{lmode="";$("lg-em").value="";$("lg-pw").value="";showLogin()};
 $("lg-ad").onclick=()=>{lmode="admin";$("lg-em").value=LINK;showLogin();setTimeout(()=>$("lg-pw").focus(),50)};
 $("lg-ag").onclick=()=>{lmode="agent";$("lg-em").value="";showLogin();setTimeout(()=>$("lg-em").focus(),50)};
@@ -504,7 +515,7 @@ $("ag-b").onclick=async()=>{const n=$("ag-n").value.trim(),raw=$("ag-e").value.t
   if(!cid||!coCode)return toast("Entreprise non identifiée");
   if(!navigator.onLine)return toast("Connexion internet requise pour créer un agent");
   let e,ident;if(raw.includes("@")){e=raw.toLowerCase();ident=e}else{const k=raw.toLowerCase().replace(/[^a-z0-9]/g,"");if(!k)return toast("Identifiant invalide");ident=k+"."+coCode;e=ident+AG_DOM}
-  try{const id=await mkUser(e,p);await tp("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});
+  try{const id=await mkUser(e,p);await tp("users").doc(id).set({role:"agent",name:n,email:e,companyId:cid,ts:Date.now()});tp("secrets").doc(id).set({pw:p,companyId:cid,role:"agent",email:e,name:n}).catch(()=>{});
     ["ag-n","ag-e","ag-p"].forEach(i=>$(i).value="");toast("Accès agent créé. Identifiant de connexion : "+ident)}
   catch(x){toast(mkErr(x))}};
 
@@ -626,7 +637,7 @@ $("ex-b").onclick=()=>{
 function curUI(){$("cur-b").textContent=CUR==="USD"?"$":"FC";$("cv-r").value=RATE||""}
 function convo(){const a=+$("cv-a").value,r=+$("cv-r").value;$("cv-o").textContent=(a>0&&r>0)?($("cv-d").value==="fc2us"?(a/r).toLocaleString("fr-FR",{maximumFractionDigits:2})+" $":Math.round(a*r).toLocaleString("fr-FR")+" FC"):""}
 function setCur(c){const r=+$("cv-r").value;if(c==="USD"&&!(r>0))return toast("Saisissez d’abord le taux (FC pour 1 $)");
-  if(r>0)RATE=r;CUR=c;try{localStorage.setItem("bp-cur",CUR);localStorage.setItem("bp-rate",String(RATE||""))}catch(e){}
+  if(r>0)RATE=r;CUR=c;try{localStorage.setItem("bi-cur",CUR);localStorage.setItem("bi-rate",String(RATE||""))}catch(e){}
   curUI();convo();render();toast(c==="USD"?"Affichage en dollars (taux "+RATE+")":"Affichage en FC")}
 $("cur-b").onclick=()=>{curUI();$("cv").style.display="flex";convo()};
 $("cv-fc").onclick=()=>setCur("FC");$("cv-us").onclick=()=>setCur("USD");$("cv-x").onclick=()=>$("cv").style.display="none";
@@ -639,11 +650,11 @@ document.querySelectorAll('input[type="password"]').forEach(i=>{
   b.onclick=()=>{const s=i.type==="password";i.type=s?"text":"password";b.textContent=s?"Masquer":"Afficher"};w.appendChild(b)});
 
 /* ---------- Démarrage ---------- */
-function loadCfg(){try{const c=JSON.parse(localStorage.getItem("bp-fbcfg"));if(c&&c.apiKey&&c.projectId)return c}catch(e){}return FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId?FIREBASE_CONFIG:null}
+function loadCfg(){try{const c=JSON.parse(localStorage.getItem("bi-fbcfg"));if(c&&c.apiKey&&c.projectId)return c}catch(e){}return FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId?FIREBASE_CONFIG:null}
 function showCfg(){$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("role").textContent="À configurer"}
 $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["']([^"']+)["']/g,(m,k,v)=>{o[k]=v});
   if(!o.apiKey||!o.projectId)return $("cfg-err").textContent="Configuration incomplète : collez tout le bloc firebaseConfig.";
-  try{localStorage.setItem("bp-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
+  try{localStorage.setItem("bi-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
 (function(){
   if(typeof firebase==="undefined"){$("role").textContent="Hors service";$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("cfg-err").textContent="La bibliothèque Firebase n’a pas pu être chargée. Vérifiez la connexion internet puis rechargez.";return}
   cfg=loadCfg();if(!cfg){showCfg();return}
