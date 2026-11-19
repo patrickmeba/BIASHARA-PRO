@@ -655,6 +655,7 @@ function showCfg(){$("login").style.display="flex";$("lgbox").style.display="non
 $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["']([^"']+)["']/g,(m,k,v)=>{o[k]=v});
   if(!o.apiKey||!o.projectId)return $("cfg-err").textContent="Configuration incomplète : collez tout le bloc firebaseConfig.";
   try{localStorage.setItem("bi-fbcfg",JSON.stringify(o))}catch(e){return $("cfg-err").textContent="Enregistrement impossible sur cet appareil."}location.reload()};
+if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 (function(){
   if(typeof firebase==="undefined"){$("role").textContent="Hors service";$("login").style.display="flex";$("lgbox").style.display="none";$("cfgbox").style.display="block";$("cfg-err").textContent="La bibliothèque Firebase n’a pas pu être chargée. Vérifiez la connexion internet puis rechargez.";return}
   cfg=loadCfg();if(!cfg){showCfg();return}
@@ -662,7 +663,6 @@ $("cfg-go").onclick=()=>{const t=$("cfg-t").value,o={};t.replace(/(\w+)\s*:\s*["
   auth=firebase.auth();db=firebase.firestore();
   db.enablePersistence({synchronizeTabs:true}).catch(()=>{});
   auth.onAuthStateChanged(u=>{if(!u){stopSubs();lmode="";showLogin();return}start(u)});
-  if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
 
 </script>
